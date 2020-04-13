@@ -12,10 +12,6 @@ const Navigation = styled.nav`
         color: var(--secondary);
         font-family: "PT Sans", sans-serif;
 
-        @media (min-width: 768px) {
-            margin: 0;
-        }
-
         &:last-of-type {
             margin-right: 0;
         }
