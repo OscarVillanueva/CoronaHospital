@@ -83,21 +83,20 @@ const Signup = () => {
     const { birthday, allergies, preconditions, surgeries } = patient
     const { specialty, document } = doctor
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        if(errors.doctor) {
-            if(errors.doctor.specialty)
-                saveSpecialityError(errors.doctor.specialty)
-            else
-                saveSpecialityError(null)
+    //     if(errors.speciality) {
+    //         saveSpecialityError(errors.doctor[0])
                 
-            if(errors.doctor.document)
-                saveDocumentError(errors.doctor.document)
-            else
-                saveDocumentError(null)
-        }
+    //         if(errors.doctor.length)
+    //             saveDocumentError(errors.doctor[1])
+    //     }
+    //     else {
+    //         saveSpecialityError(null)
+    //         saveDocumentError(null)
+    //     }
 
-    }, [errors])
+    // }, [errors])
 
     function register() {
         console.log("Valido!!!");
@@ -407,7 +406,7 @@ const Signup = () => {
                                     onChange = {handleUserType}
                                     placeholder = "Especialidad"
                                 />
-                            { specialityError && <Error>{specialityError}</Error> }
+                            { errors.speciality && <Error>{errors.speciality}</Error> }
                             </Field>
 
 
@@ -421,7 +420,7 @@ const Signup = () => {
                                     onChange = {handleUserType}
                                     placeholder = "Número de cedula"
                                 />
-                            { documentError && <Error>{documentError}</Error> }
+                            { errors.document && <Error>{errors.document}</Error> }
                             </Field>
 
 

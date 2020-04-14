@@ -53,14 +53,14 @@ export default values => {
             errors.patient = "La fecha de nacimiento es obligatoria"
     }
     else {
-        errors.doctor = {}
         // validar la especialidad
         if(values.doctor.specialty.trim() === "") 
-            errors.doctor.specialty = "La especialidad es obligatoria"
+            errors.speciality = "La especialidad es obligatoria"
 
         // validar la cedula
         if(values.doctor.document.trim() === "") 
-            errors.doctor.document = "La cédula es obligatoria"
+            errors.document = "La cédula es obligatoria"
+
     }
 
     return errors
