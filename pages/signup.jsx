@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Layout from '../components/Layout/Layout';
 import { Field, InputSubmit, Error } from '../components/includes/Form';
+import validateRegister from '../validation/validateRegister';
+import useValidation from '../hooks/useValidation';
 
 const GridForm = styled.form`
     width: 90%;
@@ -22,12 +24,128 @@ const Label = styled.label`
     text-align: center;
 `
 
+const INITIAL_STATE = {
+    name: "",
+    lastName: "",
+    address: "",
+    state: "",
+    city: "",
+    country: "",
+    phone: "",
+    user: "",
+    email: "",
+    password: "",
+    patient: {
+        birthday: "",
+        allergies: "",
+        preconditions: "",
+        surgeries: ""
+    },
+    doctor: {
+        specialty: "",
+        document: ""
+    },
+    check: "patient"
+}
+
 const Signup = () => {
 
     const [type, saveType] = useState("patient")
+    const [specialityError, saveSpecialityError] = useState(null)
+    const [documentError, saveDocumentError] = useState(null)
+
+    const {
+        values,
+        errors,
+        handleChange,
+        handleSubmit
+    } = useValidation(INITIAL_STATE, validateRegister, register)
+
+    const {
+        name,
+        lastName,
+        address,
+        state,
+        city,
+        country,
+        phone,
+        user,
+        email,
+        password,
+        patient,
+        doctor
+    } = values
+
+    const { birthday, allergies, preconditions, surgeries } = patient
+    const { specialty, document } = doctor
+
+    useEffect(() => {
+        
+        if(errors.doctor) {
+            if(errors.doctor.specialty)
+                saveSpecialityError(errors.doctor.specialty)
+            else
+                saveSpecialityError(null)
+                
+            if(errors.doctor.document)
+                saveDocumentError(errors.doctor.document)
+            else
+                saveDocumentError(null)
+        }
+
+    }, [errors])
+
+    function register() {
+        console.log("Valido!!!");
+    }
 
     const handleType = (e) => {
         saveType(e.target.name);
+        handleChange({
+            target: {
+                name: "check",
+                value: e.target.name
+            }
+        })
+    }
+
+    const handleUserType = e => {
+        let bridge = {}
+
+        switch (e.target.id) {
+            case "patient":
+
+                bridge = {
+                    ...patient,
+                    [e.target.name]: e.target.value
+                }
+
+                handleChange({
+                    target: {
+                        name: "patient",
+                        value: bridge
+                    }
+                })
+
+                break;
+
+            case "doctor":
+                
+                bridge = {
+                    ...doctor,
+                    [e.target.name]: e.target.value
+                }
+
+                handleChange({
+                    target: {
+                        name: "doctor",
+                        value: bridge
+                    }
+                })
+
+                break;
+        }
+        
     }
 
     return ( 
@@ -42,7 +160,7 @@ const Signup = () => {
                 Registro
             </h1>
 
-            <GridForm>
+            <GridForm onSubmit = {handleSubmit}>
 
                 <Field>
                     <label htmlFor="name">Nombre</label>
@@ -50,11 +168,13 @@ const Signup = () => {
                         type="text" 
                         name="name" 
                         id="name" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {name}
+                        onChange = {handleChange}
                         placeholder = "Tu Nombre"
                     />
                 </Field>
+
+                { errors.name && <Error>{errors.name}</Error> }
 
                 <Field>
                     <label htmlFor="lastName">Apellidos</label>
@@ -62,11 +182,13 @@ const Signup = () => {
                         type="text" 
                         name="lastName" 
                         id="lastName" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {lastName}
+                        onChange = {handleChange}
                         placeholder = "Tus Apellidos"
                     />
                 </Field>
+
+                { errors.lastName && <Error>{errors.lastName}</Error> }
 
                 <Field>
                     <label htmlFor="address">Dirección</label>
@@ -74,11 +196,13 @@ const Signup = () => {
                         type="text" 
                         name="address" 
                         id="address" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {address}
+                        onChange = {handleChange}
                         placeholder = "Tu dirección"
                     />
                 </Field>
+
+                { errors.address && <Error>{errors.address}</Error> }
 
                 <Field>
                     <label htmlFor="state">Estado</label>
@@ -86,11 +210,13 @@ const Signup = () => {
                         type="text" 
                         name="state" 
                         id="state" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {state}
+                        onChange = {handleChange}
                         placeholder = "Tu Estado"
                     />
                 </Field>
+
+                { errors.state && <Error>{errors.state}</Error> }
 
                 <Field>
                     <label htmlFor="city">Municipio</label>
@@ -98,23 +224,27 @@ const Signup = () => {
                         type="text" 
                         name="city" 
                         id="city" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {city}
+                        onChange = {handleChange}
                         placeholder = "Tu Municipio"
                     />
                 </Field>
 
+                { errors.city && <Error>{errors.city}</Error> }
+
                 <Field>
-                    <label htmlFor="country">Páis</label>
+                    <label htmlFor="country">País</label>
                     <input 
                         type="text" 
                         name="country" 
                         id="country" 
-                        // value = {email}
-                        // onChange = {handleChange}
-                        placeholder = "Tu Páis"
+                        value = {country}
+                        onChange = {handleChange}
+                        placeholder = "Tu País"
                     />
                 </Field>
+
+                { errors.country && <Error>{errors.country}</Error> }
                 
                 <Field>
                     <label htmlFor="phone">Teléfono</label>
@@ -122,11 +252,13 @@ const Signup = () => {
                         type="tel" 
                         name="phone" 
                         id="phone" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {phone}
+                        onChange = {handleChange}
                         placeholder = "Tu Teléfono"
                     />
                 </Field>
+
+                { errors.phone && <Error>{errors.phone}</Error> }
 
                 <Field>
                     <label htmlFor="email">Correo</label>
@@ -134,27 +266,27 @@ const Signup = () => {
                         type="email" 
                         name="email" 
                         id="email" 
-                        // value = {email}
-                        // onChange = {handleChange}
+                        value = {email}
+                        onChange = {handleChange}
                         placeholder = "Tu correo electrónico"
                     />
                 </Field>
 
-                {/* { errors.email && <Error>{errors.email}</Error> } */}
+                { errors.email && <Error>{errors.email}</Error> }
 
                 <Field>
-                    <label htmlFor="password">Usuario</label>
+                    <label htmlFor="user">Usuario</label>
                     <input 
-                        type="password" 
-                        name="password" 
-                        id="password" 
-                        // value = {password}
-                        // onChange = {handleChange}
+                        type="text" 
+                        name="user" 
+                        id="user" 
+                        value = {user}
+                        onChange = {handleChange}
                         placeholder = "Nombre Usuario"
                     />
                 </Field>
 
-                {/* { errors.password && <Error>{errors.password}</Error> } */}
+                { errors.user && <Error>{errors.user}</Error> }
 
                 <Field>
                     <label htmlFor="password">Contraseña</label>
@@ -162,13 +294,13 @@ const Signup = () => {
                         type="password" 
                         name="password" 
                         id="password" 
-                        // value = {password}
-                        // onChange = {handleChange}
+                        value = {password}
+                        onChange = {handleChange}
                         placeholder = "Contraseña"
                     />
                 </Field>
 
-                {/* { errors.password && <Error>{errors.password}</Error> } */}
+                { errors.password && <Error>{errors.password}</Error> }
 
                 <Field
                     css = {css`
@@ -206,21 +338,23 @@ const Signup = () => {
                                 <input 
                                     type="date" 
                                     name="birthday" 
-                                    id="birthday" 
-                                    // value = {password}
-                                    // onChange = {handleChange}
+                                    id="patient" 
+                                    value = {birthday}
+                                    onChange = {handleUserType}
                                     placeholder = "Fecha de Nacimiento"
                                 />
                             </Field>
+
+                            { errors.patient && <Error>{errors.patient}</Error> }
 
                             <Field>
                                 <label htmlFor="allergies">Alergias</label>
                                 <input 
                                     type="text" 
                                     name="allergies" 
-                                    id="allergies" 
-                                    // value = {password}
-                                    // onChange = {handleChange}
+                                    id="patient" 
+                                    value = {allergies}
+                                    onChange = {handleUserType}
                                     placeholder = "Fecha de Nacimiento"
                                 />
                             </Field>
@@ -230,9 +364,9 @@ const Signup = () => {
                                 <input 
                                     type="text" 
                                     name="preconditions" 
-                                    id="preconditions" 
-                                    // value = {password}
-                                    // onChange = {handleChange}
+                                    id="patient" 
+                                    value = {preconditions}
+                                    onChange = {handleUserType}
                                     placeholder = "Fecha de Nacimiento"
                                 />
                             </Field>
@@ -243,10 +377,10 @@ const Signup = () => {
                                 <input 
                                     type="text" 
                                     name="surgeries" 
-                                    id="surgeries" 
-                                    // value = {password}
-                                    // onChange = {handleChange}
-                                    placeholder = "Fecha de Nacimiento"
+                                    id="patient" 
+                                    value = {surgeries}
+                                    onChange = {handleUserType}
+                                    placeholder = "Cirugias que ha tenido"
                                 />
                             </Field>
 
@@ -255,7 +389,6 @@ const Signup = () => {
                                 <input type = "hidden"/>
                             </Field>
 
-                            {/* { errors.password && <Error>{errors.password}</Error> } */}
                         </>
                     ) 
                     : (
@@ -265,31 +398,34 @@ const Signup = () => {
                                 <input 
                                     type="text" 
                                     name="specialty" 
-                                    id="specialty" 
-                                    // value = {password}
-                                    // onChange = {handleChange}
+                                    id="doctor" 
+                                    value = {specialty}
+                                    onChange = {handleUserType}
                                     placeholder = "Especialidad"
                                 />
                             </Field>
+
+                            { specialityError && <Error>{specialityError}</Error> }
 
                             <Field>
                                 <label htmlFor="document">Número de cédula</label>
                                 <input 
                                     type="text" 
                                     name="document" 
-                                    id="document" 
-                                    // value = {password}
-                                    // onChange = {handleChange}
+                                    id="doctor" 
+                                    value = {document}
+                                    onChange = {handleUserType}
                                     placeholder = "Número de cedula"
                                 />
                             </Field>
+
+                            { documentError && <Error>{documentError}</Error> }
 
                             <Field
                             >
                                 <input type = "hidden"/>
                             </Field>
 
-                            {/* { errors.password && <Error>{errors.password}</Error> } */}
                        </> 
                     ) 
                 }
