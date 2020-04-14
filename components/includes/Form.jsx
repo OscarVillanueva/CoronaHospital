@@ -98,7 +98,7 @@ export const FormContainer = styled.div`
 
 export const Error = styled.p`
     background-color: red;
-    padding: 0.2rem;
+    padding: 0.5rem;
     font-size: 1.1rem;
     font-weight: 700;
     color: #fff;

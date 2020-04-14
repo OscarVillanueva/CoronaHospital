@@ -24,6 +24,10 @@ const Label = styled.label`
     text-align: center;
 `
 
+const ColumnField = styled.div`
+    
+`
+
 const INITIAL_STATE = {
     name: "",
     lastName: "",
@@ -172,9 +176,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu Nombre"
                     />
+                    { errors.name && <Error>{errors.name}</Error> }
                 </Field>
 
-                { errors.name && <Error>{errors.name}</Error> }
 
                 <Field>
                     <label htmlFor="lastName">Apellidos</label>
@@ -186,9 +190,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tus Apellidos"
                     />
+                { errors.lastName && <Error>{errors.lastName}</Error> }
                 </Field>
 
-                { errors.lastName && <Error>{errors.lastName}</Error> }
 
                 <Field>
                     <label htmlFor="address">Dirección</label>
@@ -200,9 +204,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu dirección"
                     />
+                { errors.address && <Error>{errors.address}</Error> }
                 </Field>
 
-                { errors.address && <Error>{errors.address}</Error> }
 
                 <Field>
                     <label htmlFor="state">Estado</label>
@@ -214,9 +218,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu Estado"
                     />
+                { errors.state && <Error>{errors.state}</Error> }
                 </Field>
 
-                { errors.state && <Error>{errors.state}</Error> }
 
                 <Field>
                     <label htmlFor="city">Municipio</label>
@@ -228,9 +232,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu Municipio"
                     />
+                { errors.city && <Error>{errors.city}</Error> }
                 </Field>
 
-                { errors.city && <Error>{errors.city}</Error> }
 
                 <Field>
                     <label htmlFor="country">País</label>
@@ -242,9 +246,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu País"
                     />
+                { errors.country && <Error>{errors.country}</Error> }
                 </Field>
 
-                { errors.country && <Error>{errors.country}</Error> }
                 
                 <Field>
                     <label htmlFor="phone">Teléfono</label>
@@ -256,9 +260,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu Teléfono"
                     />
+                { errors.phone && <Error>{errors.phone}</Error> }
                 </Field>
 
-                { errors.phone && <Error>{errors.phone}</Error> }
 
                 <Field>
                     <label htmlFor="email">Correo</label>
@@ -270,9 +274,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Tu correo electrónico"
                     />
+                { errors.email && <Error>{errors.email}</Error> }
                 </Field>
 
-                { errors.email && <Error>{errors.email}</Error> }
 
                 <Field>
                     <label htmlFor="user">Usuario</label>
@@ -284,9 +288,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Nombre Usuario"
                     />
+                { errors.user && <Error>{errors.user}</Error> }
                 </Field>
 
-                { errors.user && <Error>{errors.user}</Error> }
 
                 <Field>
                     <label htmlFor="password">Contraseña</label>
@@ -298,9 +302,9 @@ const Signup = () => {
                         onChange = {handleChange}
                         placeholder = "Contraseña"
                     />
+                { errors.password && <Error>{errors.password}</Error> }
                 </Field>
 
-                { errors.password && <Error>{errors.password}</Error> }
 
                 <Field
                     css = {css`
@@ -343,9 +347,9 @@ const Signup = () => {
                                     onChange = {handleUserType}
                                     placeholder = "Fecha de Nacimiento"
                                 />
+                            { errors.patient && <Error>{errors.patient}</Error> }
                             </Field>
 
-                            { errors.patient && <Error>{errors.patient}</Error> }
 
                             <Field>
                                 <label htmlFor="allergies">Alergias</label>
@@ -403,9 +407,9 @@ const Signup = () => {
                                     onChange = {handleUserType}
                                     placeholder = "Especialidad"
                                 />
+                            { specialityError && <Error>{specialityError}</Error> }
                             </Field>
 
-                            { specialityError && <Error>{specialityError}</Error> }
 
                             <Field>
                                 <label htmlFor="document">Número de cédula</label>
@@ -417,9 +421,9 @@ const Signup = () => {
                                     onChange = {handleUserType}
                                     placeholder = "Número de cedula"
                                 />
+                            { documentError && <Error>{documentError}</Error> }
                             </Field>
 
-                            { documentError && <Error>{documentError}</Error> }
 
                             <Field
                             >
