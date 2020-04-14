@@ -52,7 +52,7 @@ const Header = () => {
 
                 <Bar>
 
-                    <Logo>Covid's Hotel</Logo>
+                    <Logo>Covid's Hospital</Logo>
     
                     <Nav />
 

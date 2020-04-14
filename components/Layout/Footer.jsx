@@ -54,7 +54,7 @@ const Footer = () => {
                 <Bar>
                     <Nav />
 
-                    <Logo>Covid's Hotel</Logo>
+                    <Logo>Covid's Hospital</Logo>
                 </Bar>
 
             </FooterContainer>

@@ -14,6 +14,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Layout from '../components/Layout/Layout';
 import Selector from '../components/Layout/Selector';
+import Graphic from '../components/Layout/Graphic';
 
 const InfoContainer = styled.div`
     margin: 3rem 0;
@@ -21,7 +22,7 @@ const InfoContainer = styled.div`
     @media (min-width: 768px) {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        column-gap: 2rem;
+        column-gap: 4rem;
     }
 `
 
@@ -43,8 +44,13 @@ const Title = styled.h1`
 `
 
 const Item = styled.li`
+  display: flex;
+  align-items: center;
+
   svg {
     margin-right: 1rem;
+    font-size: 1.5rem;
+    color: var(--primary)
   }
 `
 
@@ -169,7 +175,7 @@ const Home = () => {
           </Reversed>
   
           <div>
-            <h1>Gráfica</h1>
+            <Graphic currentCountry = {currentCountry}/>
           </div>
   
         </InfoContainer>
