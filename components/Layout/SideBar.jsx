@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from "@emotion/core";
 import styled from '@emotion/styled';
 import ServiceList from './ServiceList';
 
@@ -17,7 +16,7 @@ const Logo = styled.p`
     text-align: center;
 `
 
-const SideBar = () => {
+const SideBar = ({updateCurrentComponent}) => {
 
     const doctor = [
         {
@@ -34,9 +33,9 @@ const SideBar = () => {
         },
         {
             id: 2,
-            title: "Reports",
+            title: "Reportes",
             type: "both",
-            component: "Reports"
+            component: "reports"
         },
     ]
 
@@ -67,20 +66,23 @@ const SideBar = () => {
         },
         {
             id: 4,
-            title: "Reports",
+            title: "Reportes",
             type: "both",
-            component: "Reports"
+            component: "reports"
         },
     ]
 
-    const type = "pa"
+    const type = "doctor"
 
     return (
         <SideBarContainer >
 
             <Logo>Covid's Hospital</Logo>
 
-            <ServiceList services = {type === "doctor" ? doctor : patient} />
+            <ServiceList 
+                services = {type === "doctor" ? doctor : patient} 
+                updateCurrentComponent = { updateCurrentComponent }
+            />
 
         </SideBarContainer>
     );

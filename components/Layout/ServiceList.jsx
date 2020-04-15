@@ -1,6 +1,5 @@
 import React from 'react';
 import Service from './Service';
-import { css } from "@emotion/core";
 import styled from '@emotion/styled';
 
 const ServiceListContainer = styled.ul`
@@ -13,13 +12,14 @@ const ServiceListContainer = styled.ul`
 
 `
 
-const ServiceList = ({services}) => {
+const ServiceList = ({services, updateCurrentComponent}) => {
     return ( 
         <ServiceListContainer>
             {services.map(service => (
                 <Service 
                     key = {service.id}
                     service = {service}
+                    updateCurrentComponent = {updateCurrentComponent}
                 />
             ))}
         </ServiceListContainer>

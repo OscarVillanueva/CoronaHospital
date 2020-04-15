@@ -16,11 +16,12 @@ const ServiceContainer = styled.li`
     
 `
 
-const Service = ({service}) => {
+const Service = ({service, updateCurrentComponent}) => {
     return ( 
         <ServiceContainer>
             <a
                 href = "#!"
+                onClick = {() => updateCurrentComponent(service.component)}
             >
                 {service.title}
             </a>

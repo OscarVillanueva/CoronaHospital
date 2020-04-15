@@ -1,8 +1,7 @@
-import React from 'react';
-import { css } from "@emotion/core";
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import SideBar from '../components/Layout/SideBar';
-import Layout from '../components/Layout/Layout';
+import useComponent from '../hooks/useComponent';
 
 const DashboardContainer = styled.div`
     @media (min-width: 768px) {
@@ -24,14 +23,26 @@ const Main = styled.section`
 `
 
 const Dashboard = () => {
+
+    const [currentComponent, updateCurrentComponent] = useState("services")
+    const [component, updateComponent] = useState(null)
+
+    useEffect(() => {
+        
+        updateComponent(useComponent(currentComponent))
+
+    }, [currentComponent])
+
     return (
 
         <DashboardContainer>
 
-            <SideBar />
+            <SideBar 
+                updateCurrentComponent = { updateCurrentComponent }
+            />
 
             <Main>
-                <h1>Desde Dashboard</h1>
+                {component}
             </Main>
 
         </DashboardContainer>
