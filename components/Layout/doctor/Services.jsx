@@ -1,33 +1,26 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React, { useEffect } from 'react';
 import { css } from "@emotion/core";
+import { useSelector, useDispatch } from "react-redux";
+import Link from 'next/link';
 import { Button } from "../../includes/Button";
 import MedicalService from './MedicalService';
-
-const ServicesContainer = styled.div`
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
-`
-
-const Row = styled.div`
-    display: flex;
-    justify-content: center;
-
-    @media (min-width: 768px) {
-        justify-content: end;
-    }
-
-`
-
-const ListRow = styled.div`
-    width: 90%;
-    margin: 2rem auto;
-`
+import { Container, Row, ListRow } from "../../includes/Grid";
+import { fetchDoctorServicesAction } from "../../../actions/doctorActions";
 
 const Services = () => {
+
+    const services = useSelector(state => state.doctor.data)
+    const currentDoctor = {id: 1}
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        
+        dispatch( fetchDoctorServicesAction(currentDoctor.id) )
+
+    }, [])
+
     return ( 
-        <ServicesContainer>
+        <Container>
             <h1
                 css = {css`
                     text-align: center;
@@ -37,16 +30,29 @@ const Services = () => {
             </h1>
     
             <Row>
-                <Button>Nuevo</Button>
+                <Link href = "/doctor/add">
+                    <Button>Nuevo</Button>
+                </Link>
             </Row>
 
             <ListRow>
-                <MedicalService />
-                <MedicalService />
-                <MedicalService />
+                { services && services.length > 0
+                    ? (
+                        <>
+                            {services.map(service => (
+                                <MedicalService 
+                                    key = {service.id}
+                                    service = {service}
+                                />
+                            ))}
+                        </>
+                    ) 
+                    : (null) 
+                }
+
             </ListRow>
 
-        </ServicesContainer>
+        </Container>
     );
 }
  

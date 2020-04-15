@@ -8,6 +8,10 @@ export const Button = styled.a`
     font-weight: bold;
     text-transform: uppercase;
     display: block;
+
+    &:hover {
+        cursor: pointer;
+    }
 `
 export const ButtonLG = styled.a`
     background-color: var(--primary);
@@ -18,4 +22,9 @@ export const ButtonLG = styled.a`
     text-transform: uppercase;
     display: block;
     text-align: center;
+    width: 100%;
+
+    &:hover {
+        cursor: pointer;
+    }
 `

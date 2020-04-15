@@ -1,30 +1,20 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { ButtonLG } from '../../includes/Button';
+import { Card } from '../../includes/Card';
 
-const MedicalServiceContainer = styled.div`
-    background-color: #f9f9f9;
-    width: 100%;
-    padding: 1.2rem;
-    border-radius: 0.4rem;
-    margin-bottom: 2rem;
+const MedicalService = ({service}) => {
 
-    span {
-        font-weight: bold;
-    }
+    const { title, details, price } = service
 
-`
-
-const MedicalService = () => {
     return ( 
-        <MedicalServiceContainer>
+        <Card>
             <div className = "mb-2">
-                <p><span>Nombre del servicio</span></p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!</p>
-                <p><span>$400</span></p>
+                <p><span>{title}</span></p>
+                <p>{details}</p>
+                <p><span>${price}</span></p>
             </div>
             <ButtonLG>Editar</ButtonLG>
-        </MedicalServiceContainer>
+        </Card>
     );
 }
  
