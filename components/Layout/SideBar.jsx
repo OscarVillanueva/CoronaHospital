@@ -13,7 +13,6 @@ const Logo = styled.p`
     font-size: 2.5em;
     font-weight: 500;
     font-family: 'Rubik', sans-serif;
-    cursor: pointer;
     text-align: center;
 `
 

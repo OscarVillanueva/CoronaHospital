@@ -26,12 +26,6 @@ const initialState = {
 
         patient: [
             {
-                id: 0,
-                title: "Pedir Consulta",
-                type: "patient",
-                component: "consultationForm"
-            },
-            {
                 id: 1,
                 title: "Buscar",
                 type: "patient",

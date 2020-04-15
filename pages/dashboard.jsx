@@ -13,14 +13,34 @@ const DashboardContainer = styled.div`
             flex: 0 0 20%;
         }
 
-        section {
+        main {
             flex: 1;
         }
     }
 `
 
-const Main = styled.section`
+const Main = styled.main`
     padding: 1rem;
+`
+
+const Welcome = styled.div`
+
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--primary);
+
+    h1 {
+        font-size: 5rem;
+        text-align:  center;
+        margin-bottom: 0;
+    }   
+
+    p {
+        text-align: center;
+        font-size: 1.5em;
+    }
 `
 
 const Dashboard = () => {
@@ -41,7 +61,17 @@ const Dashboard = () => {
             <SideBar />
 
             <Main>
-                {component}
+                { !component 
+                    ? (
+                        <Welcome>
+                            <h1>¡Bienvenido!</h1>
+                            <div>
+                                <p>Selecciona una opción para comenzar</p>
+                            </div>
+                        </Welcome>
+                    )
+                    : component
+                }
             </Main>
 
         </DashboardContainer>

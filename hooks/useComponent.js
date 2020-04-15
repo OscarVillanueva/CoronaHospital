@@ -1,9 +1,12 @@
+import React from 'react';
+import Services from '../components/Layout/doctor/Services';
+
 const useComponent = (id) => {
-    let component
+    let component = null
 
     switch (id) {
         case "services":
-            component = <h1>Servicios</h1>
+            component = <Services />
             break;
 
         case "consultationList":
