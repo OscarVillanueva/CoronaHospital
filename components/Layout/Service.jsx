@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useDispatch } from "react-redux";
+import { updateCurrentComponentAction } from "../../actions/dashboardActions";
 
 const ServiceContainer = styled.li`
     margin-bottom: 2rem;
@@ -16,7 +18,12 @@ const ServiceContainer = styled.li`
     
 `
 
-const Service = ({service, updateCurrentComponent}) => {
+const Service = ({ service }) => {
+
+    const dispatch = useDispatch()
+
+    const updateCurrentComponent = componentID => dispatch( updateCurrentComponentAction( componentID ) )
+
     return ( 
         <ServiceContainer>
             <a

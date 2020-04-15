@@ -12,14 +12,13 @@ const ServiceListContainer = styled.ul`
 
 `
 
-const ServiceList = ({services, updateCurrentComponent}) => {
+const ServiceList = ({ services }) => {
     return ( 
         <ServiceListContainer>
             {services.map(service => (
                 <Service 
                     key = {service.id}
                     service = {service}
-                    updateCurrentComponent = {updateCurrentComponent}
                 />
             ))}
         </ServiceListContainer>

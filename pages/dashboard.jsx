@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { useSelector } from "react-redux";
 import SideBar from '../components/Layout/SideBar';
 import useComponent from '../hooks/useComponent';
 
@@ -24,7 +25,7 @@ const Main = styled.section`
 
 const Dashboard = () => {
 
-    const [currentComponent, updateCurrentComponent] = useState("services")
+    const currentComponent = useSelector(state => state.dashboard.currentComponent)
     const [component, updateComponent] = useState(null)
 
     useEffect(() => {
@@ -37,9 +38,7 @@ const Dashboard = () => {
 
         <DashboardContainer>
 
-            <SideBar 
-                updateCurrentComponent = { updateCurrentComponent }
-            />
+            <SideBar />
 
             <Main>
                 {component}

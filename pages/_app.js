@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Global, css } from "@emotion/core";
 import "react-vis/dist/styles/plot.scss";
+import { Provider } from "react-redux";
+import store from '../store';
 
 const Init = props => {
 
@@ -92,9 +94,9 @@ const Init = props => {
 
             </Head>
 
-            <main>
+            <Provider store = {store}>
                 <Component {...pageProps} />
-            </main>
+            </Provider>
         </>
     );
 }
