@@ -47,7 +47,7 @@ const Bar = styled.div`
 
 const EditService = () => {
 
-    const focus = useSelector(state => state.doctor.focus)
+    const focus = useSelector(state => state.services.focus)
 
     const {
         values,
@@ -59,8 +59,8 @@ const EditService = () => {
     const dispatch = useDispatch()
     const router = useRouter()
     const currentDoctor = { id: 1 }
-    const success = useSelector(state => state.doctor.success)
-    const error = useSelector(state => state.doctor.error)
+    const success = useSelector(state => state.services.success)
+    const error = useSelector(state => state.services.error)
     const [submitted, saveSubmitted] = useState(false)
     
     useEffect(() => {

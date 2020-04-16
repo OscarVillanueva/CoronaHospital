@@ -3,13 +3,13 @@ import { css } from "@emotion/core";
 import { useSelector, useDispatch } from "react-redux";
 import Consultation from '../Layout/Consultation';
 import { Container, ListRow } from "../includes/Grid";
-import { fetchConsultationsAction } from "../../actions/doctorActions";
+import { fetchConsultationsAction } from "../../actions/consultationsAction";
 import { Alert } from "../includes/Alert";
 
 const ConsultationList = () => {
 
-    const consultations = useSelector(state => state.doctor.data)
-    const error = useSelector(state => state.doctor.error)
+    const consultations = useSelector(state => state.consultations.data)
+    const error = useSelector(state => state.consultations.error)
     const currentDoctor = {id: 1, speciality: "x"}
     const dispatch = useDispatch()
 

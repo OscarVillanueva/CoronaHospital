@@ -10,8 +10,8 @@ import { fetchDoctorServicesAction } from "../../../actions/doctorActions";
 
 const Services = () => {
 
-    const services = useSelector(state => state.doctor.data)
-    const error = useSelector(state => state.doctor.error)
+    const services = useSelector(state => state.services.data)
+    const error = useSelector(state => state.services.error)
     const currentDoctor = {id: 1}
     const dispatch = useDispatch()
 

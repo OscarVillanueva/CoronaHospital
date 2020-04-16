@@ -1,10 +1,15 @@
 import React from 'react';
+import moduleName from 'react-redux';
 import { Card } from '../includes/Card';
 import { ButtonLG } from '../includes/Button';
 
 const Consultation = ({consultation}) => {
 
-    const { patient: { name }, symptom, status, id } = consultation
+    const { patient, symptom, status, id } = consultation
+
+    if(!patient) return null
+
+    const { name } = patient
 
     return ( 
         <Card>
@@ -13,7 +18,7 @@ const Consultation = ({consultation}) => {
                 <p>{symptom}</p>
                 <p><span>{status}</span></p>
             </div>
-            <ButtonLG>Editar</ButtonLG>
+            <ButtonLG>Ver más</ButtonLG>
         </Card>
     );
 }
