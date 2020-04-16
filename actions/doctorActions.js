@@ -2,38 +2,25 @@ import {
     FETCH_DOCTOR_SERVICES,
     FETCH_DOCTOR_SERVICES_SUCCESS,
     FETCH_DOCTOR_SERVICES_ERROR,
+    ADD_DOCTOR_SERVICE,
+    ADD_DOCTOR_SERVICE_SUCCESS,
+    ADD_DOCTOR_SERVICE_ERROR,
 } from "../types";
-
-const test = [
-    {
-        id: 1,
-        title: "Servicio 1",
-        details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-        price: 400
-    },
-    {
-        id: 2,
-        title: "Servicio 2",
-        details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-        price: 1400
-    },
-    {
-        id: 3,
-        title: "Servicio 3",
-        details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-        price: 4000
-    },
-]
+import axios from '../config/axios';
 
 // Traer los servicios
 export function fetchDoctorServicesAction(doctorID) {
-    return dispatch => {
+    return async dispatch => {
         dispatch( fetchDoctorServices() )
 
-        if(1 === doctorID)
-            dispatch( fetchDoctorServicesSuccess(test) )
-        else 
-            dispatch( fetchDoctorServicesError({code: "badrequest", msg: "Hubo Un error"}) )
+        try {
+            
+            const response = await axios.get(`/services?owner=${doctorID}`)
+            dispatch( fetchDoctorServicesSuccess(response.data) )
+
+        } catch (error) {
+            dispatch( fetchDoctorServicesError(error) )
+        }
     }
 } 
 
@@ -52,3 +39,30 @@ const fetchDoctorServicesError = error => ({
 })
 
 // Agregar servicios
+export function addServiceAction(service) {
+    return async dispatch => {
+        dispatch( addService() )
+
+        try {
+            
+            await axios.post("/services", service)
+            dispatch( addServiceSuccess() )
+
+        } catch (error) {
+            dispatch( addServiceError(error) )
+        }
+    }
+} 
+
+const addService = () => ({
+    type: ADD_DOCTOR_SERVICE,
+})
+
+const addServiceSuccess = () => ({
+    type: ADD_DOCTOR_SERVICE_SUCCESS,
+})
+
+const addServiceError = error => ({
+    type: ADD_DOCTOR_SERVICE_ERROR,
+    payload: error
+})

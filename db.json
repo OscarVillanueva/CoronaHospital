@@ -1,0 +1,46 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "owner": 1,
+      "title": "Servicio 1",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "price": 400
+    },
+    {
+      "id": 2,
+      "owner": 1,
+      "title": "Servicio 2",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "price": 1400
+    },
+    {
+      "id": 3,
+      "owner": 1,
+      "title": "Servicio 3",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "price": 4000
+    },
+    {
+      "title": "Servicio 4",
+      "owner": 1,
+      "details": "Sweet, maybe... Passionate, I suppose... But don't ever mistake that for nice. There's something else I've always wanted to say: Allons-y, Alonso! You can spend the rest of your life with me, but I can't spend the rest of mine with you. I have to live on. Alone. That's the curse of the Time Lords. Goodbye...my Sarah Jane! I'm sorry. I'm so sorry. Aw, I wanted to be ginger! I've never been ginger! And you, Rose Tyler! Fat lot of good you were! You gave up on me! Ooh, that's rude. Is that the sort of man I am now? Am I rude? Rude and not ginger.",
+      "price": "1000",
+      "id": 4
+    },
+    {
+      "title": "Service 5",
+      "owner": 1,
+      "details": "Am I having a midlife crisis? Why are you pointing your screwdrivers like that? They're scientific instruments not water pistols! 'Timey' what? 'Timey wimey'? Well, who are you boys? Oh, of course! Are you his companions? Doctor no more. Shall we ask for a better quality of door so we can escape? If I grow to be half the man that you are, Clara Oswald, then I shall be happy indeed. Oh, the pointing again! They're screwdrivers! What are you going to do? Assemble a cabinet at them? Oh, for God's sake! Gallfrey stands!",
+      "price": "1500",
+      "id": 5
+    },
+    {
+      "title": "Service 6",
+      "details": "There's something that doesn't make sense. Let's go and poke it with a stick. Look at me. No plans, no backup, no weapons worth a damn. Oh, and something else I don't have: anything to lose. So, if you're sitting up there with your silly little spaceships and your silly little guns and you've any plans on taking the Pandorica tonight; just remember who's standing in your way. Remember every black day I ever stopped you and then, and then, do the smart thing. Let somebody else try first. I once spent a hell of a long time trying to get a gobby Australian to Heathrow airport.",
+      "price": "1000",
+      "owner": 1,
+      "id": 6
+    }
+  ]
+}

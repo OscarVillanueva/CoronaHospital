@@ -1,4 +1,4 @@
-import { FETCH_DOCTOR_SERVICES_SUCCESS, FETCH_DOCTOR_SERVICES_ERROR } from "../types";
+import { FETCH_DOCTOR_SERVICES_SUCCESS, FETCH_DOCTOR_SERVICES_ERROR, ADD_DOCTOR_SERVICE_SUCCESS, ADD_DOCTOR_SERVICE_ERROR } from "../types";
 
 const initialState = {
     data: [],
@@ -19,7 +19,8 @@ export default (state = initialState, action) => {
             }
         }
 
-        case FETCH_DOCTOR_SERVICES_ERROR: {
+        case FETCH_DOCTOR_SERVICES_ERROR:
+        case ADD_DOCTOR_SERVICE_ERROR: {
             return {
                 ...state,
                 data: null,
@@ -28,6 +29,14 @@ export default (state = initialState, action) => {
             }
         }
 
+        case ADD_DOCTOR_SERVICE_SUCCESS: {
+            return {
+                ...state,
+                success: true,
+                error: null
+            }
+        }
+        
         default:
             return state;
     }

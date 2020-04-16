@@ -7,7 +7,6 @@ export const Button = styled.a`
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
-    display: block;
 
     &:hover {
         cursor: pointer;

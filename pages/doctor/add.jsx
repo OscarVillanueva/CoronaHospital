@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import { css } from "@emotion/core";
-import { Container, SpaceArroundRow } from "../../components/includes/Grid";
-import { Button } from "../../components/includes/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { Container } from "../../components/includes/Grid";
+import { Field, InputSubmit, Form, Error } from "../../components/includes/Form";
+import useValidation from '../../hooks/useValidation';
+import validateService from '../../validation/validateService';
+import { addServiceAction } from "../../actions/doctorActions";
 
 const HeaderContainer = styled.div`
     max-width: 1200px;
@@ -39,7 +44,42 @@ const Bar = styled.div`
     }
 `
 
+const INITIAL_STATE = {
+    title: "",
+    details: "",
+    price: 0
+}
+
 const AddService = () => {
+
+    const {
+        values,
+        errors,
+        handleChange,
+        handleSubmit
+    } = useValidation(INITIAL_STATE, validateService, addService)
+
+    const dispatch = useDispatch()
+    const router = useRouter()
+    const currentDoctor = { id: 1 }
+    const success = useSelector(state => state.doctor.success)
+    const error = useSelector(state => state.doctor.error)
+    const [submitted, saveSubmitted] = useState(false)
+    const { title, details, price } = values
+
+    useEffect(() => {
+        
+        if(!error && submitted){
+            router.push("/dashboard")
+        }
+
+    }, [success])
+
+    function addService() {
+        dispatch( addServiceAction( {...values, owner: currentDoctor.id} ) )
+        saveSubmitted(true)
+    }
+
     return ( 
         <>
             <header
@@ -53,7 +93,9 @@ const AddService = () => {
     
                     <Bar>
     
-                        <Logo>Covid's Hospital</Logo>
+                        <Link href = "/dashboard">
+                            <Logo>Covid's Hospital</Logo>
+                        </Link>
         
                     </Bar>
     
@@ -63,16 +105,67 @@ const AddService = () => {
 
             <Container>
 
-                <>
-                    <h1 css = {css` 
-                        text-align:center;
-                    `}>
-                        Agregar Nuevo Servicio
-                    </h1>
-                    <Link href = "/dashboard">
-                        <Button>Volver</Button>
-                    </Link>
-                </>
+                <h1 css = {css` 
+                    text-align:center;
+                `}>
+                    Agregar Nuevo Servicio
+                </h1>
+
+                <div className="mt-4 mb-4">
+                    <Form onSubmit = {handleSubmit}>
+
+                        <Field>
+                            <label htmlFor="title">Nombre del servicio</label>
+                            <input 
+                                type = "text" 
+                                name = "title" 
+                                id = "title"
+                                value = {title}
+                                onChange = {handleChange}
+                                placeholder = "El nombre del servicio"
+                            />
+                        </Field>
+
+                        { errors.title && <Error>{errors.title}</Error> }
+
+                        <Field>
+                            <label htmlFor="details">Detalles: </label>
+                            <textarea
+                                name="details" 
+                                id="details"
+                                value = {details}
+                                onChange = {handleChange} 
+                                placeholder = "Detalles del servicio"
+                            >
+                            </textarea>
+                        </Field>
+
+                        { errors.details && <Error>{errors.details}</Error> }
+
+                        <Field>
+                            <label htmlFor="price">Precio</label>
+                            <input 
+                                type = "number" 
+                                name = "price" 
+                                id = "price"
+                                value = {price}
+                                onChange = {handleChange}
+                                placeholder = "El nombre del servicio"
+                            />
+                        </Field>
+
+                        { errors.price && <Error>{errors.price}</Error> }
+
+                        <InputSubmit 
+                            type="submit" 
+                            value="Agregar servicio"
+                            />
+
+                        { error && <Error>{error.message}</Error> }
+                    </Form>
+
+
+                </div>
 
             </Container>
 

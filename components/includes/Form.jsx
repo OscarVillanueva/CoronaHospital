@@ -79,6 +79,7 @@ export const InputSubmit = styled.input`
     font-weight: 700;
     border-radius: 0.2rem;
     background-color: var(--primary);
+    margin: 2rem 0;
 
     &:hover {
         cursor: pointer;
