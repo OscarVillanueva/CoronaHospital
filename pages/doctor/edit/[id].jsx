@@ -165,7 +165,7 @@ const EditService = () => {
 
                         <InputSubmit 
                             type="submit" 
-                            value="Agregar servicio"
+                            value="Editar servicio"
                         />
 
                         <DangerButtonLG

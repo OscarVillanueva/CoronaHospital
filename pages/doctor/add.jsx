@@ -69,7 +69,7 @@ const AddService = () => {
 
     useEffect(() => {
         
-        if(!error && submitted){
+        if(!error && submitted && success){
             router.push("/dashboard")
         }
 

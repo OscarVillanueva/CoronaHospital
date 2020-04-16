@@ -1,6 +1,7 @@
 import { 
     FETCH_DOCTOR_SERVICES_SUCCESS, 
     FETCH_DOCTOR_SERVICES_ERROR, 
+    ADD_DOCTOR_SERVICE, 
     ADD_DOCTOR_SERVICE_SUCCESS, 
     ADD_DOCTOR_SERVICE_ERROR, 
     UPDATE_DOCTOR_SERVICE_ERROR, 
@@ -21,7 +22,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-
+        
+        case ADD_DOCTOR_SERVICE:
         case DELETE_DOCTOR_SERVICE:
         case UPDATE_DOCTOR_SERVICE: {
             return {
