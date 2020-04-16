@@ -1,7 +1,9 @@
 import React from 'react';
-import moduleName from 'react-redux';
+import Link from 'next/link';
+import { useDispatch } from "react-redux";
 import { Card } from '../includes/Card';
 import { ButtonLG } from '../includes/Button';
+import { putFocusDataAction } from "../../actions/consultationsAction";
 
 const Consultation = ({consultation}) => {
 
@@ -10,6 +12,11 @@ const Consultation = ({consultation}) => {
     if(!patient) return null
 
     const { name } = patient
+    const dispatch = useDispatch()
+
+    const handleClick = () => {
+        dispatch( putFocusDataAction(consultation) )
+    }
 
     return ( 
         <Card>
@@ -18,7 +25,13 @@ const Consultation = ({consultation}) => {
                 <p>{symptom}</p>
                 <p><span>{status}</span></p>
             </div>
-            <ButtonLG>Ver más</ButtonLG>
+            <Link href = "/doctor/consultation/review">
+                <ButtonLG
+                    onClick = {handleClick}
+                >
+                    Ver más
+                </ButtonLG>
+            </Link>
         </Card>
     );
 }

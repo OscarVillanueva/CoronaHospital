@@ -2,6 +2,8 @@ import {
     FETCH_CONSULTATIONS,
     FETCH_CONSULTATIONS_SUCCESS,
     FETCH_CONSULTATIONS_ERROR,
+    PUT_FOCUS_DATA,
+    PUT_FOCUS_DATA_SUCCESS
 } from "../types";
 import axios from '../config/axios';
 
@@ -34,4 +36,21 @@ const fetchConsultationsSuccess = data => ({
 const fetchConsultationsError = error => ({
     type: FETCH_CONSULTATIONS_ERROR,
     payload: error
+})
+
+// Poner información en focus
+export function putFocusDataAction(data) {
+    return dispatch => {
+        dispatch( putFocusData() )
+        dispatch( putFocusDataSuccess(data) )
+    }
+} 
+
+const putFocusData = () => ({
+    type: PUT_FOCUS_DATA,
+})
+
+const putFocusDataSuccess = data => ({
+    type: PUT_FOCUS_DATA_SUCCESS,
+    payload: data
 })

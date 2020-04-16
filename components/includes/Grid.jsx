@@ -37,3 +37,12 @@ export const SpaceArroundRow = styled.div`
         align-items: center;
     }
 `
+
+export const Grid = styled.div`
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+        row-gap: 3rem;
+    }    
+`
