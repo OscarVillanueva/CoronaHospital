@@ -32,7 +32,7 @@ const Services = () => {
             </h1>
     
             <Row>
-                <Link href = "/doctor/add">
+                <Link href = "/doctor/service/add">
                     <Button>Nuevo</Button>
                 </Link>
             </Row>

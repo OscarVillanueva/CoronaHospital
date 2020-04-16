@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useRouter } from "next/router";
 import { css } from "@emotion/core";
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "../../../components/includes/Grid";
-import { Field, InputSubmit, Form, Error } from "../../../components/includes/Form";
-import useValidation from '../../../hooks/useValidation';
-import validateService from '../../../validation/validateService';
-import { updateServiceAction, deleteServiceAction } from "../../../actions/doctorActions";
-import { DangerButtonLG } from "../../../components/includes/Button";
+import { Container } from "../../../../components/includes/Grid";
+import { Field, InputSubmit, Form, Error } from "../../../../components/includes/Form";
+import useValidation from '../../../../hooks/useValidation';
+import validateService from '../../../../validation/validateService';
+import { updateServiceAction, deleteServiceAction } from "../../../../actions/doctorActions";
+import { DangerButtonLG } from "../../../../components/includes/Button";
 
 const HeaderContainer = styled.div`
     max-width: 1200px;

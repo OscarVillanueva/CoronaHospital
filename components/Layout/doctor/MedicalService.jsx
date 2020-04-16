@@ -21,7 +21,7 @@ const MedicalService = ({service}) => {
                 <p>{details}</p>
                 <p><span>${price}</span></p>
             </div>
-            <Link href = "/doctor/edit/[id]" as = {`/doctor/edit/${id}`}>
+            <Link href = "/doctor/service/edit/[id]" as = {`/doctor/service/edit/${id}`}>
                 <ButtonLG
                     onClick = {handleClick}
                 >
