@@ -8,6 +8,9 @@ import {
     UPDATE_DOCTOR_SERVICE,
     UPDATE_DOCTOR_SERVICE_SUCCESS,
     UPDATE_DOCTOR_SERVICE_ERROR,
+    DELETE_DOCTOR_SERVICE,
+    DELETE_DOCTOR_SERVICE_SUCCESS,
+    DELETE_DOCTOR_SERVICE_ERROR,
     PUT_FOCUS_DATA,
     PUT_FOCUS_DATA_SUCCESS 
 } from "../types";
@@ -116,4 +119,33 @@ const putFocusData = () => ({
 const putFocusDataSuccess = data => ({
     type: PUT_FOCUS_DATA_SUCCESS,
     payload: data
+})
+
+// Actualizar servicios
+export function deleteServiceAction(service) {
+    return async dispatch => {
+        dispatch( deleteService() )
+
+        try {
+            
+            await axios.delete(`/services/${service.id}`)
+            dispatch( deleteServiceSuccess() )
+
+        } catch (error) {
+            dispatch( deleteServiceError(error) )
+        }
+    }
+} 
+
+const deleteService = () => ({
+    type: DELETE_DOCTOR_SERVICE,
+})
+
+const deleteServiceSuccess = () => ({
+    type: DELETE_DOCTOR_SERVICE_SUCCESS,
+})
+
+const deleteServiceError = error => ({
+    type: DELETE_DOCTOR_SERVICE_ERROR,
+    payload: error
 })

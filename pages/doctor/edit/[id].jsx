@@ -8,7 +8,8 @@ import { Container } from "../../../components/includes/Grid";
 import { Field, InputSubmit, Form, Error } from "../../../components/includes/Form";
 import useValidation from '../../../hooks/useValidation';
 import validateService from '../../../validation/validateService';
-import { updateServiceAction } from "../../../actions/doctorActions";
+import { updateServiceAction, deleteServiceAction } from "../../../actions/doctorActions";
+import { DangerButtonLG } from "../../../components/includes/Button";
 
 const HeaderContainer = styled.div`
     max-width: 1200px;
@@ -64,11 +65,11 @@ const EditService = () => {
     
     useEffect(() => {
         
-        if(!error && submitted){
+        if(!error && submitted && success){
             router.push("/dashboard")
         }
 
-        if(!focus) router.push("/dashboard")
+        if(!focus || !currentDoctor) router.push("/dashboard")
         
     }, [success])
 
@@ -77,8 +78,13 @@ const EditService = () => {
     const { title, details, price } = values
     
     function addService() {
-        dispatch( updateServiceAction( {...values, owner: currentDoctor.id} ) )
+        dispatch( updateServiceAction( values ) )
         saveSubmitted(true)
+    }
+
+    const handleClick = () => {
+        dispatch( deleteServiceAction( values ) )
+        saveSubmitted(true)   
     }
 
     return (
@@ -160,7 +166,13 @@ const EditService = () => {
                         <InputSubmit 
                             type="submit" 
                             value="Agregar servicio"
-                            />
+                        />
+
+                        <DangerButtonLG
+                            onClick = {handleClick}
+                        >
+                            Eliminar
+                        </DangerButtonLG>
 
                         { error && <Error>{error.message}</Error> }
                     </Form>

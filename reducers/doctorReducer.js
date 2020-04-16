@@ -5,7 +5,11 @@ import {
     ADD_DOCTOR_SERVICE_ERROR, 
     UPDATE_DOCTOR_SERVICE_ERROR, 
     UPDATE_DOCTOR_SERVICE_SUCCESS,
-    PUT_FOCUS_DATA_SUCCESS, 
+    PUT_FOCUS_DATA_SUCCESS,
+    DELETE_DOCTOR_SERVICE, 
+    DELETE_DOCTOR_SERVICE_ERROR, 
+    DELETE_DOCTOR_SERVICE_SUCCESS,
+    UPDATE_DOCTOR_SERVICE
 } from "../types";
 
 const initialState = {
@@ -18,6 +22,15 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
 
+        case DELETE_DOCTOR_SERVICE:
+        case UPDATE_DOCTOR_SERVICE: {
+            return {
+                ...state,
+                error: null,
+                success: false
+            }
+        }
+
         case FETCH_DOCTOR_SERVICES_SUCCESS: {
             return {
                 ...state,
@@ -29,7 +42,8 @@ export default (state = initialState, action) => {
 
         case FETCH_DOCTOR_SERVICES_ERROR:
         case ADD_DOCTOR_SERVICE_ERROR:
-        case UPDATE_DOCTOR_SERVICE_ERROR: {
+        case UPDATE_DOCTOR_SERVICE_ERROR:
+        case DELETE_DOCTOR_SERVICE_ERROR: {
             return {
                 ...state,
                 data: null,
@@ -39,7 +53,8 @@ export default (state = initialState, action) => {
         }
 
         case ADD_DOCTOR_SERVICE_SUCCESS: 
-        case UPDATE_DOCTOR_SERVICE_SUCCESS: {
+        case UPDATE_DOCTOR_SERVICE_SUCCESS: 
+        case DELETE_DOCTOR_SERVICE_SUCCESS: {
             return {
                 ...state,
                 success: true,

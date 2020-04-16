@@ -69,7 +69,7 @@ export const Field = styled.div`
 
 export const InputSubmit = styled.input`
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.7rem 1.7rem;
     text-align: center;
     color: #ffffff;
     font-size: 1.2rem;
