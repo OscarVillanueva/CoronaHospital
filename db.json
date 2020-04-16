@@ -21,5 +21,55 @@
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
       "price": 4000
     }
+  ],
+  "consultations": [
+    {
+      "id": 1,
+      "speciality": "x",
+      "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "status": "Pendiente",
+      "comments": [
+        "Ya se va a morir"
+      ],
+      "prescription": "",
+      "bill": 0,
+      "patient": {
+        "id": 1,
+        "name": "Peter child",
+        "email": "peterChild@correo.com"
+      }
+    },
+    {
+      "id": 2,
+      "speciality": "x",
+      "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "status": "Pendiente",
+      "comments": [
+        "Ya se va a morir"
+      ],
+      "prescription": "",
+      "bill": 0,
+      "patient": {
+        "id": 2,
+        "name": "Jeff Bezos",
+        "email": "jeff@correo.com"
+      }
+    },
+    {
+      "id": 3,
+      "speciality": "x",
+      "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "status": "Pendiente",
+      "comments": [
+        "Ya se va a morir"
+      ],
+      "prescription": "",
+      "bill": 0,
+      "patient": {
+        "id": 3,
+        "name": "Elon Musk",
+        "email": "elon@correo.com"
+      }
+    }
   ]
 }

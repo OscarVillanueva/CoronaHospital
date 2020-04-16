@@ -2,6 +2,9 @@ import {
     FETCH_DOCTOR_SERVICES,
     FETCH_DOCTOR_SERVICES_SUCCESS,
     FETCH_DOCTOR_SERVICES_ERROR,
+    FETCH_CONSULTATIONS,
+    FETCH_CONSULTATIONS_SUCCESS,
+    FETCH_CONSULTATIONS_ERROR,
     ADD_DOCTOR_SERVICE,
     ADD_DOCTOR_SERVICE_SUCCESS,
     ADD_DOCTOR_SERVICE_ERROR,
@@ -147,5 +150,36 @@ const deleteServiceSuccess = () => ({
 
 const deleteServiceError = error => ({
     type: DELETE_DOCTOR_SERVICE_ERROR,
+    payload: error
+})
+
+// Traer las consultas
+export function fetchConsultationsAction(especiality) {
+    return async dispatch => {
+        dispatch( fetchConsultations() )
+
+        try {
+            
+            const api = `/consultations?speciality=${especiality}&status=Pendiente`
+            const response = await axios.get(api)
+            dispatch( fetchConsultationsSuccess(response.data) )
+
+        } catch (error) {
+            dispatch( fetchConsultationsError(error) )
+        }
+    }
+} 
+
+const fetchConsultations = () => ({
+    type: FETCH_CONSULTATIONS,
+})
+
+const fetchConsultationsSuccess = data => ({
+    type: FETCH_CONSULTATIONS_SUCCESS,
+    payload: data
+})
+
+const fetchConsultationsError = error => ({
+    type: FETCH_CONSULTATIONS_ERROR,
     payload: error
 })

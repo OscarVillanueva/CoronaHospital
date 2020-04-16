@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from "next/router";
 import Link from 'next/link';
 import { useDispatch } from "react-redux";
 import { ButtonLG } from '../../includes/Button';
@@ -9,7 +8,6 @@ import { putFocusDataAction } from "../../../actions/doctorActions";
 const MedicalService = ({service}) => {
 
     const { title, details, price, id } = service
-    const router = useRouter()
     const dispatch = useDispatch()
 
     const handleClick = () => {

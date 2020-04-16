@@ -1,6 +1,8 @@
 import { 
     FETCH_DOCTOR_SERVICES_SUCCESS, 
     FETCH_DOCTOR_SERVICES_ERROR, 
+    FETCH_CONSULTATIONS_SUCCESS, 
+    FETCH_CONSULTATIONS_ERROR, 
     ADD_DOCTOR_SERVICE, 
     ADD_DOCTOR_SERVICE_SUCCESS, 
     ADD_DOCTOR_SERVICE_ERROR, 
@@ -10,7 +12,7 @@ import {
     DELETE_DOCTOR_SERVICE, 
     DELETE_DOCTOR_SERVICE_ERROR, 
     DELETE_DOCTOR_SERVICE_SUCCESS,
-    UPDATE_DOCTOR_SERVICE
+    UPDATE_DOCTOR_SERVICE,
 } from "../types";
 
 const initialState = {
@@ -33,7 +35,8 @@ export default (state = initialState, action) => {
             }
         }
 
-        case FETCH_DOCTOR_SERVICES_SUCCESS: {
+        case FETCH_DOCTOR_SERVICES_SUCCESS: 
+        case FETCH_CONSULTATIONS_SUCCESS: {
             return {
                 ...state,
                 data: action.payload,
@@ -43,6 +46,7 @@ export default (state = initialState, action) => {
         }
 
         case FETCH_DOCTOR_SERVICES_ERROR:
+        case FETCH_CONSULTATIONS_ERROR:
         case ADD_DOCTOR_SERVICE_ERROR:
         case UPDATE_DOCTOR_SERVICE_ERROR:
         case DELETE_DOCTOR_SERVICE_ERROR: {
