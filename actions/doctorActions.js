@@ -5,6 +5,11 @@ import {
     ADD_DOCTOR_SERVICE,
     ADD_DOCTOR_SERVICE_SUCCESS,
     ADD_DOCTOR_SERVICE_ERROR,
+    UPDATE_DOCTOR_SERVICE,
+    UPDATE_DOCTOR_SERVICE_SUCCESS,
+    UPDATE_DOCTOR_SERVICE_ERROR,
+    PUT_FOCUS_DATA,
+    PUT_FOCUS_DATA_SUCCESS 
 } from "../types";
 import axios from '../config/axios';
 
@@ -65,4 +70,50 @@ const addServiceSuccess = () => ({
 const addServiceError = error => ({
     type: ADD_DOCTOR_SERVICE_ERROR,
     payload: error
+})
+
+// Actualizar servicios
+export function updateServiceAction(service) {
+    return async dispatch => {
+        dispatch( updateService() )
+
+        try {
+            
+            await axios.put(`/services/${service.id}`, service)
+            dispatch( updateServiceSuccess() )
+
+        } catch (error) {
+            dispatch( updateServiceError(error) )
+        }
+    }
+} 
+
+const updateService = () => ({
+    type: UPDATE_DOCTOR_SERVICE,
+})
+
+const updateServiceSuccess = () => ({
+    type: UPDATE_DOCTOR_SERVICE_SUCCESS,
+})
+
+const updateServiceError = error => ({
+    type: UPDATE_DOCTOR_SERVICE_ERROR,
+    payload: error
+})
+
+// Poner información en focus
+export function putFocusDataAction(data) {
+    return dispatch => {
+        dispatch( putFocusData() )
+        dispatch( putFocusDataSuccess(data) )
+    }
+} 
+
+const putFocusData = () => ({
+    type: PUT_FOCUS_DATA,
+})
+
+const putFocusDataSuccess = data => ({
+    type: PUT_FOCUS_DATA_SUCCESS,
+    payload: data
 })
