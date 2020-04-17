@@ -1,6 +1,7 @@
 import { 
     FETCH_CONSULTATIONS_SUCCESS, 
     FETCH_CONSULTATIONS_ERROR,
+    PUT_FOCUS_CONSULTATIONS_SUCCESS
 } from "../types";
 
 const initialState = {
@@ -28,6 +29,15 @@ export default (state = initialState, action) => {
                 data: null,
                 success: false,
                 error: action.payload
+            }
+        }
+
+        case PUT_FOCUS_CONSULTATIONS_SUCCESS: {
+            return {
+                ...state,
+                success: true,
+                error: null,
+                focus: action.payload
             }
         }
 

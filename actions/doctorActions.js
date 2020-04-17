@@ -11,8 +11,8 @@ import {
     DELETE_DOCTOR_SERVICE,
     DELETE_DOCTOR_SERVICE_SUCCESS,
     DELETE_DOCTOR_SERVICE_ERROR,
-    PUT_FOCUS_DATA,
-    PUT_FOCUS_DATA_SUCCESS 
+    PUT_FOCUS_SERVICE,
+    PUT_FOCUS_SERVICE_SUCCESS 
 } from "../types";
 import axios from '../config/axios';
 
@@ -113,11 +113,11 @@ export function putFocusDataAction(data) {
 } 
 
 const putFocusData = () => ({
-    type: PUT_FOCUS_DATA,
+    type: PUT_FOCUS_SERVICE,
 })
 
 const putFocusDataSuccess = data => ({
-    type: PUT_FOCUS_DATA_SUCCESS,
+    type: PUT_FOCUS_SERVICE_SUCCESS,
     payload: data
 })
 

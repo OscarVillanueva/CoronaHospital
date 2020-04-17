@@ -6,7 +6,7 @@ import {
     ADD_DOCTOR_SERVICE_ERROR, 
     UPDATE_DOCTOR_SERVICE_ERROR, 
     UPDATE_DOCTOR_SERVICE_SUCCESS,
-    PUT_FOCUS_DATA_SUCCESS,
+    PUT_FOCUS_SERVICE_SUCCESS,
     DELETE_DOCTOR_SERVICE, 
     DELETE_DOCTOR_SERVICE_ERROR, 
     DELETE_DOCTOR_SERVICE_SUCCESS,
@@ -64,7 +64,7 @@ export default (state = initialState, action) => {
             }
         }
 
-        case PUT_FOCUS_DATA_SUCCESS: {
+        case PUT_FOCUS_SERVICE_SUCCESS: {
             return {
                 ...state,
                 success: true,
