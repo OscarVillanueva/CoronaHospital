@@ -38,25 +38,44 @@ const Select = styled.select`
 
 const Review = () => {
 
-    // rich Editor text, Edtr.io, componente
-    // const { localStorageRefence, component } = useEditor()
     const router = useRouter()
     const focus = useSelector(state => state.consultations.focus)
-    
+    const [current, saveCurrent] = useState(focus)
+
     const handleUpdateConsultation = () => {
         console.log("Actualizando");   
     }
     
     useEffect(() => {
         
-        if(!focus) router.push("/dashboard")
+        if(!current) router.push("/dashboard")
         
     }, [])
 
-    if(!focus || Object.keys(focus).length === 0) return null
+    if(!current || Object.keys(current).length === 0) return null
 
-    const { symptom, patient, status, comments,  prescription, bill } = focus
+    const { symptom, patient, status, comments,  prescription, bill } = current
     const { name, allergies, preconditions, surgeries, birthday, email, covid } = patient
+
+    const handleChange = e => {
+        if(e.target.name === "covid"){
+            
+            const temp = {
+                ...patient,
+                [e.target.name]: e.target.value
+            }
+
+            saveCurrent({
+                ...current,
+                patient: temp
+            })
+        }
+        else 
+            saveCurrent({
+                ...current,
+                [e.target.name]: e.target.value
+            })
+    }
 
     return (
         <>
@@ -110,7 +129,12 @@ const Review = () => {
                                 Covid-19:
                             </Label>
 
-                            <Select name="status" id="status" value = {covid}>
+                            <Select 
+                                name="covid" 
+                                id="covid" 
+                                value = {covid}
+                                onChange = {handleChange}
+                            >
                                 <option value="free">Libre</option>
                                 <option value="suspect">Posible Caso</option>
                                 <option value="infected">Infectado</option>
@@ -131,6 +155,7 @@ const Review = () => {
                                     type = "text" 
                                     name = "change"
                                     id = "change"
+                                    onChange = {handleChange}
                                     placeholder = "Escribe . . ."
                                 />
                             </Field>
@@ -139,7 +164,12 @@ const Review = () => {
                                 Estado de la consulta: 
                             </Label>
 
-                            <Select name="status" id="status" value = {status}>
+                            <Select 
+                                name="status" 
+                                id="status" 
+                                value = {status}
+                                onChange = {handleChange}
+                            >
                                 <option value="pending">Pendiente</option>
                                 <option value="close">Revisada</option>
                             </Select>
@@ -160,6 +190,7 @@ const Review = () => {
                                     name = "bill"
                                     id = "bill"
                                     value = { bill }
+                                    onChange = {handleChange}
                                     placeholder = "100"
                                 />
                             </Field>
@@ -176,9 +207,13 @@ const Review = () => {
                                 `}
                             >
                                 <textarea
+                                    css = {css`
+                                        white-space: pre-wrap;
+                                    `}
                                     name="prescription" 
                                     id="prescription" 
-                                    // value = {prescription}
+                                    value = {prescription}
+                                    onChange = {handleChange}
                                 >
                                 </textarea>
                             </Field>
