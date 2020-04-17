@@ -14,7 +14,7 @@ export function fetchConsultationsAction(especiality) {
 
         try {
             
-            const api = `/consultations?speciality=${especiality}&status=Pendiente`
+            const api = `/consultations?speciality=${especiality}&status=pending`
             const response = await axios.get(api)
             dispatch( fetchConsultationsSuccess(response.data) )
 

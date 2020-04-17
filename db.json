@@ -27,10 +27,8 @@
       "id": 1,
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "Pendiente",
-      "comments": [
-        "Ya se va a morir"
-      ],
+      "status": "pending",
+      "comments": [],
       "prescription": "",
       "bill": 0,
       "patient": {
@@ -40,17 +38,16 @@
         "allergies": "Todas",
         "preconditions": "Ninguna",
         "surgeries": "Me sacaron el apendice",
-        "birthday": "20/20/20"
+        "birthday": "20/20/20",
+        "covid": "free"
       }
     },
     {
       "id": 2,
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "Pendiente",
-      "comments": [
-        "Ya se va a morir"
-      ],
+      "status": "pending",
+      "comments": [],
       "prescription": "",
       "bill": 0,
       "patient": {
@@ -60,17 +57,16 @@
         "allergies": "Todas",
         "preconditions": "Ninguna",
         "surgeries": "Me sacaron el apendice",
-        "birthday": "20/20/20"
+        "birthday": "20/20/20",
+        "covid": "free"
       }
     },
     {
       "id": 3,
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "Pendiente",
-      "comments": [
-        "Ya se va a morir"
-      ],
+      "status": "pending",
+      "comments": [],
       "prescription": "",
       "bill": 0,
       "patient": {
@@ -80,7 +76,8 @@
         "allergies": "Todas",
         "preconditions": "Ninguna",
         "surgeries": "Me sacaron el apendice",
-        "birthday": "20/20/20"
+        "birthday": "20/20/20",
+        "covid": "free"
       }
     }
   ]

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { css } from "@emotion/core";
 import { Container, Grid} from "../../../components/includes/Grid";
 import { Field } from "../../../components/includes/Form";
 import { ButtonLG } from "../../../components/includes/Button";
 import Conversation from '../../../components/Layout/Conversation';
 import DashboardHeader from '../../../components/Layout/DashboardHeader';
-import useEditor from '../../../hooks/useEditor';
 
 const Label = styled.p`
     font-weight: bold;
@@ -38,7 +39,24 @@ const Select = styled.select`
 const Review = () => {
 
     // rich Editor text, Edtr.io, componente
-    const { localStorageRefence, component } = useEditor()
+    // const { localStorageRefence, component } = useEditor()
+    const router = useRouter()
+    const focus = useSelector(state => state.consultations.focus)
+    
+    const handleUpdateConsultation = () => {
+        console.log("Actualizando");   
+    }
+    
+    useEffect(() => {
+        
+        if(!focus) router.push("/dashboard")
+        
+    }, [])
+
+    if(!focus || Object.keys(focus).length === 0) return null
+
+    const { symptom, patient, status, comments,  prescription, bill } = focus
+    const { name, allergies, preconditions, surgeries, birthday, email, covid } = patient
 
     return (
         <>
@@ -65,34 +83,34 @@ const Review = () => {
                            <h1>Datos del paciente</h1>
     
                             <Label>
-                                Nombre: <span>Peter Child</span>
+                                Nombre: <span>{name}</span>
                             </Label>
     
                             <Label>
-                                Alergias: <span>Todas</span>
+                                Alergias: <span>{allergies}</span>
                             </Label>
     
                             <Label>
-                                Enfermedades Cronicas: <span>Todas</span>
+                                Enfermedades Cronicas: <span>{preconditions}</span>
                             </Label>
     
                             <Label>
-                                Cirigías: <span>Me sacon el apendice</span>
+                                Cirigías: <span>{surgeries}</span>
                             </Label>
     
                             <Label>
-                                Fecha de Nacimiento: <span>20/20/20</span>
+                                Fecha de Nacimiento: <span>{birthday}</span>
                             </Label>
     
                             <Label>
-                                Email: <span>correo@correo.com</span>
+                                Email: <span>{email}</span>
                             </Label>
 
                             <Label>
                                 Covid-19:
                             </Label>
 
-                            <Select name="status" id="status">
+                            <Select name="status" id="status" value = {covid}>
                                 <option value="free">Libre</option>
                                 <option value="suspect">Posible Caso</option>
                                 <option value="infected">Infectado</option>
@@ -121,7 +139,7 @@ const Review = () => {
                                 Estado de la consulta: 
                             </Label>
 
-                            <Select name="status" id="status">
+                            <Select name="status" id="status" value = {status}>
                                 <option value="pending">Pendiente</option>
                                 <option value="close">Revisada</option>
                             </Select>
@@ -141,22 +159,30 @@ const Review = () => {
                                     type = "number" 
                                     name = "bill"
                                     id = "bill"
+                                    value = { bill }
                                     placeholder = "100"
                                 />
                             </Field>
 
-                       </>
+                            <Label>
+                                Recetar: 
+                            </Label>
 
-                       <>
-                           <h1>Recetar</h1>
-
-                           <div 
+                            <Field
                                 css = {css`
-                                    width: 85%;
+                                    @media (min-width: 768px) {
+                                        width: 85%;
+                                    }
                                 `}
-                           >
-                               { component }
-                           </div>
+                            >
+                                <textarea
+                                    name="prescription" 
+                                    id="prescription" 
+                                    // value = {prescription}
+                                >
+                                </textarea>
+                            </Field>
+
                        </>
 
                     </div>
@@ -170,8 +196,7 @@ const Review = () => {
 
                         <Label>
                             <span>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse quisquam in illum voluptate rerum quasi aliquam molestiae ea, sint culpa, nam fugit non quod sapiente alias vero nihil. Atque, quae!
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi praesentium blanditiis, in voluptatem numquam, quo ab veniam quod magni modi ipsam aut eligendi pariatur rem voluptatum eaque facilis nihil itaque.
+                                {symptom}
                             </span>
                         </Label>
 
@@ -181,7 +206,11 @@ const Review = () => {
 
                         </div>
 
-                        <ButtonLG>Actualizar Consulta</ButtonLG>
+                        <ButtonLG
+                            onClick = {handleUpdateConsultation}
+                        >
+                            Actualizar Consulta
+                        </ButtonLG>
 
                     </div>
                 </Grid>
