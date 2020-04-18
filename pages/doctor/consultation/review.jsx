@@ -323,9 +323,7 @@ const Review = () => {
 
                         <div>
                             
-                            <Conversation 
-                                comments = {comments}
-                            />
+                            <Conversation />
 
                         </div>
 

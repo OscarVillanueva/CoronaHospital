@@ -59,14 +59,14 @@ const putFocusDataSuccess = data => ({
 })
 
 // Actualizar servicios
-export function updateConsultationAction(service) {
+export function updateConsultationAction(consultation) {
     return async dispatch => {
         dispatch( updateConsultation() )
 
         try {
             
-            await axios.put(`/consultations/${service.id}`, service)
-            dispatch( updateConsultationSuccess() )
+            await axios.put(`/consultations/${consultation.id}`, consultation)
+            dispatch( updateConsultationSuccess(consultation) )
 
         } catch (error) {
             dispatch( updateConsultationError(error) )
@@ -75,14 +75,15 @@ export function updateConsultationAction(service) {
 } 
 
 const updateConsultation = () => ({
-    type: UPDATE_DOCTOR_SERVICE,
+    type: UPDATE_CONSULTATION,
 })
 
-const updateConsultationSuccess = () => ({
-    type: UPDATE_DOCTOR_SERVICE_SUCCESS,
+const updateConsultationSuccess = consultation => ({
+    type: UPDATE_CONSULTATION_SUCCESS,
+    payload: consultation
 })
 
 const updateConsultationError = error => ({
-    type: UPDATE_DOCTOR_SERVICE_ERROR,
+    type: UPDATE_CONSULTATION_ERROR,
     payload: error
 })

@@ -28,7 +28,26 @@
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
       "status": "pending",
-      "comments": [],
+      "comments": [
+        {
+          "id": "b36d1058-50ca-444c-a9e0-f37578042ade",
+          "message": "Nueva prueba de mensaje!!!",
+          "userId": 1,
+          "name": "Doctor. House"
+        },
+        {
+          "id": "4c0c775d-b57f-4bf6-8f02-3cea27a44d20",
+          "message": "Nuevo mensaje, este va para redux!!",
+          "userId": 1,
+          "name": "Doctor. House"
+        },
+        {
+          "id": "d4db0f15-e60e-470e-b4cb-d172ccc77421",
+          "message": "Ahora si va para redux!!",
+          "userId": 1,
+          "name": "Doctor. House"
+        }
+      ],
       "prescription": "",
       "bill": 0,
       "patient": {

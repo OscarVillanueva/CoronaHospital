@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuid } from 'uuid';
 import { Row } from "../includes/Grid";
-import { Form, Field } from "../includes/Form";
+import { Form, Field, Error } from "../includes/Form";
 import { Alert } from "../includes/Alert";
+import { updateConsultationAction } from "../../actions/consultationsAction";
 
 const ResponseBubble = styled.p`
     padding: 0.6rem 1.6rem;
@@ -40,23 +42,45 @@ const Send = styled.button`
 
 const Conversation = () => {
 
-    const [message, saveMessage] = useState("")
     const focus = useSelector(state => state.consultations.focus)
-    const [comments, saveComments] = useState(focus.comments)
+    const error = useSelector(state => state.consultations.error)
+    const dispatch = useDispatch()
+    const [message, saveMessage] = useState("")
+    const [newMessage, saveNewMessage] = useState(false)
+    const [consultation, saveConsultation] = useState(focus)
     const current = {id: 1, name: "Doctor. House"}
+    const { comments } = consultation
+
+    useEffect(() => {
+        
+        if(newMessage){
+            dispatch( updateConsultationAction(consultation) )
+            saveNewMessage(false)
+        }
+
+    }, [consultation])
 
     const handleMessage = (e) => {
         e.preventDefault()
 
         if(message !== "") {
-            saveComments([
+            
+            const bridge = [
                 ...comments,
                 {
+                    id: uuid(),
                     message,
                     userId: current.id,
                     name: current.name
                 }
-            ])
+            ]
+
+            saveConsultation({
+                ...consultation,
+                comments: bridge
+            })
+
+            saveNewMessage(true)
             saveMessage("")
         }
 
@@ -72,7 +96,7 @@ const Conversation = () => {
                         {comments.map(comment => {
                             if(comment.userId === current.id) 
                                 return (
-                                    <Row>
+                                    <Row key = {comment.id}>
                                         <ResponseBubble>
                                             {comment.message}
                                         </ResponseBubble>
@@ -118,6 +142,8 @@ const Conversation = () => {
                     </Field>
 
                     <Send type = "submit">Enviar</Send>
+
+                    { error && <Error>No se ha podido enviar tu mensaje, intenta más tarde</Error> }
                 </Form>
             </div>
         </>
