@@ -41,6 +41,7 @@ const Review = () => {
 
     const router = useRouter()
     const dispatch = useDispatch()
+    const currentDoctor = {id: 1, name: "Doctor. House"}
     const focus = useSelector(state => state.consultations.focus)
     const [current, saveCurrent] = useState(focus)
     const [errors, saveError] = useState({})
@@ -59,7 +60,7 @@ const Review = () => {
     const handleUpdateConsultation = () => {
         
         if(isValidate())
-            dispatch( updateConsultationAction(current) )
+            dispatch( updateConsultationAction({...current, answerby: currentDoctor}) )
         else 
             console.log("No podemos guardar");
            

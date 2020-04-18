@@ -65,10 +65,10 @@
       "id": 2,
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "pending",
+      "status": "close",
       "comments": [],
-      "prescription": "",
-      "bill": 0,
+      "prescription": "asdfasdf",
+      "bill": "100",
       "patient": {
         "id": 2,
         "name": "Jeff Bezos",
@@ -78,6 +78,10 @@
         "surgeries": "Me sacaron el apendice",
         "birthday": "20/20/20",
         "covid": "free"
+      },
+      "answerby": {
+        "id": 1,
+        "name": "Doctor. House"
       }
     },
     {
