@@ -121,7 +121,7 @@ const putFocusDataSuccess = data => ({
     payload: data
 })
 
-// Actualizar servicios
+// Borrar servicios
 export function deleteServiceAction(service) {
     return async dispatch => {
         dispatch( deleteService() )

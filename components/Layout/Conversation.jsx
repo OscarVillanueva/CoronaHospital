@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
+import { useSelector, useDispatch } from "react-redux";
 import { Row } from "../includes/Grid";
 import { Form, Field } from "../includes/Form";
+import { Alert } from "../includes/Alert";
 
 const ResponseBubble = styled.p`
     padding: 0.6rem 1.6rem;
@@ -39,12 +41,22 @@ const Send = styled.button`
 const Conversation = () => {
 
     const [message, saveMessage] = useState("")
+    const focus = useSelector(state => state.consultations.focus)
+    const [comments, saveComments] = useState(focus.comments)
+    const current = {id: 1, name: "Doctor. House"}
 
     const handleMessage = (e) => {
         e.preventDefault()
 
         if(message !== "") {
-            console.log(message);
+            saveComments([
+                ...comments,
+                {
+                    message,
+                    userId: current.id,
+                    name: current.name
+                }
+            ])
             saveMessage("")
         }
 
@@ -54,15 +66,33 @@ const Conversation = () => {
         <>
             <h2>Conversación</h2>
     
-            <Row>
-                <ResponseBubble>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo est exercitationem tenetur in modi voluptas debitis quis, sapiente laudantium quae, minus eaque et. Porro eum dolorem nobis ipsum aspernatur ab.
-                </ResponseBubble>
-            </Row>
-
-            <Bubble>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo asperiores voluptatem eos architecto? Quisquam aliquid dolores unde praesentium voluptates! Eligendi quisquam et dolore nostrum? Eligendi molestiae nostrum pariatur error ratione?
-            </Bubble>
+            { comments.length > 0 
+                ? (
+                    <>
+                        {comments.map(comment => {
+                            if(comment.userId === current.id) 
+                                return (
+                                    <Row>
+                                        <ResponseBubble>
+                                            {comment.message}
+                                        </ResponseBubble>
+                                    </Row>
+                                )
+                            else 
+                                return (
+                                    <Bubble>
+                                        {comment.name} dice: {comment.message}
+                                    </Bubble>
+                                )
+                        })}
+                    </>
+                ) 
+                : (
+                    <Alert>
+                        Aún no hay mensajes
+                    </Alert>
+                ) 
+            }
 
             <div 
                 css = {css`

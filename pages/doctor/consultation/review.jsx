@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { css } from "@emotion/core";
 import { Container, Grid} from "../../../components/includes/Grid";
-import { Field } from "../../../components/includes/Form";
+import { Field, Error } from "../../../components/includes/Form";
 import { ButtonLG } from "../../../components/includes/Button";
 import Conversation from '../../../components/Layout/Conversation';
 import DashboardHeader from '../../../components/Layout/DashboardHeader';
@@ -41,11 +41,8 @@ const Review = () => {
     const router = useRouter()
     const focus = useSelector(state => state.consultations.focus)
     const [current, saveCurrent] = useState(focus)
+    const [errors, saveError] = useState({})
 
-    const handleUpdateConsultation = () => {
-        console.log("Actualizando");   
-    }
-    
     useEffect(() => {
         
         if(!current) router.push("/dashboard")
@@ -57,24 +54,89 @@ const Review = () => {
     const { symptom, patient, status, comments,  prescription, bill } = current
     const { name, allergies, preconditions, surgeries, birthday, email, covid } = patient
 
+    const handleUpdateConsultation = () => {
+        
+        if(isValidate())
+            console.log("Podemos guardar");
+        else 
+            console.log("No podemos guardar");
+           
+    }
+
     const handleChange = e => {
-        if(e.target.name === "covid"){
-            
-            const temp = {
-                ...patient,
-                [e.target.name]: e.target.value
+
+        switch (e.target.name) {
+            case "covid":
+
+                const temp = {
+                    ...patient,
+                    [e.target.name]: e.target.value
+                }
+    
+                saveCurrent({
+                    ...current,
+                    patient: temp
+                })
+                
+                break;
+
+            default:
+                saveCurrent({
+                    ...current,
+                    [e.target.name]: e.target.value
+                })
+                break;
+        }
+        
+    }
+
+    const isValidate = () => {
+
+        let missing = {}
+
+        if(status === "close"){
+            if(Number(bill) <= 0) {
+                
+                missing = {
+                    ...missing,
+                    bill: "Debes ingresar un total válido"
+                }
             }
 
-            saveCurrent({
-                ...current,
-                patient: temp
-            })
+            if(prescription.trim() === "") {
+
+                missing = {
+                    ...missing,
+                    prescription: "Debes dar una receta antes de actualizar"
+                }
+
+            }
+
+            saveError(missing)
         }
-        else 
-            saveCurrent({
-                ...current,
-                [e.target.name]: e.target.value
+      
+        return !(Object.keys(missing).length > 0)
+    }
+
+    const handleKeyDown = e => {
+        if(e.keyCode === 9 || e.which === 9) {
+            e.preventDefault()
+            const start = e.target.selectionStart
+            const end = e.target.selectionEnd
+
+            let previous = e.target.value
+            const newValue = previous.substring(0, start) + "\t" + previous.substring(end)
+
+            e.target.selectionEnd = start + 1
+
+            handleChange({
+                target: {
+                    name: "prescription",
+                    value: newValue
+                }
             })
+
+        }   
     }
 
     return (
@@ -195,6 +257,17 @@ const Review = () => {
                                 />
                             </Field>
 
+                            { errors.bill 
+                                && <Error 
+                                        css = {css`
+                                            @media (min-width: 768px) {
+                                                width: 85%;
+                                            }
+                                        `}
+                                    >
+                                        {errors.bill}
+                                    </Error> }
+
                             <Label>
                                 Recetar: 
                             </Label>
@@ -214,9 +287,22 @@ const Review = () => {
                                     id="prescription" 
                                     value = {prescription}
                                     onChange = {handleChange}
+                                    onKeyDown = {handleKeyDown}
                                 >
                                 </textarea>
                             </Field>
+
+                            { errors.prescription 
+                                && <Error 
+                                        css = {css`
+                                            @media (min-width: 768px) {
+                                                width: 85%;
+                                            }
+                                        `}
+                                    >
+                                        {errors.prescription}
+                                    </Error> 
+                            }
 
                        </>
 
@@ -237,7 +323,9 @@ const Review = () => {
 
                         <div>
                             
-                            <Conversation />
+                            <Conversation 
+                                comments = {comments}
+                            />
 
                         </div>
 
