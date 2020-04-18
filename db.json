@@ -27,7 +27,7 @@
       "id": 1,
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "pending",
+      "status": "close",
       "comments": [
         {
           "id": "b36d1058-50ca-444c-a9e0-f37578042ade",
@@ -48,8 +48,8 @@
           "name": "Doctor. House"
         }
       ],
-      "prescription": "",
-      "bill": 0,
+      "prescription": "Se convirtió en mi locura",
+      "bill": "100",
       "patient": {
         "id": 1,
         "name": "Peter child",

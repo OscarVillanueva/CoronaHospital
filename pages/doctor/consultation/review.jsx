@@ -6,6 +6,7 @@ import { css } from "@emotion/core";
 import { Container, Grid} from "../../../components/includes/Grid";
 import { Field, Error } from "../../../components/includes/Form";
 import { ButtonLG } from "../../../components/includes/Button";
+import { updateConsultationAction } from "../../../actions/consultationsAction";
 import Conversation from '../../../components/Layout/Conversation';
 import DashboardHeader from '../../../components/Layout/DashboardHeader';
 
@@ -39,6 +40,7 @@ const Select = styled.select`
 const Review = () => {
 
     const router = useRouter()
+    const dispatch = useDispatch()
     const focus = useSelector(state => state.consultations.focus)
     const [current, saveCurrent] = useState(focus)
     const [errors, saveError] = useState({})
@@ -51,13 +53,13 @@ const Review = () => {
 
     if(!current || Object.keys(current).length === 0) return null
 
-    const { symptom, patient, status, comments,  prescription, bill } = current
+    const { symptom, patient, status, prescription, bill } = current
     const { name, allergies, preconditions, surgeries, birthday, email, covid } = patient
 
     const handleUpdateConsultation = () => {
         
         if(isValidate())
-            console.log("Podemos guardar");
+            dispatch( updateConsultationAction(current) )
         else 
             console.log("No podemos guardar");
            
@@ -304,6 +306,18 @@ const Review = () => {
                                     </Error> 
                             }
 
+                            <ButtonLG
+                                css = {css`
+                                    margin-top: 3rem;
+                                    @media (min-width: 768px) {
+                                        width: 85%;
+                                    }
+                                `}
+                                onClick = {handleUpdateConsultation}
+                            >
+                                Actualizar Consulta
+                            </ButtonLG>
+
                        </>
 
                     </div>
@@ -321,17 +335,7 @@ const Review = () => {
                             </span>
                         </Label>
 
-                        <div>
-                            
-                            <Conversation />
-
-                        </div>
-
-                        <ButtonLG
-                            onClick = {handleUpdateConsultation}
-                        >
-                            Actualizar Consulta
-                        </ButtonLG>
+                        <Conversation />
 
                     </div>
                 </Grid>
