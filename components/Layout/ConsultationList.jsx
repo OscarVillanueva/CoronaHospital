@@ -15,7 +15,8 @@ const ConsultationList = () => {
 
     useEffect(() => {
         
-        dispatch( fetchConsultationsAction(currentDoctor.speciality) )
+        if(consultations.length === 0)
+            dispatch( fetchConsultationsAction(currentDoctor.speciality) )
 
     }, [])
 

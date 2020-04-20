@@ -46,6 +46,12 @@
           "message": "Ahora si va para redux!!",
           "userId": 1,
           "name": "Doctor. House"
+        },
+        {
+          "id": "dfbf1660-3c81-4c02-8916-c950d8bf52b8",
+          "message": "Desde reportes",
+          "userId": 1,
+          "name": "Doctor. House"
         }
       ],
       "prescription": "Se convirtió en mi locura",
@@ -59,16 +65,20 @@
         "surgeries": "Me sacaron el apendice",
         "birthday": "20/20/20",
         "covid": "free"
+      },
+      "answerby": {
+        "id": 1,
+        "name": "Doctor. House"
       }
     },
     {
       "id": 2,
       "speciality": "x",
       "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "close",
+      "status": "pending",
       "comments": [],
       "prescription": "asdfasdf",
-      "bill": "100",
+      "bill": "150",
       "patient": {
         "id": 2,
         "name": "Jeff Bezos",
@@ -79,10 +89,7 @@
         "birthday": "20/20/20",
         "covid": "free"
       },
-      "answerby": {
-        "id": 1,
-        "name": "Doctor. House"
-      }
+      "answerby": {}
     },
     {
       "id": 3,
@@ -101,7 +108,8 @@
         "surgeries": "Me sacaron el apendice",
         "birthday": "20/20/20",
         "covid": "free"
-      }
+      },
+      "answerby": {}
     }
   ]
 }
