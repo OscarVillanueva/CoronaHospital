@@ -34,8 +34,8 @@ const initialState = {
             {
                 id: 2,
                 title: "Consultas",
-                type: "both",
-                component: "consultationList"
+                type: "patient",
+                component: "consultations"
             },
             {
                 id: 3,

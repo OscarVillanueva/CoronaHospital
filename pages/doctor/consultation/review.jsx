@@ -41,7 +41,7 @@ const Review = () => {
 
     const router = useRouter()
     const dispatch = useDispatch()
-    const currentDoctor = {id: 1, name: "Doctor. House"}
+    const currentDoctor = {id: 1, name: "Doctor. House", type: "doctor"}
     const focus = useSelector(state => state.consultations.focus)
     const [current, saveCurrent] = useState(focus)
     const [errors, saveError] = useState({})
@@ -199,6 +199,7 @@ const Review = () => {
                                 id="covid" 
                                 value = {covid}
                                 onChange = {handleChange}
+                                disabled = { currentDoctor.type === "doctor" ? false : true  }
                             >
                                 <option value="free">Libre</option>
                                 <option value="suspect">Posible Caso</option>
@@ -221,6 +222,7 @@ const Review = () => {
                                     name = "change"
                                     id = "change"
                                     onChange = {handleChange}
+                                    disabled = { currentDoctor.type === "doctor" ? false : true  }
                                     placeholder = "Escribe . . ."
                                 />
                             </Field>
@@ -234,6 +236,7 @@ const Review = () => {
                                 id="status" 
                                 value = {status}
                                 onChange = {handleChange}
+                                disabled = { currentDoctor.type === "doctor" ? false : true  }
                             >
                                 <option value="pending">Pendiente</option>
                                 <option value="close">Revisada</option>
@@ -257,6 +260,7 @@ const Review = () => {
                                     value = { bill }
                                     onChange = {handleChange}
                                     placeholder = "100"
+                                    disabled = { currentDoctor.type === "doctor" ? false : true  }
                                 />
                             </Field>
 
@@ -272,7 +276,7 @@ const Review = () => {
                                     </Error> }
 
                             <Label>
-                                Recetar: 
+                                Receta: 
                             </Label>
 
                             <Field
@@ -291,6 +295,7 @@ const Review = () => {
                                     value = {prescription}
                                     onChange = {handleChange}
                                     onKeyDown = {handleKeyDown}
+                                    disabled = { currentDoctor.type === "doctor" ? false : true  }
                                 >
                                 </textarea>
                             </Field>
@@ -307,17 +312,22 @@ const Review = () => {
                                     </Error> 
                             }
 
-                            <ButtonLG
-                                css = {css`
-                                    margin-top: 3rem;
-                                    @media (min-width: 768px) {
-                                        width: 85%;
-                                    }
-                                `}
-                                onClick = {handleUpdateConsultation}
-                            >
-                                Actualizar Consulta
-                            </ButtonLG>
+                            { currentDoctor.type === "" 
+                                ? (
+                                    <ButtonLG
+                                        css = {css`
+                                            margin-top: 3rem;
+                                            @media (min-width: 768px) {
+                                                width: 85%;
+                                            }
+                                        `}
+                                        onClick = {handleUpdateConsultation}
+                                    >
+                                        Actualizar Consulta
+                                    </ButtonLG>
+                                ) 
+                                : (null) 
+                            }
 
                        </>
 

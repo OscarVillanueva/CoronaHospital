@@ -2,6 +2,7 @@ import React from 'react';
 import Services from '../components/Layout/doctor/Services';
 import ConsultationList from '../components/Layout/ConsultationList';
 import Reports from '../components/Layout/Reports';
+import Consultations from '../components/Layout/patient/Consultations';
 
 const useComponent = (id) => {
     let component = null
@@ -17,6 +18,10 @@ const useComponent = (id) => {
 
         case "reports":
             component = <Reports />
+            break;
+    
+        case "consultations":
+            component = <Consultations />
             break;
     
         default:

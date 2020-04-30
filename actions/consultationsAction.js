@@ -5,6 +5,9 @@ import {
     FETCH_DOCTOR_CONSULTATIONS,
     FETCH_DOCTOR_CONSULTATIONS_SUCCESS,
     FETCH_DOCTOR_CONSULTATIONS_ERROR,
+    FETCH_PATIENT_CONSULTATIONS,
+    FETCH_PATIENT_CONSULTATIONS_SUCCESS,
+    FETCH_PATIENT_CONSULTATIONS_ERROR,
     PUT_FOCUS_CONSULTATIONS,
     PUT_FOCUS_CONSULTATIONS_SUCCESS,
     UPDATE_CONSULTATION,
@@ -72,6 +75,37 @@ const fetchDoctorConsultationsSuccess = data => ({
 
 const fetchDoctorConsultationsError = error => ({
     type: FETCH_DOCTOR_CONSULTATIONS_ERROR,
+    payload: error
+})
+
+// Traer las consultas que pertenecen al doctor
+export function fetchPatientConsultationsAction(id) {
+    return async dispatch => {
+        dispatch( fetchPatientConsultations() )
+
+        try {
+            
+            const api = `/consultations?patient.id=${id}`
+            const response = await axios.get(api)
+            dispatch( fetchPatientConsultationsSuccess(response.data) )
+
+        } catch (error) {
+            dispatch( fetchPatientConsultationsError(error) )
+        }
+    }
+} 
+
+const fetchPatientConsultations = () => ({
+    type: FETCH_PATIENT_CONSULTATIONS,
+})
+
+const fetchPatientConsultationsSuccess = data => ({
+    type: FETCH_PATIENT_CONSULTATIONS_SUCCESS,
+    payload: data
+})
+
+const fetchPatientConsultationsError = error => ({
+    type: FETCH_PATIENT_CONSULTATIONS_ERROR,
     payload: error
 })
 

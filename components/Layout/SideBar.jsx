@@ -19,7 +19,7 @@ const Logo = styled.p`
 const SideBar = () => {
 
     const { doctor, patient } = useSelector(state => state.dashboard.options)
-    const type = "doctor"
+    const type = "patient"
 
     return (
         <SideBarContainer >

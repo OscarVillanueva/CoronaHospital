@@ -3,6 +3,8 @@ import {
     FETCH_CONSULTATIONS_ERROR,
     FETCH_DOCTOR_CONSULTATIONS_SUCCESS, 
     FETCH_DOCTOR_CONSULTATIONS_ERROR,
+    FETCH_PATIENT_CONSULTATIONS_SUCCESS,
+    FETCH_PATIENT_CONSULTATIONS_ERROR,
     PUT_FOCUS_CONSULTATIONS_SUCCESS,
     UPDATE_CONSULTATION_SUCCESS,
     UPDATE_CONSULTATION_ERROR
@@ -19,7 +21,8 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case FETCH_CONSULTATIONS_SUCCESS: 
-        case FETCH_DOCTOR_CONSULTATIONS_SUCCESS: {
+        case FETCH_DOCTOR_CONSULTATIONS_SUCCESS: 
+        case FETCH_PATIENT_CONSULTATIONS_SUCCESS: {
             return {
                 ...state,
                 data: action.payload,
@@ -29,7 +32,8 @@ export default (state = initialState, action) => {
         }
 
         case FETCH_CONSULTATIONS_ERROR: 
-        case FETCH_DOCTOR_CONSULTATIONS_ERROR: {
+        case FETCH_DOCTOR_CONSULTATIONS_ERROR: 
+        case FETCH_PATIENT_CONSULTATIONS_ERROR: {
             return {
                 ...state,
                 data: null,

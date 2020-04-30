@@ -57,7 +57,7 @@
       "prescription": "Se convirtió en mi locura",
       "bill": "100",
       "patient": {
-        "id": 1,
+        "id": "patient1",
         "name": "Peter child",
         "email": "peterChild@correo.com",
         "allergies": "Todas",
@@ -80,7 +80,7 @@
       "prescription": "asdfasdf",
       "bill": "150",
       "patient": {
-        "id": 2,
+        "id": "patient2",
         "name": "Jeff Bezos",
         "email": "jeff@correo.com",
         "allergies": "Todas",
@@ -100,7 +100,7 @@
       "prescription": "",
       "bill": 0,
       "patient": {
-        "id": 3,
+        "id": "patient3",
         "name": "Elon Musk",
         "email": "elo@correo.com",
         "allergies": "Todas",
