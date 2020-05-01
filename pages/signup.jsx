@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import Layout from '../components/Layout/Layout';
 import { Field, InputSubmit, Error } from '../components/includes/Form';
+import { Alert } from "../components/includes/Alert";
 import validateRegister from '../validation/validateRegister';
 import useValidation from '../hooks/useValidation';
+import { registerUserAction } from "../actions/authActions";
 
 const GridForm = styled.form`
     width: 90%;
@@ -22,10 +26,6 @@ const GridForm = styled.form`
 
 const Label = styled.label`
     text-align: center;
-`
-
-const ColumnField = styled.div`
-    
 `
 
 const INITIAL_STATE = {
@@ -49,14 +49,19 @@ const INITIAL_STATE = {
         specialty: "",
         document: ""
     },
-    check: "patient"
+    type: "patient"
 }
 
 const Signup = () => {
 
     const [type, saveType] = useState("patient")
-    const [specialityError, saveSpecialityError] = useState(null)
-    const [documentError, saveDocumentError] = useState(null)
+    const [registerError, setRegisterError] = useState(null)
+
+    const router = useRouter()
+
+    const loading = useSelector(state => state.auth.loading)
+    const error = useSelector(state => state.auth.error)
+    const dispatch = useDispatch()
 
     const {
         values,
@@ -64,6 +69,17 @@ const Signup = () => {
         handleChange,
         handleSubmit
     } = useValidation(INITIAL_STATE, validateRegister, register)
+
+    useEffect(() => {
+        
+        if(loading){
+
+            if(error) setRegisterError(error)
+            // else router.push("/dashboard")
+        }
+
+
+    }, [loading])
 
     const {
         name,
@@ -83,30 +99,37 @@ const Signup = () => {
     const { birthday, allergies, preconditions, surgeries } = patient
     const { specialty, document } = doctor
 
-    // useEffect(() => {
-        
-    //     if(errors.speciality) {
-    //         saveSpecialityError(errors.doctor[0])
-                
-    //         if(errors.doctor.length)
-    //             saveDocumentError(errors.doctor[1])
-    //     }
-    //     else {
-    //         saveSpecialityError(null)
-    //         saveDocumentError(null)
-    //     }
-
-    // }, [errors])
-
     function register() {
-        console.log("Valido!!!");
+
+        // Si es doctor eliminar la información del paciente y viceversa
+        let user = null
+        if(type === "doctor"){
+            const { patient, doctor: { specialty, document },...rest } = values
+            user = {
+                ...rest,
+                specialty,
+                document
+            }
+        }
+        else {
+            const { doctor, patient: { birthday, preconditions, surgeries, allergies },...rest } = values
+            user = {
+                ...rest,
+                birthday,
+                preconditions,
+                surgeries,
+                allergies
+            }
+        }
+
+        dispatch( registerUserAction( user ) )
     }
 
     const handleType = (e) => {
         saveType(e.target.name);
         handleChange({
             target: {
-                name: "check",
+                name: "type",
                 value: e.target.name
             }
         })
@@ -433,6 +456,18 @@ const Signup = () => {
                     ) 
                 }
 
+                { registerError && 
+                    <Alert
+                        css = {css`
+                            @media (min-width: 768px) {
+                                grid-column: 1/3;
+                            }
+                        `}
+                    >
+                        {registerError.message}
+                    </Alert> 
+                }
+
                 <InputSubmit 
                     css = {css`
                             @media (min-width: 768px) {
@@ -444,6 +479,7 @@ const Signup = () => {
                     className = "mb-3"
                 />
             </GridForm>
+
         </Layout>
     );
 }

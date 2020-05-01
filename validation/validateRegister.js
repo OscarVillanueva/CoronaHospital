@@ -47,7 +47,7 @@ export default values => {
     if(values.user.trim() === "") 
         errors.user = "El usuario es obligatorio"
 
-    if(values.check === "patient"){
+    if(values.type === "patient"){
         // validar la fecha
         if(values.patient.birthday.trim() === "") 
             errors.patient = "La fecha de nacimiento es obligatoria"

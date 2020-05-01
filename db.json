@@ -111,5 +111,23 @@
       },
       "answerby": {}
     }
+  ],
+  "users": [
+    {
+      "name": "Doctor",
+      "lastName": "House",
+      "address": "Una Calle",
+      "state": "Guanajuato",
+      "city": "Cortazar",
+      "country": "México",
+      "phone": "123456",
+      "user": "doctorHouse",
+      "email": "correo@correo.com",
+      "password": "123456",
+      "type": "doctor",
+      "specialty": "Gripe",
+      "document": "123456",
+      "id": 1
+    }
   ]
 }
