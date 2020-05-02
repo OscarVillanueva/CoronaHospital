@@ -56,6 +56,7 @@ const Signup = () => {
 
     const [type, saveType] = useState("patient")
     const [registerError, setRegisterError] = useState(null)
+    const [ready, setReady] = useState(false)
 
     const router = useRouter()
 
@@ -72,14 +73,12 @@ const Signup = () => {
 
     useEffect(() => {
         
-        if(loading){
-
+        if(!loading && ready){
             if(error) setRegisterError(error)
-            // else router.push("/dashboard")
+            else router.push("/dashboard")
         }
 
-
-    }, [loading])
+    }, [loading, ready])
 
     const {
         name,
@@ -122,6 +121,7 @@ const Signup = () => {
             }
         }
 
+        setReady(true)
         dispatch( registerUserAction( user ) )
     }
 

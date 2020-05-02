@@ -12,9 +12,10 @@ export function registerUserAction(user) {
         dispatch( registerUser() )
 
         try {
-            const exists = await axios.get(`/users?email=${user.email}`)
+            const  { data } = await axios.get(`/users?email=${user.email}`)
+            
+            if(data.length > 0) dispatch ( registerUserError( { message: "El usuario ya existe" } ) )
 
-            if(exists) dispatch ( registerUserError( { message: "El usuario ya existe" } ) )
             else {
                 await axios.post("/users", user)
                 dispatch( registerUserSuccess(user) )
