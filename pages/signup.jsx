@@ -75,7 +75,10 @@ const Signup = () => {
         
         if(!loading && ready){
             if(error) setRegisterError(error)
-            else router.push("/dashboard")
+            else 
+                setTimeout(() => {
+                    router.push("/dashboard")
+                }, 1000);
         }
 
     }, [loading, ready])
