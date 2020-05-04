@@ -21,8 +21,12 @@ export function registerUserAction(user) {
             if(data.length > 0) dispatch ( registerUserError( { message: "El usuario ya existe" } ) )
 
             else {
-                await axios.post("/users", user)
-                dispatch( registerUserSuccess(user) )
+                const { data } = await axios.post("/users", user)
+
+                if(user.type === "doctor") 
+                    await axios.post("/specialities", { title: user.speciality })
+
+                dispatch( registerUserSuccess(data) )
             }
 
 

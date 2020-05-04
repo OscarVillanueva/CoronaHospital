@@ -3,6 +3,7 @@ import Services from '../components/Layout/doctor/Services';
 import ConsultationList from '../components/Layout/ConsultationList';
 import Reports from '../components/Layout/Reports';
 import Consultations from '../components/Layout/patient/Consultations';
+import CreateConsultation from '../components/Layout/patient/createconsultation';
 
 const useComponent = (id) => {
     let component = null
@@ -22,6 +23,10 @@ const useComponent = (id) => {
     
         case "consultations":
             component = <Consultations />
+            break;
+
+        case "createconsultation":
+            component = <CreateConsultation />
             break;
     
         default:

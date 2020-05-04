@@ -120,7 +120,8 @@ const Signup = () => {
                 birthday,
                 preconditions,
                 surgeries,
-                allergies
+                allergies,
+                covid: "free"
             }
         }
 

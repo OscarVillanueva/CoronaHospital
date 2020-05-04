@@ -54,7 +54,7 @@ export default values => {
     }
     else {
         // validar la especialidad
-        if(values.doctor.specialty.trim() === "") 
+        if(values.doctor.speciality.trim() === "") 
             errors.speciality = "La especialidad es obligatoria"
 
         // validar la cedula

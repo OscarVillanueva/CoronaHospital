@@ -47,8 +47,6 @@ const Login = () => {
     const { email, password } = values
 
     function login() {
-        console.log("Valido!!!");
-
         setReady(true)
         dispatch( loginAction( values ) )
     }

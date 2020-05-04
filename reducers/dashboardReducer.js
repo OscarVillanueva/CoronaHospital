@@ -35,7 +35,7 @@ const initialState = {
                 id: 2,
                 title: "Consultas",
                 type: "patient",
-                component: "consultations"
+                component: "createconsultation"
             },
             {
                 id: 3,
