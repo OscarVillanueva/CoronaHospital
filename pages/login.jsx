@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/core';
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
 import Layout from '../components/Layout/Layout';
 import { Form, Field, InputSubmit, FormContainer, Error } from '../components/includes/Form';
+import { Alert } from "../components/includes/Alert";
 import validateLogin from '../validation/validateLogin';
 import useValidation from '../hooks/useValidation';
+import { loginAction } from "../actions/authActions";
 
 const INITIAL_STATE = {
     email: "",
@@ -12,6 +16,15 @@ const INITIAL_STATE = {
 
 const Login = () => {
 
+    const [registerError, setRegisterError] = useState(null)
+    const [ready, setReady] = useState(false)
+
+    const router = useRouter()
+
+    const loading = useSelector(state => state.auth.loading)
+    const error = useSelector(state => state.auth.error)
+    const dispatch = useDispatch()
+
     const {
         values,
         errors,
@@ -19,10 +32,22 @@ const Login = () => {
         handleSubmit
     } = useValidation(INITIAL_STATE, validateLogin, login)
 
+    useEffect(() => {
+        
+        if(!loading && ready){
+            if(error) setRegisterError(error)
+            else router.push("/dashboard")
+        }
+
+    }, [loading, ready])
+
     const { email, password } = values
 
     function login() {
         console.log("Valido!!!");
+
+        setReady(true)
+        dispatch( loginAction( values ) )
     }
 
     return ( 
@@ -40,6 +65,12 @@ const Login = () => {
                 </h1>
 
                 <Form onSubmit = {handleSubmit}>
+
+                    { registerError && 
+                        <Alert>
+                            {registerError.message}
+                        </Alert> 
+                    }
 
                     <Field>
                         <label htmlFor="email">Correo</label>
@@ -74,7 +105,7 @@ const Login = () => {
                         value="Entrar"
                         className = "mt-3"
                     />
-    
+
                 </Form>
 
             </FormContainer>

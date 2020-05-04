@@ -1,7 +1,10 @@
 import { 
     REGISTER,
     REGISTER_SUCCESS,
-    REGISTER_ERROR
+    REGISTER_ERROR,
+    LOG_IN,
+    LOG_IN_SUCCESS,
+    LOG_IN_ERROR
 } from "../types/index";
 
 const initialState = {
@@ -13,14 +16,16 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
 
-        case REGISTER: {
+        case REGISTER: 
+        case LOG_IN: {
             return {
                 ...state,
                 loading: true
             }
         }
 
-        case REGISTER_SUCCESS: {
+        case REGISTER_SUCCESS: 
+        case LOG_IN_SUCCESS: {
             return {
                 ...state,
                 current: action.payload,
@@ -29,7 +34,8 @@ export default (state = initialState, action) => {
             }
         }
 
-        case REGISTER_ERROR: {
+        case REGISTER_ERROR: 
+        case LOG_IN_ERROR: {
             return {
                 ...state,
                 current: null,
