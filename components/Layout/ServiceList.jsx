@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { logOutAction } from "../../actions/authActions";
+import { updateCurrentComponentAction } from "../../actions/dashboardActions";
 
 const ServiceListContainer = styled.ul`
     list-style: none;
@@ -37,6 +38,7 @@ const ServiceList = ({ services }) => {
 
     const logout = () => {
         dispatch( logOutAction() )
+        dispatch( updateCurrentComponentAction("") )
         router.push("/login")
     }
 
