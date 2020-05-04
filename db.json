@@ -20,6 +20,13 @@
       "title": "Servicio 3",
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
       "price": 4000
+    },
+    {
+      "title": "Pandemia",
+      "details": "Pandemias a domicilio",
+      "price": "100",
+      "owner": 3,
+      "id": 4
     }
   ],
   "consultations": [
@@ -143,7 +150,7 @@
       "email": "correo@correo.com",
       "password": "123456",
       "type": "doctor",
-      "specialty": "Gripe",
+      "speciality": "Gripe",
       "document": "88767902",
       "id": 1
     },
@@ -177,7 +184,7 @@
       "email": "react@hook.com",
       "password": "123456",
       "type": "doctor",
-      "specialty": "Gripe",
+      "speciality": "Gripe",
       "document": "0979672",
       "id": 3
     }

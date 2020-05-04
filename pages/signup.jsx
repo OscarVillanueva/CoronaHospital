@@ -46,7 +46,7 @@ const INITIAL_STATE = {
         surgeries: ""
     },
     doctor: {
-        specialty: "",
+        speciality: "",
         document: ""
     },
     type: "patient"
@@ -99,17 +99,17 @@ const Signup = () => {
     } = values
 
     const { birthday, allergies, preconditions, surgeries } = patient
-    const { specialty, document } = doctor
+    const { speciality, document } = doctor
 
     function register() {
 
         // Si es doctor eliminar la información del paciente y viceversa
         let user = null
         if(type === "doctor"){
-            const { patient, doctor: { specialty, document },...rest } = values
+            const { patient, doctor: { speciality, document },...rest } = values
             user = {
                 ...rest,
-                specialty,
+                speciality,
                 document
             }
         }
@@ -423,12 +423,12 @@ const Signup = () => {
                     : (
                        <>
                             <Field>
-                                <label htmlFor="specialty">Especialidad</label>
+                                <label htmlFor="speciality">Especialidad</label>
                                 <input 
                                     type="text" 
-                                    name="specialty" 
+                                    name="speciality" 
                                     id="doctor" 
-                                    value = {specialty}
+                                    value = {speciality}
                                     onChange = {handleUserType}
                                     placeholder = "Especialidad"
                                 />
