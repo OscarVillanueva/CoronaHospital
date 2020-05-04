@@ -8,7 +8,7 @@ import { fetchDoctorConsultationsAction } from "../../actions/consultationsActio
 const Reports = () => {
 
     const dispatch = useDispatch()
-    const currentDoctor = {id: 1, speciality: "x"}
+    const currentDoctor = useSelector(state => state.auth.current)
 
     useEffect(() => {
         

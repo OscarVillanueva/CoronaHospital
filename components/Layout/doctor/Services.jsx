@@ -12,12 +12,12 @@ const Services = () => {
 
     const services = useSelector(state => state.services.data)
     const error = useSelector(state => state.services.error)
-    const currentDoctor = {id: 1}
+    const currentDoctor = useSelector(state => state.auth.current)
     const dispatch = useDispatch()
 
     useEffect(() => {
         
-        dispatch( fetchDoctorServicesAction(currentDoctor.id) )
+        dispatch( fetchDoctorServicesAction( currentDoctor.id ) )
 
     }, [])
 

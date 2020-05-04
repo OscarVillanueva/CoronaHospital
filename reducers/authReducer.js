@@ -2,6 +2,7 @@ import {
     REGISTER,
     REGISTER_SUCCESS,
     REGISTER_ERROR,
+    LOG_OUT,
     LOG_IN,
     LOG_IN_SUCCESS,
     LOG_IN_ERROR
@@ -40,6 +41,15 @@ export default (state = initialState, action) => {
                 ...state,
                 current: null,
                 error: action.payload,
+                loading: false
+            }
+        }
+
+        case LOG_OUT: {
+            return {
+                ...state,
+                current: null,
+                error: null,
                 loading: false
             }
         }

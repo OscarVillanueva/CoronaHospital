@@ -1,6 +1,9 @@
 import React from 'react';
 import Service from './Service';
 import styled from '@emotion/styled';
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { logOutAction } from "../../actions/authActions";
 
 const ServiceListContainer = styled.ul`
     list-style: none;
@@ -12,7 +15,31 @@ const ServiceListContainer = styled.ul`
 
 `
 
+const LogOut = styled.li`
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.08rem;
+
+    a {
+        color: var(--secondary);
+        cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+        text-align: start;
+    }
+`
+
 const ServiceList = ({ services }) => {
+
+    const dispatch = useDispatch()
+    const router = useRouter()
+
+    const logout = () => {
+        dispatch( logOutAction() )
+        router.push("/login")
+    }
+
     return ( 
         <ServiceListContainer>
             {services.map(service => (
@@ -21,6 +48,16 @@ const ServiceList = ({ services }) => {
                     service = {service}
                 />
             ))}
+
+            <LogOut>
+                <a 
+                    onClick = { logout }
+                >
+                    Salir
+                </a>
+            </LogOut>
+            
+
         </ServiceListContainer>
     );
 }

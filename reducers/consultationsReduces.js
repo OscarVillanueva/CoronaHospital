@@ -1,8 +1,11 @@
 import { 
+    FETCH_CONSULTATIONS,
     FETCH_CONSULTATIONS_SUCCESS, 
     FETCH_CONSULTATIONS_ERROR,
+    FETCH_DOCTOR_CONSULTATIONS,
     FETCH_DOCTOR_CONSULTATIONS_SUCCESS, 
     FETCH_DOCTOR_CONSULTATIONS_ERROR,
+    FETCH_PATIENT_CONSULTATIONS,
     FETCH_PATIENT_CONSULTATIONS_SUCCESS,
     FETCH_PATIENT_CONSULTATIONS_ERROR,
     PUT_FOCUS_CONSULTATIONS_SUCCESS,
@@ -19,6 +22,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+
+        case FETCH_PATIENT_CONSULTATIONS:
+        case FETCH_DOCTOR_CONSULTATIONS:
+        case FETCH_CONSULTATIONS: {
+            return {
+                ...state,
+                data: [],
+                success: null,
+                error: null
+            }
+        }
 
         case FETCH_CONSULTATIONS_SUCCESS: 
         case FETCH_DOCTOR_CONSULTATIONS_SUCCESS: 

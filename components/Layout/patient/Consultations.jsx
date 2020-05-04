@@ -10,7 +10,7 @@ const ConsultationList = () => {
 
     const consultations = useSelector(state => state.consultations.data)
     const error = useSelector(state => state.consultations.error)
-    const currentPatient = {id: "patient1"}
+    const currentPatient = useSelector(state => state.auth.current)
     const dispatch = useDispatch()
 
     useEffect(() => {

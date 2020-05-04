@@ -10,12 +10,12 @@ const ConsultationList = () => {
 
     const consultations = useSelector(state => state.consultations.data)
     const error = useSelector(state => state.consultations.error)
-    const currentDoctor = {id: 1, speciality: "x"}
+    const currentDoctor = useSelector(state => state.auth.current)
     const dispatch = useDispatch()
 
     useEffect(() => {
         
-        if(consultations.length === 0)
+        // if(consultations.length === 0)
             dispatch( fetchConsultationsAction(currentDoctor.speciality) )
 
     }, [])

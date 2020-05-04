@@ -52,10 +52,16 @@
           "message": "Desde reportes",
           "userId": 1,
           "name": "Doctor. House"
+        },
+        {
+          "id": "e8714f86-0b6f-4d4e-829b-65352a1f3509",
+          "message": "Holis!!",
+          "userId": 1,
+          "name": "Doctor. House"
         }
       ],
-      "prescription": "Se convirtió en mi locura",
-      "bill": "100",
+      "prescription": "Se convirtió en mi locura!!",
+      "bill": "300",
       "patient": {
         "id": "patient1",
         "name": "Peter child",
@@ -64,11 +70,23 @@
         "preconditions": "Ninguna",
         "surgeries": "Me sacaron el apendice",
         "birthday": "20/20/20",
-        "covid": "free"
+        "covid": "suspect"
       },
       "answerby": {
-        "id": 1,
-        "name": "Doctor. House"
+        "name": "Doctor",
+        "lastName": "House",
+        "address": "Una calle",
+        "state": "Guanajuato",
+        "city": "Cortazar",
+        "country": "México",
+        "phone": "12398763",
+        "user": "doctorHouse",
+        "email": "correo@correo.com",
+        "password": "123456",
+        "type": "doctor",
+        "specialty": "Gripe",
+        "document": "88767902",
+        "id": 1
       }
     },
     {

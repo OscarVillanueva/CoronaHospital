@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import SideBar from '../components/Layout/SideBar';
 import useComponent from '../hooks/useComponent';
 
@@ -46,6 +47,11 @@ const Welcome = styled.div`
 const Dashboard = () => {
 
     const currentComponent = useSelector(state => state.dashboard.currentComponent)
+    const current = useSelector(state => state.auth.current)
+    const loading = useSelector(state => state.auth.loading)
+
+    const router = useRouter()
+    
     const [component, updateComponent] = useState(null)
 
     useEffect(() => {
@@ -53,6 +59,13 @@ const Dashboard = () => {
         updateComponent(useComponent(currentComponent))
 
     }, [currentComponent])
+
+
+    useEffect(() => {
+
+        if(!loading && !current) router.push("/login")
+        
+    }, [loading])
 
     return (
 

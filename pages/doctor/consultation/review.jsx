@@ -40,19 +40,25 @@ const Select = styled.select`
 const Review = () => {
 
     const router = useRouter()
+
     const dispatch = useDispatch()
-    const currentDoctor = {id: 1, name: "Doctor. House", type: "doctor"}
+
+    const currentDoctor = useSelector(state => state.auth.current)
     const focus = useSelector(state => state.consultations.focus)
+
+    // Consulta actual
     const [current, saveCurrent] = useState(focus)
     const [errors, saveError] = useState({})
 
     useEffect(() => {
         
-        if(!current) router.push("/dashboard")
+        if(!current || !currentDoctor) router.push("/dashboard")
         
     }, [])
 
     if(!current || Object.keys(current).length === 0) return null
+    if(!currentDoctor || Object.keys(currentDoctor).length === 0) return null
+
 
     const { symptom, patient, status, prescription, bill } = current
     const { name, allergies, preconditions, surgeries, birthday, email, covid } = patient
@@ -312,7 +318,7 @@ const Review = () => {
                                     </Error> 
                             }
 
-                            { currentDoctor.type === "" 
+                            { currentDoctor.type === "doctor" 
                                 ? (
                                     <ButtonLG
                                         css = {css`

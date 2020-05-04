@@ -58,9 +58,11 @@ const EditService = () => {
 
     const dispatch = useDispatch()
     const router = useRouter()
-    const currentDoctor = { id: 1 }
+
+    const currentDoctor = useSelector(state => state.auth.current)
     const success = useSelector(state => state.services.success)
     const error = useSelector(state => state.services.error)
+    
     const [submitted, saveSubmitted] = useState(false)
     
     useEffect(() => {

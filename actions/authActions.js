@@ -4,7 +4,8 @@ import {
     REGISTER_ERROR,
     LOG_IN,
     LOG_IN_SUCCESS,
-    LOG_IN_ERROR
+    LOG_IN_ERROR,
+    LOG_OUT
 } from "../types/index";
 import axios from '../config/axios';
 
@@ -59,7 +60,7 @@ export function loginAction(user) {
                 message: "El usuario o contraseña son incorrectos" 
             } ) )
 
-            else dispatch( loginSuccess( data ) )
+            else dispatch( loginSuccess( data[0] ) )
 
         } catch (error) {
             dispatch( loginError(error) )
@@ -69,15 +70,28 @@ export function loginAction(user) {
 } 
 
 const login = () => ({
-    type: REGISTER,
+    type: LOG_IN,
 })
 
 const loginSuccess = user => ({
-    type: REGISTER_SUCCESS,
+    type: LOG_IN_SUCCESS,
     payload: user
 })
 
 const loginError = error => ({
-    type: REGISTER_ERROR,
+    type: LOG_IN_ERROR,
     payload: error
+})
+
+// Salir o logout
+export function logOutAction() {
+    return async dispatch => {
+
+        dispatch( logOut() )
+
+    }
+} 
+
+const logOut = () => ({
+    type: LOG_OUT,
 })
