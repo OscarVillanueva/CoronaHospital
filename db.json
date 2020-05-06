@@ -1,82 +1,20 @@
 {
-  "services": [
-    {
-      "id": 1,
-      "owner": 1,
-      "title": "Servicio 1",
-      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "price": "950"
-    },
-    {
-      "id": 2,
-      "owner": 1,
-      "title": "Servicio 2",
-      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "price": 1400
-    },
-    {
-      "id": 3,
-      "owner": 1,
-      "title": "Servicio 3",
-      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "price": 4000
-    },
-    {
-      "title": "Pandemia",
-      "details": "Pandemias a domicilio",
-      "price": "100",
-      "owner": 3,
-      "id": 4
-    }
-  ],
+  "services": [],
   "consultations": [
     {
-      "id": 1,
-      "speciality": "x",
-      "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
+      "symptom": "Halvah brownie oat cake gummi bears cookie cake powder gummi bears. Cotton candy bonbon marshmallow soufflé chocolate cake. Macaroon biscuit chocolate sweet soufflé. Tootsie roll apple pie powder. Toffee cupcake biscuit powder biscuit gummies cotton candy fruitcake. Liquorice gummies soufflé liquorice candy carrot cake. Jelly croissant pudding pie macaroon dragée halvah marshmallow. Gingerbread cake dessert icing cookie jujubes jelly beans topping topping. Dragée icing dessert cake apple pie jelly jelly cookie cheesecake. Dessert lollipop lemon drops gingerbread tart. Icing sugar plum biscuit jelly pie wafer wafer pudding. Bonbon muffin cookie cupcake candy candy canes chupa chups. Halvah donut tootsie roll jelly-o.\n",
+      "speciality": "Gripe",
       "status": "close",
-      "comments": [
-        {
-          "id": "b36d1058-50ca-444c-a9e0-f37578042ade",
-          "message": "Nueva prueba de mensaje!!!",
-          "userId": 1,
-          "name": "Doctor. House"
-        },
-        {
-          "id": "4c0c775d-b57f-4bf6-8f02-3cea27a44d20",
-          "message": "Nuevo mensaje, este va para redux!!",
-          "userId": 1,
-          "name": "Doctor. House"
-        },
-        {
-          "id": "d4db0f15-e60e-470e-b4cb-d172ccc77421",
-          "message": "Ahora si va para redux!!",
-          "userId": 1,
-          "name": "Doctor. House"
-        },
-        {
-          "id": "dfbf1660-3c81-4c02-8916-c950d8bf52b8",
-          "message": "Desde reportes",
-          "userId": 1,
-          "name": "Doctor. House"
-        },
-        {
-          "id": "e8714f86-0b6f-4d4e-829b-65352a1f3509",
-          "message": "Holis!!",
-          "userId": 1,
-          "name": "Doctor. House"
-        }
-      ],
-      "prescription": "Se convirtió en mi locura!!",
-      "bill": "300",
+      "prescription": "Debe hacer lo siguiente:\n\n\t- Recostarse en su cama\n\t * Poner rolitas sad\n  \t* Esperar la muerte",
+      "bill": "100",
       "patient": {
-        "id": "patient1",
-        "name": "Peter child",
-        "email": "peterChild@correo.com",
-        "allergies": "Todas",
-        "preconditions": "Ninguna",
-        "surgeries": "Me sacaron el apendice",
-        "birthday": "20/20/20",
+        "id": 1,
+        "name": "Peter",
+        "email": "peter@child.com",
+        "allergies": "Al trabajo",
+        "preconditions": "Dormir todo el día",
+        "surgeries": "Ninguna",
+        "birthday": "05/05/1998",
         "covid": "suspect"
       },
       "answerby": {
@@ -86,128 +24,94 @@
         "state": "Guanajuato",
         "city": "Cortazar",
         "country": "México",
-        "phone": "12398763",
+        "phone": "123456",
         "user": "doctorHouse",
         "email": "correo@correo.com",
-        "password": "123456",
+        "password": "String1234",
         "type": "doctor",
-        "specialty": "Gripe",
-        "document": "88767902",
-        "id": 1
-      }
-    },
-    {
-      "id": 2,
-      "speciality": "x",
-      "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "pending",
-      "comments": [],
-      "prescription": "asdfasdf",
-      "bill": "150",
-      "patient": {
-        "id": "patient2",
-        "name": "Jeff Bezos",
-        "email": "jeff@correo.com",
-        "allergies": "Todas",
-        "preconditions": "Ninguna",
-        "surgeries": "Me sacaron el apendice",
-        "birthday": "20/20/20",
-        "covid": "free"
+        "speciality": "Gripe",
+        "document": "087867672",
+        "id": 2
       },
-      "answerby": {}
-    },
-    {
-      "id": 3,
-      "speciality": "x",
-      "symptom": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe enim ipsum, eum praesentium? Sed provident odit porro distinctio sint neque explicabo, unde quae, eligendi optio corporis atque sit!",
-      "status": "pending",
-      "comments": [],
-      "prescription": "",
-      "bill": 0,
-      "patient": {
-        "id": "patient3",
-        "name": "Elon Musk",
-        "email": "elo@correo.com",
-        "allergies": "Todas",
-        "preconditions": "Ninguna",
-        "surgeries": "Me sacaron el apendice",
-        "birthday": "20/20/20",
-        "covid": "free"
-      },
-      "answerby": {}
-    },
-    {
-      "symptom": "I'm baby mustache distillery poutine cliche seitan cornhole raw denim four dollar toast franzen williamsburg air plant etsy yuccie copper mug. Swag food truck typewriter craft beer echo park shoreditch tacos occupy edison bulb pop-up yr taiyaki. Fam coloring book gluten-free actually mustache swag craft beer photo booth. Pok pok enamel pin trust fund craft beer. Taiyaki gluten-free everyday carry wolf scenester.",
-      "speciality": "Gripe",
-      "status": "pending",
-      "comments": [],
-      "prescription": "",
-      "bill": 0,
-      "patient": {
-        "id": 2,
-        "name": "Peter",
-        "email": "peter@child.com",
-        "allergies": "",
-        "preconditions": "",
-        "surgeries": "",
-        "birthday": "2020-05-26"
-      },
-      "answerby": {},
-      "id": 4
-    },
-    {
-      "symptom": "I'm baby mustache distillery poutine cliche seitan cornhole raw denim four dollar toast franzen williamsburg air plant etsy yuccie copper mug. Swag food truck typewriter craft beer echo park shoreditch tacos occupy edison bulb pop-up yr taiyaki. Fam coloring book gluten-free actually mustache swag craft beer photo booth. Pok pok enamel pin trust fund craft beer. Taiyaki gluten-free everyday carry wolf scenester.",
-      "speciality": "Otra especialidad",
-      "status": "pending",
-      "comments": [],
-      "prescription": "",
-      "bill": 0,
-      "patient": {
-        "id": 2,
-        "name": "Peter",
-        "email": "peter@child.com",
-        "allergies": "",
-        "preconditions": "",
-        "surgeries": "",
-        "birthday": "2020-05-26"
-      },
-      "answerby": {},
-      "id": 5
-    },
-    {
-      "symptom": "I'm baby mustache distillery poutine cliche seitan cornhole raw denim four dollar toast franzen williamsburg air plant etsy yuccie copper mug. Swag food truck typewriter craft beer echo park shoreditch tacos occupy edison bulb pop-up yr taiyaki. Fam coloring book gluten-free actually mustache swag craft beer photo booth. Pok pok enamel pin trust fund craft beer. Taiyaki gluten-free everyday carry wolf scenester.",
-      "speciality": "Gripe",
-      "status": "pending",
+      "id": 1,
       "comments": [
         {
-          "id": "1fe13b67-5a20-4438-bca0-cfc2fcb803e6",
-          "message": "Hola!!, esta consulta tiene un mensaje",
+          "id": "b65c46ef-22b1-4a93-9135-3345350dc458",
+          "message": "Hola, me siento muy mal, alguien ayúdeme!!!!",
           "userId": 1,
-          "name": "Doctor. House"
+          "name": "Peter"
         },
         {
-          "id": "d717cdb1-1f98-4826-b001-b3e260bb68cb",
-          "message": "Yo uno",
+          "id": "94ea23df-8b64-4ebb-b6d7-b823380bed7f",
+          "message": "No se preocupe, ya se va a morir!!",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "5c06369e-d71c-4818-a861-dd492800290e",
+          "message": "No la haga doc, ayúdeme ",
           "userId": 1,
-          "name": "Doctor. House"
+          "name": "Peter"
+        },
+        {
+          "id": "d2a1595a-bdd2-4d91-8ec3-075d16cd6e13",
+          "message": "por que no te agregaste",
+          "userId": 1,
+          "name": "Peter"
+        },
+        {
+          "id": "1a9ee18a-357d-49a3-bc6a-1dc4985d865e",
+          "message": "Nuevo mensaje",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "ff98c828-1e31-4214-bcb0-9d0adfd459e9",
+          "message": "Otro nuevo mensaje",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "6ea200b3-4619-4f80-afb3-c82839f45340",
+          "message": "respuesta de paciente!!",
+          "userId": 1,
+          "name": "Peter"
+        },
+        {
+          "id": "8bd25181-f049-4799-95fd-9d717a1467eb",
+          "message": "Otra respuesta",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "0388eb75-07c7-4473-b0be-38fbafad0d88",
+          "message": "pues ahí le va otra",
+          "userId": 1,
+          "name": "Peter"
         }
-      ],
-      "prescription": "",
-      "bill": 0,
-      "patient": {
-        "id": 2,
-        "name": "Peter",
-        "email": "peter@child.com",
-        "allergies": "",
-        "preconditions": "",
-        "surgeries": "",
-        "birthday": "2020-05-26"
-      },
-      "answerby": {},
-      "id": 6
+      ]
     }
   ],
   "users": [
+    {
+      "type": "patient",
+      "name": "Peter",
+      "lastName": "Child",
+      "address": "Una calle",
+      "state": "Guanajuato",
+      "city": "Cortazar",
+      "country": "México",
+      "phone": "1232592358",
+      "email": "peter@child.com",
+      "user": "peterChild",
+      "password": "String1234",
+      "birthday": "05/05/1998",
+      "preconditions": "Dormir todo el día",
+      "surgeries": "Ninguna",
+      "allergies": "Al trabajo",
+      "covid": "free",
+      "id": 1
+    },
     {
       "name": "Doctor",
       "lastName": "House",
@@ -215,112 +119,20 @@
       "state": "Guanajuato",
       "city": "Cortazar",
       "country": "México",
-      "phone": "12398763",
+      "phone": "123456",
       "user": "doctorHouse",
       "email": "correo@correo.com",
-      "password": "123456",
+      "password": "String1234",
       "type": "doctor",
       "speciality": "Gripe",
-      "document": "88767902",
-      "id": 1
-    },
-    {
-      "name": "Peter",
-      "lastName": "Child",
-      "address": "una Calle",
-      "state": "Guanajuato",
-      "city": "Cortazar",
-      "country": "México",
-      "phone": "08862",
-      "user": "peterChild",
-      "email": "peter@child.com",
-      "password": "123456",
-      "type": "patient",
-      "birthday": "2020-05-26",
-      "preconditions": "",
-      "surgeries": "",
-      "allergies": "",
+      "document": "087867672",
       "id": 2
-    },
-    {
-      "name": "Hook",
-      "lastName": "React",
-      "address": "Una calle",
-      "state": "Guanajuato",
-      "city": "Celaya",
-      "country": "México",
-      "phone": "9697679",
-      "user": "reactHook",
-      "email": "react@hook.com",
-      "password": "123456",
-      "type": "doctor",
-      "speciality": "Gripe",
-      "document": "0979672",
-      "id": 3
-    },
-    {
-      "name": "Otra",
-      "lastName": "Especialidad",
-      "address": "Una calle",
-      "state": "Guanajuato",
-      "city": "Cortazar",
-      "country": "México",
-      "phone": "087862",
-      "user": "otra",
-      "email": "otra@especialidad.com",
-      "password": "123456",
-      "type": "doctor",
-      "speciality": "Otra especialidad",
-      "document": "14124141",
-      "id": 4
-    },
-    {
-      "name": "Router",
-      "lastName": "Next",
-      "address": "Una calle",
-      "state": "Guanajuato",
-      "city": "Cortazar",
-      "country": "México",
-      "phone": "1341351",
-      "user": "routerNext",
-      "email": "router@next.com",
-      "password": "123456",
-      "type": "patient",
-      "birthday": "2020-05-06",
-      "preconditions": "",
-      "surgeries": "",
-      "allergies": "",
-      "covid": "free",
-      "id": 5
-    },
-    {
-      "name": "Otra",
-      "lastName": "Prueba",
-      "address": "Una calle",
-      "state": "Guanajuato",
-      "city": "Cortazar",
-      "country": "México",
-      "phone": "324241352",
-      "user": "prueba",
-      "email": "prueba4@prueba.com",
-      "password": "123456",
-      "type": "patient",
-      "birthday": "2020-05-12",
-      "preconditions": "",
-      "surgeries": "",
-      "allergies": "",
-      "covid": "free",
-      "id": 6
     }
   ],
   "specialities": [
     {
-      "id": 1,
-      "title": "Gripe"
-    },
-    {
-      "title": "Otra especialidad",
-      "id": 2
+      "title": "Gripe",
+      "id": 1
     }
   ]
 }

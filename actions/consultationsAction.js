@@ -136,8 +136,8 @@ export function updateConsultationAction(consultation) {
 
         try {
             
-            await axios.put(`/consultations/${consultation.id}`, consultation)
-            dispatch( updateConsultationSuccess(consultation) )
+            const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
+            dispatch( updateConsultationSuccess(data) )
 
         } catch (error) {
             dispatch( updateConsultationError(error) )

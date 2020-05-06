@@ -104,7 +104,7 @@ const Conversation = () => {
                                 )
                             else 
                                 return (
-                                    <Bubble>
+                                    <Bubble key = {comment.id}>
                                         {comment.name} dice: {comment.message}
                                     </Bubble>
                                 )

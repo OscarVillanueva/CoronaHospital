@@ -102,7 +102,7 @@ const CreateConsultation = () => {
             <Form onSubmit = {handleSubmit}>
     
             { error && <Error>{error.message}</Error> }
-            { success && <Alert>Se agregado tu consulta correctamente</Alert>  }
+            { (success && submitted) && <Alert>Se agregado tu consulta correctamente</Alert>  }
     
             <label 
                 htmlFor="symptom"
@@ -148,7 +148,7 @@ const CreateConsultation = () => {
     
             <InputSubmit 
                 type="submit" 
-                value="Entrar"
+                value="Enviar consulta"
                 className = "mt-3"
             />
     

@@ -8,6 +8,8 @@ export const Container = styled.div`
 
 export const Row = styled.div`
     display: flex;
+    display: -webkit-flex;
+    display: -webkit-box;
     justify-content: center;
 
     @media (min-width: 768px) {
