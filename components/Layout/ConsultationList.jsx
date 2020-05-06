@@ -6,19 +6,7 @@ import { Container, ListRow } from "../includes/Grid";
 import { fetchConsultationsAction } from "../../actions/consultationsAction";
 import { Alert } from "../includes/Alert";
 
-const ConsultationList = () => {
-
-    const consultations = useSelector(state => state.consultations.data)
-    const error = useSelector(state => state.consultations.error)
-    const currentDoctor = useSelector(state => state.auth.current)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        
-        // if(consultations.length === 0)
-            dispatch( fetchConsultationsAction(currentDoctor.speciality) )
-
-    }, [])
+const ConsultationList = ({ consultations,  error }) => {
 
     return ( 
         <Container>

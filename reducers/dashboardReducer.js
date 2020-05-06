@@ -14,12 +14,12 @@ const initialState = {
                 id: 1,
                 title: "Atender consultas",
                 type: "both",
-                component: "consultationList"
+                component: "checkConsultation"
             },
             {
                 id: 2,
                 title: "Reportes",
-                type: "both",
+                type: "doctor",
                 component: "reports"
             },
         ], 
@@ -46,8 +46,8 @@ const initialState = {
             {
                 id: 4,
                 title: "Reportes",
-                type: "both",
-                component: "reports"
+                type: "patient",
+                component: "statistics"
             },
         ]
     }
