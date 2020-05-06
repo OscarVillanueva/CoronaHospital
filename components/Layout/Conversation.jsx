@@ -48,7 +48,7 @@ const Conversation = () => {
     const [message, saveMessage] = useState("")
     const [newMessage, saveNewMessage] = useState(false)
     const [consultation, saveConsultation] = useState(focus)
-    const current = {id: 1, name: "Doctor. House"}
+    const current = useSelector(state => state.auth.current)
     const { comments } = consultation
 
     useEffect(() => {

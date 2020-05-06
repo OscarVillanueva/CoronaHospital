@@ -81,7 +81,7 @@ const fetchDoctorConsultationsError = error => ({
     payload: error
 })
 
-// Traer las consultas que pertenecen al doctor
+// Traer las consultas que pertenecen al paciente
 export function fetchPatientConsultationsAction(id) {
     return async dispatch => {
         dispatch( fetchPatientConsultations() )

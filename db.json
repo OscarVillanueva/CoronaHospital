@@ -184,6 +184,12 @@
           "message": "Hola!!, esta consulta tiene un mensaje",
           "userId": 1,
           "name": "Doctor. House"
+        },
+        {
+          "id": "d717cdb1-1f98-4826-b001-b3e260bb68cb",
+          "message": "Yo uno",
+          "userId": 1,
+          "name": "Doctor. House"
         }
       ],
       "prescription": "",
