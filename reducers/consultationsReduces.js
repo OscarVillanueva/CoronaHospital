@@ -10,7 +10,10 @@ import {
     FETCH_PATIENT_CONSULTATIONS_ERROR,
     PUT_FOCUS_CONSULTATIONS_SUCCESS,
     UPDATE_CONSULTATION_SUCCESS,
-    UPDATE_CONSULTATION_ERROR
+    UPDATE_CONSULTATION_ERROR,
+    ADD_CONSULTATION,
+    ADD_CONSULTATION_SUCCESS,
+    ADD_CONSULTATION_ERROR
 } from "../types";
 
 const initialState = {
@@ -25,7 +28,8 @@ export default (state = initialState, action) => {
 
         case FETCH_PATIENT_CONSULTATIONS:
         case FETCH_DOCTOR_CONSULTATIONS:
-        case FETCH_CONSULTATIONS: {
+        case FETCH_CONSULTATIONS: 
+        case ADD_CONSULTATION: {
             return {
                 ...state,
                 data: [],
@@ -45,9 +49,18 @@ export default (state = initialState, action) => {
             }
         }
 
+        case ADD_CONSULTATION_SUCCESS: {
+            return {
+                ...state,
+                success: true,
+                error: null
+            }
+        }
+
         case FETCH_CONSULTATIONS_ERROR: 
         case FETCH_DOCTOR_CONSULTATIONS_ERROR: 
-        case FETCH_PATIENT_CONSULTATIONS_ERROR: {
+        case FETCH_PATIENT_CONSULTATIONS_ERROR: 
+        case ADD_CONSULTATION_ERROR: {
             return {
                 ...state,
                 data: null,

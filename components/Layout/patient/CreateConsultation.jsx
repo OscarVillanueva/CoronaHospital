@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { css } from "@emotion/core";
 import { Form, Field, InputSubmit, Error } from '../../includes/Form';
+import { Alert } from "../../includes/Alert";
 import axios from '../../../config/axios';
 import useValidation from '../../../hooks/useValidation';
 import validateConsultation from '../../../validation/validateConsultation';
+import { addConsultationAction } from "../../../actions/consultationsAction";
 
 const INITIAL_STATE = {
     symptom: "",
@@ -15,7 +18,13 @@ const INITIAL_STATE = {
 const CreateConsultation = () => {
 
     const [specialities, setSpecialities] = useState([])
+    const [submitted, setSubmitted] = useState(false)
     const current = useSelector( state => state.auth.current )
+    const success = useSelector( state => state.consultations.success )
+    const error = useSelector( state => state.consultations.error )
+
+    const dispatch = useDispatch()
+    const router = useRouter()
 
     useEffect(() => {
 
@@ -27,6 +36,14 @@ const CreateConsultation = () => {
         fetchSpecialities()
 
     }, [])
+
+    useEffect(() => {
+        
+        if(!error && submitted && success){
+            router.push("/dashboard")
+        }
+
+    }, [success])
 
     const {
         values,
@@ -58,7 +75,8 @@ const CreateConsultation = () => {
             answerby: {}
         }
 
-        console.log(newConsultation);
+        setSubmitted(true)
+        dispatch( addConsultationAction(newConsultation) );
     }
 
     const handleSelectChange = (option) => {
@@ -83,11 +101,8 @@ const CreateConsultation = () => {
     
             <Form onSubmit = {handleSubmit}>
     
-            {/* { registerError && 
-                <Alert>
-                    {registerError.message}
-                </Alert> 
-            } */}
+            { error && <Error>{error.message}</Error> }
+            { success && <Alert>Se agregado tu consulta correctamente</Alert>  }
     
             <label 
                 htmlFor="symptom"

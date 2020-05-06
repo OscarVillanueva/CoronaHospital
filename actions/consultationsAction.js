@@ -12,7 +12,10 @@ import {
     PUT_FOCUS_CONSULTATIONS_SUCCESS,
     UPDATE_CONSULTATION,
     UPDATE_CONSULTATION_SUCCESS,
-    UPDATE_CONSULTATION_ERROR
+    UPDATE_CONSULTATION_ERROR,
+    ADD_CONSULTATION,
+    ADD_CONSULTATION_SUCCESS,
+    ADD_CONSULTATION_ERROR
 } from "../types";
 import axios from '../config/axios';
 
@@ -153,5 +156,35 @@ const updateConsultationSuccess = consultation => ({
 
 const updateConsultationError = error => ({
     type: UPDATE_CONSULTATION_ERROR,
+    payload: error
+})
+
+// Agregar una nueva consulta
+export function addConsultationAction(consultation) {
+    return async dispatch => {
+        dispatch( addConsultation() )
+
+        try {
+            
+            const { data } = await axios.post(`/consultations`, consultation)
+            dispatch( addConsultationSuccess(data) )
+
+        } catch (error) {
+            dispatch( addConsultationError(error) )
+        }
+    }
+} 
+
+const addConsultation = () => ({
+    type: ADD_CONSULTATION,
+})
+
+const addConsultationSuccess = consultation => ({
+    type: ADD_CONSULTATION_SUCCESS,
+    payload: consultation
+})
+
+const addConsultationError = error => ({
+    type: ADD_CONSULTATION_ERROR,
     payload: error
 })
