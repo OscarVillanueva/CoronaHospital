@@ -23,7 +23,7 @@ export function fetchDoctorServicesAction(doctorID) {
 
         try {
             
-            const response = await axios.get(`/services?owner=${doctorID}`)
+            const response = await axios.get(`/services?owner.id=${doctorID}`)
             dispatch( fetchDoctorServicesSuccess(response.data) )
 
         } catch (error) {

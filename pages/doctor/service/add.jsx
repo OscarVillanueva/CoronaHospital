@@ -78,12 +78,19 @@ const AddService = () => {
     }, [success])
 
     function addService() {
-        // TODO: Agregar al servicio data del doctor, en lugar de owner id
-        // será owner: {
-        //   id: doc, state, speciality, email, name, lastName
-        // }
-        // Servirá para hacer la consulta para la busqueda del paciente
-        dispatch( addServiceAction( {...values, owner: currentDoctor.id} ) )
+        
+        const newService = {
+            ...values,
+            owner: {
+                id: currentDoctor.id,
+                name: currentDoctor.name,
+                lastName: currentDoctor.lastName,
+                email: currentDoctor.email,
+                speciality: currentDoctor.speciality,
+                state: currentDoctor.state,
+            }
+        }
+        dispatch( addServiceAction( newService ) )
         saveSubmitted(true)
     }
 

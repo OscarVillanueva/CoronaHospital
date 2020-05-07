@@ -4,8 +4,29 @@
       "title": "5G",
       "details": "Sacar liquido de las rodillas y venderlo",
       "price": "1000",
-      "owner": 2,
+      "owner": {
+        "id": 2,
+        "name": "Doctor",
+        "lastName": "House",
+        "email": "correo@correo.com",
+        "speciality": "Gripe",
+        "state": "Guanajuato"
+      },
       "id": 1
+    },
+    {
+      "title": "Nueva estructura",
+      "details": "Nuevos structura",
+      "price": "100",
+      "owner": {
+        "id": 2,
+        "name": "Doctor",
+        "lastName": "House",
+        "email": "correo@correo.com",
+        "speciality": "Gripe",
+        "state": "Guanajuato"
+      },
+      "id": 2
     }
   ],
   "consultations": [
