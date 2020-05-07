@@ -3,9 +3,9 @@ import Select from 'react-select';
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { css } from "@emotion/core";
+import SpecialitySelect from './SpecialitySelect';
 import { Form, Field, InputSubmit, Error } from '../../includes/Form';
 import { Alert } from "../../includes/Alert";
-import axios from '../../../config/axios';
 import useValidation from '../../../hooks/useValidation';
 import validateConsultation from '../../../validation/validateConsultation';
 import { addConsultationAction } from "../../../actions/consultationsAction";
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 
 const CreateConsultation = () => {
 
-    const [specialities, setSpecialities] = useState([])
+    const [currentSpeciality, setSpeciality] = useState("")
     const [submitted, setSubmitted] = useState(false)
     const current = useSelector( state => state.auth.current )
     const success = useSelector( state => state.consultations.success )
@@ -28,14 +28,9 @@ const CreateConsultation = () => {
 
     useEffect(() => {
 
-        const fetchSpecialities = async () => {
-            const { data } = await axios.get("/specialities")
-            setSpecialities(data)
-        }
+        handleSelectChange(currentSpeciality)
 
-        fetchSpecialities()
-
-    }, [])
+    }, [currentSpeciality])
 
     useEffect(() => {
         
@@ -79,10 +74,10 @@ const CreateConsultation = () => {
         dispatch( addConsultationAction(newConsultation) );
     }
 
-    const handleSelectChange = (option) => {
+    const handleSelectChange = option => {
         const target = {
             target : {
-                value: option.title,
+                value: option,
                 name: "speciality"
             }
         }
@@ -125,23 +120,8 @@ const CreateConsultation = () => {
     
             { errors.symptom && <Error>{errors.symptom}</Error> }
     
-            <label 
-                htmlFor="speciality"
-                css = {css`
-                    margin-bottom: 0.5rem;
-                    display: block;
-                `}
-            >
-                Especialidad
-            </label>
-
-            <Select
-                options = { specialities }
-                onChange = { option => handleSelectChange(option) }
-                getOptionValue = { options => options.id}
-                getOptionLabel = { options => options.title}
-                placeholder = "Seleccione la especialidad"
-                noOptionsMessage = { () => "No hay resultados" }
+            <SpecialitySelect
+                setSpeciality = { setSpeciality }
             />
     
             { errors.speciality && <Error>{errors.speciality}</Error> }

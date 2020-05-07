@@ -6,6 +6,10 @@ export const Container = styled.div`
     margin: 0 auto;
 `
 
+export const RawRow = styled.div`
+    display: flex;
+`
+
 export const Row = styled.div`
     display: flex;
     display: -webkit-flex;
@@ -27,6 +31,8 @@ export const SpaceBetweenRow = styled.div`
 
     @media (min-width: 768px) {
         display: flex;
+        padding: 0;
+        margin-bottom: 1rem;
         justify-content: space-between;
     }
 `

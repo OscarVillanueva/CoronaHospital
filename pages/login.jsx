@@ -95,7 +95,7 @@ const Login = () => {
                             id="password" 
                             value = {password}
                             onChange = {handleChange}
-                            placeholder = "Contraseña nueva"
+                            placeholder = "Contraseña"
                         />
                     </Field>
 

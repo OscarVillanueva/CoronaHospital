@@ -117,6 +117,13 @@
           "message": "pues ahí le va otra",
           "userId": 1,
           "name": "Peter"
+        },
+        {
+          "id": "587ffe14-23c2-4915-84ed-e76bea4fee6e",
+          "message": "Ahora con apellido",
+          "userId": 1,
+          "name": "Peter",
+          "lastName": "Child"
         }
       ]
     },
@@ -213,6 +220,26 @@
           "name": "Doctor"
         }
       ]
+    },
+    {
+      "symptom": "Ahora con la especialidad en un componente",
+      "speciality": "Gripe",
+      "status": "pending",
+      "comments": [],
+      "prescription": "",
+      "bill": 0,
+      "patient": {
+        "id": 1,
+        "name": "Peter",
+        "email": "peter@child.com",
+        "allergies": "Al trabajo",
+        "preconditions": "Dormir todo el día",
+        "surgeries": "Ninguna",
+        "birthday": "05/05/1998",
+        "covid": "free"
+      },
+      "answerby": {},
+      "id": 4
     }
   ],
   "users": [

@@ -78,7 +78,8 @@ const Conversation = () => {
                     id: uuid(),
                     message,
                     userId: current.id,
-                    name: current.name
+                    name: current.name,
+                    lastName: current.lastName
                 }
             ]
 
@@ -112,7 +113,7 @@ const Conversation = () => {
                             else 
                                 return (
                                     <Bubble key = {comment.id}>
-                                        {comment.name} dice: {comment.message}
+                                        {comment.name} {comment.lastName} dice: {comment.message}
                                     </Bubble>
                                 )
                         })}

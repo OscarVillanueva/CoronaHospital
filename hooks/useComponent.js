@@ -5,6 +5,7 @@ import Reports from '../components/Layout/doctor/Reports';
 import Consultations from '../components/Layout/patient/Consultations';
 import CreateConsultation from '../components/Layout/patient/createconsultation';
 import Statistics from '../components/Layout/patient/Statistics';
+import Search from '../components/Layout/patient/Search';
 
 const useComponent = (id) => {
     let component = null
@@ -32,6 +33,10 @@ const useComponent = (id) => {
 
         case "statistics":
             component = <Statistics />
+            break;
+
+        case "search":
+            component = <Search />
             break;
     
         default:
