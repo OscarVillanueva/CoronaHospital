@@ -1,5 +1,13 @@
 {
-  "services": [],
+  "services": [
+    {
+      "title": "5G",
+      "details": "Sacar liquido de las rodillas y venderlo",
+      "price": "1000",
+      "owner": 2,
+      "id": 1
+    }
+  ],
   "consultations": [
     {
       "symptom": "Halvah brownie oat cake gummi bears cookie cake powder gummi bears. Cotton candy bonbon marshmallow soufflé chocolate cake. Macaroon biscuit chocolate sweet soufflé. Tootsie roll apple pie powder. Toffee cupcake biscuit powder biscuit gummies cotton candy fruitcake. Liquorice gummies soufflé liquorice candy carrot cake. Jelly croissant pudding pie macaroon dragée halvah marshmallow. Gingerbread cake dessert icing cookie jujubes jelly beans topping topping. Dragée icing dessert cake apple pie jelly jelly cookie cheesecake. Dessert lollipop lemon drops gingerbread tart. Icing sugar plum biscuit jelly pie wafer wafer pudding. Bonbon muffin cookie cupcake candy candy canes chupa chups. Halvah donut tootsie roll jelly-o.\n",
