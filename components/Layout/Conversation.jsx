@@ -60,6 +60,13 @@ const Conversation = () => {
 
     }, [consultation])
 
+    useEffect(() => {
+        
+        saveConsultation( focus )
+
+    }, [focus])
+
+
     const handleMessage = (e) => {
         e.preventDefault()
 

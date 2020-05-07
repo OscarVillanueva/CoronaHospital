@@ -90,6 +90,100 @@
           "name": "Peter"
         }
       ]
+    },
+    {
+      "symptom": "Nueva consulta de prueba",
+      "speciality": "Gripe",
+      "status": "pending",
+      "comments": [
+        {
+          "id": "a0149111-30a3-43a3-9318-eed91bafe727",
+          "message": "Hola!!",
+          "userId": 2,
+          "name": "Doctor"
+        }
+      ],
+      "prescription": "",
+      "bill": 0,
+      "patient": {
+        "id": 1,
+        "name": "Peter",
+        "email": "peter@child.com",
+        "allergies": "Al trabajo",
+        "preconditions": "Dormir todo el día",
+        "surgeries": "Ninguna",
+        "birthday": "05/05/1998",
+        "covid": "free"
+      },
+      "answerby": {},
+      "id": 2
+    },
+    {
+      "symptom": "Nueva consulta desde recae hook",
+      "speciality": "Gripe",
+      "status": "close",
+      "prescription": "No haga nada",
+      "bill": "1600",
+      "patient": {
+        "id": 3,
+        "name": "Hook",
+        "email": "react@hook.com",
+        "allergies": "",
+        "preconditions": "",
+        "surgeries": "",
+        "birthday": "06/06/2020",
+        "covid": "free"
+      },
+      "answerby": {
+        "name": "Doctor",
+        "lastName": "House",
+        "address": "Una calle",
+        "state": "Guanajuato",
+        "city": "Cortazar",
+        "country": "México",
+        "phone": "123456",
+        "user": "doctorHouse",
+        "email": "correo@correo.com",
+        "password": "String1234",
+        "type": "doctor",
+        "speciality": "Gripe",
+        "document": "087867672",
+        "id": 2
+      },
+      "id": 3,
+      "change": "Con la muerte",
+      "comments": [
+        {
+          "id": "3c60b2fd-87ac-473d-bca7-4f34b7b60e6e",
+          "message": "No haga Nada",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "c7cc262f-239d-4c3e-9924-68ebbab2cd92",
+          "message": "Como así?",
+          "userId": 3,
+          "name": "Hook"
+        },
+        {
+          "id": "f993e7b6-3a9d-4572-b7df-3b2d77115ad0",
+          "message": "Si ya esta a un paso de la muerte",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "ae3f5515-b8e6-49cb-b8b8-81f3d5515fa8",
+          "message": "Por eso no se preocupe",
+          "userId": 2,
+          "name": "Doctor"
+        },
+        {
+          "id": "9d74204f-3b45-4d83-b10b-330e4f0ffb6b",
+          "message": "Siempre no se muere",
+          "userId": 2,
+          "name": "Doctor"
+        }
+      ]
     }
   ],
   "users": [
@@ -127,6 +221,25 @@
       "speciality": "Gripe",
       "document": "087867672",
       "id": 2
+    },
+    {
+      "type": "patient",
+      "name": "Hook",
+      "lastName": "React",
+      "address": "Una calle",
+      "state": "Guanajuato",
+      "city": "Cortazar",
+      "country": "México",
+      "phone": "69866286",
+      "email": "react@hook.com",
+      "user": "reactHook",
+      "password": "String1234",
+      "birthday": "06/06/2020",
+      "preconditions": "",
+      "surgeries": "",
+      "allergies": "",
+      "covid": "free",
+      "id": 3
     }
   ],
   "specialities": [
