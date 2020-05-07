@@ -23,7 +23,7 @@ const Search = () => {
 
     const [speciality, setSpeciality] = useState("")
     const [state, setState] = useState("")
-    const [serive, setSerive] = useState("")
+    const [service, setService] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -63,8 +63,8 @@ const Search = () => {
                                 type = "text"
                                 name="service" 
                                 id="service" 
-                                // value = {symptom}
-                                onChange = {handleChange}
+                                value = {service}
+                                onChange = { e => setService(e.target.value)}
                                 
                             />
                         </Field>
@@ -86,8 +86,8 @@ const Search = () => {
                                 type = "text"
                                 name="state" 
                                 id="state" 
-                                // value = {symptom}
-                                onChange = {handleChange}
+                                value = {state}
+                                onChange = { e => setState(e.target.value) }
                                 
                             />
                         </Field>
