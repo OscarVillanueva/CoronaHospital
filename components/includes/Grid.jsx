@@ -42,7 +42,6 @@ export const SpaceArroundRow = styled.div`
     @media (min-width: 768px) {
         display: flex;
         justify-content: space-around;
-        align-items: center;
     }
 `
 

@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { css } from "@emotion/core";
 import styled from '@emotion/styled';
 import SpecialitySelect from './SpecialitySelect';
+import axios from '../../../config/axios';
 import { Form, Field, InputSubmit } from '../../includes/Form';
 import { RawRow } from "../../includes/Grid";
+import { Alert } from '../../includes/Alert';
+import DoctorServices from './DoctorServices';
 
 const Container = styled.div`
     width: 100%;
@@ -24,13 +27,39 @@ const Search = () => {
     const [speciality, setSpeciality] = useState("")
     const [state, setState] = useState("")
     const [service, setService] = useState("")
+    const [alert, setAlert] = useState(null)
+    const [services, setServices] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if (speciality !== "" || state.trim() !== ""|| service.trim() !== "") 
+            searchService()
+        else {
+            setAlert("Debes indicar algún parametro para buscar")
+
+            setTimeout(() => {
+                setAlert(null)
+            }, 2000);
+        }
     }
 
-    const handleChange = (e) => {
+    const searchService = async () => {
+        let url = "/services?"
+        url = state.trim() !== "" ? `${url}owner.state=${state}` : url
+        url = speciality.trim() !== "" ? `${url}&owner.speciality=${speciality}` : url
+        url = service.trim() !== "" ? `${url}&details_like=${service}` : url
         
+        try{
+
+            const { data } = await axios.get(url)
+            setServices(data)
+
+        }
+        catch(error) {
+            setAlert("Hubo un error, intenta más tarde")
+        }
+
     }
 
     return ( 
@@ -45,6 +74,8 @@ const Search = () => {
     
             <Form onSubmit = {handleSubmit}>
     
+                { alert && <Alert>{alert}</Alert> }
+
                 <RawRow>
 
                     <Container>
@@ -65,7 +96,7 @@ const Search = () => {
                                 id="service" 
                                 value = {service}
                                 onChange = { e => setService(e.target.value)}
-                                
+                                placeholder = "Palabra clave del servicio a buscar"
                             />
                         </Field>
                     </Container>
@@ -88,7 +119,7 @@ const Search = () => {
                                 id="state" 
                                 value = {state}
                                 onChange = { e => setState(e.target.value) }
-                                
+                                placeholder = "Guanajuato"
                             />
                         </Field>
                     </Container>
@@ -101,11 +132,15 @@ const Search = () => {
 
                 <InputSubmit 
                     type="submit" 
-                    value="Enviar consulta"
+                    value="Buscar"
                     className = "mt-3"
                 />
     
             </Form>
+
+            <DoctorServices 
+                services = { services }
+            />
         </>
     );
 }
