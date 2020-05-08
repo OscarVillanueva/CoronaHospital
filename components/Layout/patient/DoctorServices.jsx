@@ -22,8 +22,6 @@ const Item = styled.p`
 
 const DoctorServices = ({ services }) => {
 
-    console.log(services.l);
-    
     return ( 
 
         <Container>

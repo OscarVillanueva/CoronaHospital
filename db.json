@@ -2,10 +2,10 @@
   "services": [
     {
       "title": "5G",
-      "details": "Sacar liquido de las rodillas y venderlo",
-      "price": "1000",
+      "details": "Sacar el liquido de las rodillas",
+      "price": "100",
       "owner": {
-        "id": 2,
+        "id": 1,
         "name": "Doctor",
         "lastName": "House",
         "email": "correo@correo.com",
@@ -15,11 +15,11 @@
       "id": 1
     },
     {
-      "title": "Nueva estructura",
-      "details": "Nuevos structura",
-      "price": "100",
+      "title": "Servicio nuevo",
+      "details": "Servicio nuevo",
+      "price": "2000",
       "owner": {
-        "id": 2,
+        "id": 1,
         "name": "Doctor",
         "lastName": "House",
         "email": "correo@correo.com",
@@ -29,29 +29,29 @@
       "id": 2
     },
     {
-      "title": "Now Cli",
-      "details": "Optimized for a smaller build size, faster dev compilation and dozens of other improvements.",
-      "price": "100",
+      "title": "Detectar el covid",
+      "details": "Detecto el covid con olerte",
+      "price": "1000",
       "owner": {
-        "id": 4,
-        "name": "Next",
-        "lastName": "Vercel",
-        "email": "vercel@next.com",
-        "speciality": "Server Side Rendering",
+        "id": 2,
+        "name": "Doctor",
+        "lastName": "Chapatin",
+        "email": "doctor@chapatin.com",
+        "speciality": "Otra Especialidad",
         "state": "Guanajuato"
       },
       "id": 3
     },
     {
-      "title": "CSS in JS",
-      "details": "Next.js comes with styled-jsx included, but it also works with every CSS-in-JS solution you know and love.",
-      "price": "400",
+      "title": "Reparo celulares",
+      "details": "Productos de alta calidad",
+      "price": "690",
       "owner": {
-        "id": 4,
-        "name": "Next",
-        "lastName": "Vercel",
-        "email": "vercel@next.com",
-        "speciality": "Server Side Rendering",
+        "id": 2,
+        "name": "Doctor",
+        "lastName": "Chapatin",
+        "email": "doctor@chapatin.com",
+        "speciality": "Otra Especialidad",
         "state": "Guanajuato"
       },
       "id": 4
@@ -59,316 +59,152 @@
   ],
   "consultations": [
     {
-      "symptom": "Halvah brownie oat cake gummi bears cookie cake powder gummi bears. Cotton candy bonbon marshmallow soufflé chocolate cake. Macaroon biscuit chocolate sweet soufflé. Tootsie roll apple pie powder. Toffee cupcake biscuit powder biscuit gummies cotton candy fruitcake. Liquorice gummies soufflé liquorice candy carrot cake. Jelly croissant pudding pie macaroon dragée halvah marshmallow. Gingerbread cake dessert icing cookie jujubes jelly beans topping topping. Dragée icing dessert cake apple pie jelly jelly cookie cheesecake. Dessert lollipop lemon drops gingerbread tart. Icing sugar plum biscuit jelly pie wafer wafer pudding. Bonbon muffin cookie cupcake candy candy canes chupa chups. Halvah donut tootsie roll jelly-o.\n",
+      "symptom": "Revise me que me siento mal",
       "speciality": "Gripe",
       "status": "close",
-      "prescription": "Debe hacer lo siguiente:\n\n\t- Recostarse en su cama\n\t * Poner rolitas sad\n  \t* Esperar la muerte",
-      "bill": "100",
-      "patient": {
-        "id": 1,
-        "name": "Peter",
-        "email": "peter@child.com",
-        "allergies": "Al trabajo",
-        "preconditions": "Dormir todo el día",
-        "surgeries": "Ninguna",
-        "birthday": "05/05/1998",
-        "covid": "suspect"
-      },
-      "answerby": {
-        "name": "Doctor",
-        "lastName": "House",
-        "address": "Una calle",
-        "state": "Guanajuato",
-        "city": "Cortazar",
-        "country": "México",
-        "phone": "123456",
-        "user": "doctorHouse",
-        "email": "correo@correo.com",
-        "password": "String1234",
-        "type": "doctor",
-        "speciality": "Gripe",
-        "document": "087867672",
-        "id": 2
-      },
-      "id": 1,
       "comments": [
         {
-          "id": "b65c46ef-22b1-4a93-9135-3345350dc458",
-          "message": "Hola, me siento muy mal, alguien ayúdeme!!!!",
-          "userId": 1,
-          "name": "Peter"
-        },
-        {
-          "id": "94ea23df-8b64-4ebb-b6d7-b823380bed7f",
-          "message": "No se preocupe, ya se va a morir!!",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "5c06369e-d71c-4818-a861-dd492800290e",
-          "message": "No la haga doc, ayúdeme ",
-          "userId": 1,
-          "name": "Peter"
-        },
-        {
-          "id": "d2a1595a-bdd2-4d91-8ec3-075d16cd6e13",
-          "message": "por que no te agregaste",
-          "userId": 1,
-          "name": "Peter"
-        },
-        {
-          "id": "1a9ee18a-357d-49a3-bc6a-1dc4985d865e",
-          "message": "Nuevo mensaje",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "ff98c828-1e31-4214-bcb0-9d0adfd459e9",
-          "message": "Otro nuevo mensaje",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "6ea200b3-4619-4f80-afb3-c82839f45340",
-          "message": "respuesta de paciente!!",
-          "userId": 1,
-          "name": "Peter"
-        },
-        {
-          "id": "8bd25181-f049-4799-95fd-9d717a1467eb",
-          "message": "Otra respuesta",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "0388eb75-07c7-4473-b0be-38fbafad0d88",
-          "message": "pues ahí le va otra",
-          "userId": 1,
-          "name": "Peter"
-        },
-        {
-          "id": "587ffe14-23c2-4915-84ed-e76bea4fee6e",
-          "message": "Ahora con apellido",
-          "userId": 1,
+          "id": "3c457bf4-0735-4469-87a3-7b9c04db619d",
+          "message": "Me siento mal",
+          "userId": 3,
           "name": "Peter",
           "lastName": "Child"
-        }
-      ]
-    },
-    {
-      "symptom": "Nueva consulta de prueba",
-      "speciality": "Gripe",
-      "status": "pending",
-      "comments": [
+        },
         {
-          "id": "a0149111-30a3-43a3-9318-eed91bafe727",
-          "message": "Hola!!",
-          "userId": 2,
-          "name": "Doctor"
+          "id": "6f534f2b-747b-4b15-82aa-06632fcc3810",
+          "message": "Sientase bien!! : ) ",
+          "userId": 1,
+          "name": "Doctor",
+          "lastName": "House"
         }
       ],
-      "prescription": "",
-      "bill": 0,
-      "patient": {
-        "id": 1,
-        "name": "Peter",
-        "email": "peter@child.com",
-        "allergies": "Al trabajo",
-        "preconditions": "Dormir todo el día",
-        "surgeries": "Ninguna",
-        "birthday": "05/05/1998",
-        "covid": "free"
-      },
-      "answerby": {},
-      "id": 2
-    },
-    {
-      "symptom": "Nueva consulta desde recae hook",
-      "speciality": "Gripe",
-      "status": "close",
-      "prescription": "No haga nada",
-      "bill": "1600",
+      "prescription": "Sientase bien ",
+      "bill": "1000",
       "patient": {
         "id": 3,
-        "name": "Hook",
-        "email": "react@hook.com",
+        "name": "Peter",
+        "email": "peter@child.com",
         "allergies": "",
         "preconditions": "",
         "surgeries": "",
-        "birthday": "06/06/2020",
-        "covid": "free"
+        "birthday": "2020-05-18",
+        "covid": "infected"
       },
       "answerby": {
         "name": "Doctor",
         "lastName": "House",
         "address": "Una calle",
         "state": "Guanajuato",
-        "city": "Cortazar",
+        "city": "Celaya",
         "country": "México",
-        "phone": "123456",
-        "user": "doctorHouse",
+        "phone": "23525",
+        "user": "DoctorHouse",
         "email": "correo@correo.com",
-        "password": "String1234",
+        "password": "Strgin1234",
         "type": "doctor",
         "speciality": "Gripe",
-        "document": "087867672",
-        "id": 2
+        "document": "1341241",
+        "id": 1
       },
-      "id": 3,
-      "change": "Con la muerte",
-      "comments": [
-        {
-          "id": "3c60b2fd-87ac-473d-bca7-4f34b7b60e6e",
-          "message": "No haga Nada",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "c7cc262f-239d-4c3e-9924-68ebbab2cd92",
-          "message": "Como así?",
-          "userId": 3,
-          "name": "Hook"
-        },
-        {
-          "id": "f993e7b6-3a9d-4572-b7df-3b2d77115ad0",
-          "message": "Si ya esta a un paso de la muerte",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "ae3f5515-b8e6-49cb-b8b8-81f3d5515fa8",
-          "message": "Por eso no se preocupe",
-          "userId": 2,
-          "name": "Doctor"
-        },
-        {
-          "id": "9d74204f-3b45-4d83-b10b-330e4f0ffb6b",
-          "message": "Siempre no se muere",
-          "userId": 2,
-          "name": "Doctor"
-        }
-      ]
+      "id": 1
     },
     {
-      "symptom": "Ahora con la especialidad en un componente",
-      "speciality": "Gripe",
-      "status": "pending",
-      "comments": [],
-      "prescription": "",
-      "bill": 0,
-      "patient": {
-        "id": 1,
-        "name": "Peter",
-        "email": "peter@child.com",
-        "allergies": "Al trabajo",
-        "preconditions": "Dormir todo el día",
-        "surgeries": "Ninguna",
-        "birthday": "05/05/1998",
-        "covid": "free"
-      },
-      "answerby": {},
-      "id": 4
-    },
-    {
-      "symptom": "Necesito un servidor para hacer un deployment",
-      "speciality": "Server Side Rendering",
+      "symptom": "Me siento muy alto",
+      "speciality": "Otra Especialidad",
       "status": "close",
       "comments": [
         {
-          "id": "d40090be-29ae-4f02-a425-589571c79578",
-          "message": "Hola, voy a subir mi sitio web, donde lo subo?",
-          "userId": 3,
-          "name": "Hook",
-          "lastName": "React"
+          "id": "1e04cb3c-1d0c-4e39-9335-2fa6a8fe969d",
+          "message": "Me siento muy alto",
+          "userId": 4,
+          "name": "Profesor ",
+          "lastName": "Jirafales"
         },
         {
-          "id": "70a1d7c0-780e-4e16-8147-7df6dd1a9f1d",
-          "message": "Hola, subelo a mis servidores",
-          "userId": 4,
-          "name": "Next",
-          "lastName": "Vercel"
+          "id": "ecbf6b31-97b8-44f9-89dc-a4f9e94d8bf6",
+          "message": "Es normal!!",
+          "userId": 2,
+          "name": "Doctor",
+          "lastName": "Chapatin"
         }
       ],
-      "prescription": "Instala Now CLi y leer la documentación y todo ready!!",
-      "bill": "120",
+      "prescription": "Es normal",
+      "bill": "1000",
       "patient": {
-        "id": 3,
-        "name": "Hook",
-        "email": "react@hook.com",
+        "id": 4,
+        "name": "Profesor ",
+        "email": "prof@jirafales.com",
         "allergies": "",
         "preconditions": "",
         "surgeries": "",
-        "birthday": "06/06/2020",
-        "covid": "free"
+        "birthday": "2020-05-19",
+        "covid": "infected"
       },
       "answerby": {
-        "name": "Next",
-        "lastName": "Vercel",
-        "address": "Una Calle",
+        "name": "Doctor",
+        "lastName": "Chapatin",
+        "address": "Una calle",
         "state": "Guanajuato",
-        "city": "Cortazar",
+        "city": "Celaya",
         "country": "México",
-        "phone": "3204872083",
-        "user": "vecer",
-        "email": "vercel@next.com",
+        "phone": "0879862",
+        "user": "chaptin",
+        "email": "doctor@chapatin.com",
         "password": "Strgin1234",
         "type": "doctor",
-        "speciality": "Server Side Rendering",
-        "document": "2352352",
-        "id": 4
+        "speciality": "Otra Especialidad",
+        "document": "0897862",
+        "id": 2
       },
-      "id": 5
+      "id": 2
     }
   ],
   "users": [
-    {
-      "type": "patient",
-      "name": "Peter",
-      "lastName": "Child",
-      "address": "Una calle",
-      "state": "Guanajuato",
-      "city": "Cortazar",
-      "country": "México",
-      "phone": "1232592358",
-      "email": "peter@child.com",
-      "user": "peterChild",
-      "password": "String1234",
-      "birthday": "05/05/1998",
-      "preconditions": "Dormir todo el día",
-      "surgeries": "Ninguna",
-      "allergies": "Al trabajo",
-      "covid": "free",
-      "id": 1
-    },
     {
       "name": "Doctor",
       "lastName": "House",
       "address": "Una calle",
       "state": "Guanajuato",
-      "city": "Cortazar",
+      "city": "Celaya",
       "country": "México",
-      "phone": "123456",
-      "user": "doctorHouse",
+      "phone": "23525",
+      "user": "DoctorHouse",
       "email": "correo@correo.com",
-      "password": "String1234",
+      "password": "Strgin1234",
       "type": "doctor",
       "speciality": "Gripe",
-      "document": "087867672",
+      "document": "1341241",
+      "id": 1
+    },
+    {
+      "name": "Doctor",
+      "lastName": "Chapatin",
+      "address": "Una calle",
+      "state": "Guanajuato",
+      "city": "Celaya",
+      "country": "México",
+      "phone": "0879862",
+      "user": "chaptin",
+      "email": "doctor@chapatin.com",
+      "password": "Strgin1234",
+      "type": "doctor",
+      "speciality": "Otra Especialidad",
+      "document": "0897862",
       "id": 2
     },
     {
-      "type": "patient",
-      "name": "Hook",
-      "lastName": "React",
-      "address": "Una calle",
+      "name": "Peter",
+      "lastName": "Child",
+      "address": "Una calle ",
       "state": "Guanajuato",
-      "city": "Cortazar",
+      "city": "Celaya",
       "country": "México",
-      "phone": "69866286",
-      "email": "react@hook.com",
-      "user": "reactHook",
-      "password": "String1234",
-      "birthday": "06/06/2020",
+      "phone": "08768702",
+      "user": "peter@child.com",
+      "email": "peter@child.com",
+      "password": "Strgn1234",
+      "type": "patient",
+      "birthday": "2020-05-18",
       "preconditions": "",
       "surgeries": "",
       "allergies": "",
@@ -376,19 +212,22 @@
       "id": 3
     },
     {
-      "name": "Next",
-      "lastName": "Vercel",
-      "address": "Una Calle",
-      "state": "Guanajuato",
-      "city": "Cortazar",
+      "name": "Profesor ",
+      "lastName": "Jirafales",
+      "address": "Una calle",
+      "state": "Jalisco",
+      "city": "Guadalajara",
       "country": "México",
-      "phone": "3204872083",
-      "user": "vecer",
-      "email": "vercel@next.com",
+      "phone": "0870862",
+      "user": "jirafales",
+      "email": "prof@jirafales.com",
       "password": "Strgin1234",
-      "type": "doctor",
-      "speciality": "Server Side Rendering",
-      "document": "2352352",
+      "type": "patient",
+      "birthday": "2020-05-19",
+      "preconditions": "",
+      "surgeries": "",
+      "allergies": "",
+      "covid": "free",
       "id": 4
     }
   ],
@@ -398,7 +237,7 @@
       "id": 1
     },
     {
-      "title": "Server Side Rendering",
+      "title": "Otra Especialidad",
       "id": 2
     }
   ]

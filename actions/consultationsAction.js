@@ -135,7 +135,10 @@ export function updateConsultationAction(consultation) {
         dispatch( updateConsultation() )
 
         try {
-            
+            // TODO: actualizar el paciente por si llega a cambiar el estado en el covid
+            // primero traer el paciente
+            // Revisar si el mismo estado no actualizar
+            // Si es diferente actualizar
             const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
             dispatch( updateConsultationSuccess(data) )
 
@@ -158,6 +161,9 @@ const updateConsultationError = error => ({
     type: UPDATE_CONSULTATION_ERROR,
     payload: error
 })
+
+// TODO: Crear una action para actualizar la conversión igual updateConsultation
+// solo que sin preguntar por el usuario primero
 
 // Agregar una nueva consulta
 export function addConsultationAction(consultation) {
