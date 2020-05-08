@@ -56,6 +56,12 @@ const Review = () => {
         
     }, [])
 
+    useEffect(() => {
+        
+        saveCurrent( focus )
+
+    }, [focus])
+
     if(!current || Object.keys(current).length === 0) return null
     if(!currentDoctor || Object.keys(currentDoctor).length === 0) return null
 

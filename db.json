@@ -27,6 +27,34 @@
         "state": "Guanajuato"
       },
       "id": 2
+    },
+    {
+      "title": "Now Cli",
+      "details": "Optimized for a smaller build size, faster dev compilation and dozens of other improvements.",
+      "price": "100",
+      "owner": {
+        "id": 4,
+        "name": "Next",
+        "lastName": "Vercel",
+        "email": "vercel@next.com",
+        "speciality": "Server Side Rendering",
+        "state": "Guanajuato"
+      },
+      "id": 3
+    },
+    {
+      "title": "CSS in JS",
+      "details": "Next.js comes with styled-jsx included, but it also works with every CSS-in-JS solution you know and love.",
+      "price": "400",
+      "owner": {
+        "id": 4,
+        "name": "Next",
+        "lastName": "Vercel",
+        "email": "vercel@next.com",
+        "speciality": "Server Side Rendering",
+        "state": "Guanajuato"
+      },
+      "id": 4
     }
   ],
   "consultations": [
@@ -240,6 +268,56 @@
       },
       "answerby": {},
       "id": 4
+    },
+    {
+      "symptom": "Necesito un servidor para hacer un deployment",
+      "speciality": "Server Side Rendering",
+      "status": "close",
+      "comments": [
+        {
+          "id": "d40090be-29ae-4f02-a425-589571c79578",
+          "message": "Hola, voy a subir mi sitio web, donde lo subo?",
+          "userId": 3,
+          "name": "Hook",
+          "lastName": "React"
+        },
+        {
+          "id": "70a1d7c0-780e-4e16-8147-7df6dd1a9f1d",
+          "message": "Hola, subelo a mis servidores",
+          "userId": 4,
+          "name": "Next",
+          "lastName": "Vercel"
+        }
+      ],
+      "prescription": "Instala Now CLi y leer la documentación y todo ready!!",
+      "bill": "120",
+      "patient": {
+        "id": 3,
+        "name": "Hook",
+        "email": "react@hook.com",
+        "allergies": "",
+        "preconditions": "",
+        "surgeries": "",
+        "birthday": "06/06/2020",
+        "covid": "free"
+      },
+      "answerby": {
+        "name": "Next",
+        "lastName": "Vercel",
+        "address": "Una Calle",
+        "state": "Guanajuato",
+        "city": "Cortazar",
+        "country": "México",
+        "phone": "3204872083",
+        "user": "vecer",
+        "email": "vercel@next.com",
+        "password": "Strgin1234",
+        "type": "doctor",
+        "speciality": "Server Side Rendering",
+        "document": "2352352",
+        "id": 4
+      },
+      "id": 5
     }
   ],
   "users": [
@@ -296,12 +374,32 @@
       "allergies": "",
       "covid": "free",
       "id": 3
+    },
+    {
+      "name": "Next",
+      "lastName": "Vercel",
+      "address": "Una Calle",
+      "state": "Guanajuato",
+      "city": "Cortazar",
+      "country": "México",
+      "phone": "3204872083",
+      "user": "vecer",
+      "email": "vercel@next.com",
+      "password": "Strgin1234",
+      "type": "doctor",
+      "speciality": "Server Side Rendering",
+      "document": "2352352",
+      "id": 4
     }
   ],
   "specialities": [
     {
       "title": "Gripe",
       "id": 1
+    },
+    {
+      "title": "Server Side Rendering",
+      "id": 2
     }
   ]
 }

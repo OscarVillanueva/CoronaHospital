@@ -52,3 +52,12 @@ export const Grid = styled.div`
         column-gap: 1rem;
     }    
 `
+
+export const Grid4 = styled.div`
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }    
+`

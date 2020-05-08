@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import ConsultationList from '../ConsultationList';
 import { fetchDoctorConsultationsAction } from "../../../actions/consultationsAction";
+import DoctorList from '../DoctorList';
 
 const Reports = () => {
 
@@ -23,6 +24,8 @@ const Reports = () => {
                 consultations = { consultations }
                 error = { error }
             />
+
+            <DoctorList />
         </>
     );
 }
