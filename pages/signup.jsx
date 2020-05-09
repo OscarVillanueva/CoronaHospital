@@ -482,6 +482,7 @@ const Signup = () => {
                     value="Entrar"
                     className = "mb-3"
                 />
+
             </GridForm>
 
         </Layout>

@@ -178,6 +178,49 @@
         "id": 2
       },
       "id": 2
+    },
+    {
+      "symptom": "Digan que tengo Covid",
+      "speciality": "Gripe",
+      "status": "close",
+      "comments": [
+        {
+          "id": "58a41545-631d-40e3-b588-6cdc17173785",
+          "message": "Usted tiene covid",
+          "userId": 1,
+          "name": "Doctor",
+          "lastName": "House"
+        }
+      ],
+      "prescription": "Usted tiene covid y no puede ir a trabajar",
+      "bill": "1000",
+      "patient": {
+        "id": 6,
+        "name": "Queretano",
+        "email": "queretano@correo.com",
+        "allergies": "",
+        "preconditions": "",
+        "surgeries": "",
+        "birthday": "2020-05-12",
+        "covid": "infected"
+      },
+      "answerby": {
+        "name": "Doctor",
+        "lastName": "House",
+        "address": "Una calle",
+        "state": "Guanajuato",
+        "city": "Celaya",
+        "country": "México",
+        "phone": "23525",
+        "user": "DoctorHouse",
+        "email": "correo@correo.com",
+        "password": "Strgin1234",
+        "type": "doctor",
+        "speciality": "Gripe",
+        "document": "1341241",
+        "id": 1
+      },
+      "id": 3
     }
   ],
   "users": [
@@ -250,6 +293,48 @@
       "allergies": "",
       "covid": "infected",
       "id": 4
+    },
+    {
+      "name": "Geo",
+      "lastName": "Location",
+      "address": "Una calle",
+      "state": "Nuevo León",
+      "city": "Monterrey",
+      "country": "México",
+      "phone": "9667993",
+      "user": "geo",
+      "email": "geo@location.com",
+      "password": "Strgin1234",
+      "type": "patient",
+      "birthday": "2020-05-05",
+      "preconditions": "",
+      "surgeries": "",
+      "allergies": "",
+      "covid": "free",
+      "id": 5
+    },
+    {
+      "name": "Queretano",
+      "lastName": "Queretano",
+      "address": "Una calle",
+      "state": "Queretaro",
+      "city": "Queretaro",
+      "country": "México",
+      "phone": "14141",
+      "user": "queretano",
+      "email": "queretano@correo.com",
+      "password": "Strgin1234",
+      "type": "patient",
+      "birthday": "2020-05-12",
+      "preconditions": "",
+      "surgeries": "",
+      "allergies": "",
+      "covid": "infected",
+      "geometry": {
+        "lat": 20.6121194,
+        "lng": -100.3850819
+      },
+      "id": 6
     }
   ],
   "specialities": [

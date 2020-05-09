@@ -11,6 +11,7 @@ import axios from '../config/axios';
 
 // Registrar un nuevo usuario
 export function registerUserAction(user) {
+
     return async dispatch => {
 
         dispatch( registerUser() )
@@ -21,6 +22,14 @@ export function registerUserAction(user) {
             if(data.length > 0) dispatch ( registerUserError( { message: "El usuario ya existe" } ) )
 
             else {
+
+                // city, state, country, parsearmos la localización
+                const { city, state, country } = user
+                const url = `https://api.opencagedata.com/geocode/v1/json?q=${city},${state},${country}&key=${process.env.GEO_KEY}`
+                const location = await axios.get(url)
+
+                user.geometry = location.data.results[0].geometry
+
                 const { data } = await axios.post("/users", user)
 
                 if(user.type === "doctor") 
