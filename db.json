@@ -109,7 +109,7 @@
         "preconditions": "",
         "surgeries": "",
         "birthday": "2020-05-18",
-        "covid": "infected"
+        "covid": "suspect"
       },
       "answerby": {
         "name": "Doctor",
@@ -272,7 +272,11 @@
       "preconditions": "",
       "surgeries": "",
       "allergies": "",
-      "covid": "infected",
+      "covid": "suspect",
+      "geometry": {
+        "lat": 20.51696,
+        "lng": -100.80026
+      },
       "id": 3
     },
     {
@@ -292,6 +296,10 @@
       "surgeries": "",
       "allergies": "",
       "covid": "infected",
+      "geometry": {
+        "lat": 20.67517,
+        "lng": -103.34733
+      },
       "id": 4
     },
     {
@@ -311,6 +319,10 @@
       "surgeries": "",
       "allergies": "",
       "covid": "free",
+      "geometry": {
+        "lat": 25.6647,
+        "lng": -100.31089
+      },
       "id": 5
     },
     {

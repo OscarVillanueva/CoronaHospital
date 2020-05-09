@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "babel-plugin-emotion": "^10.0.33",
+    "leaflet": "^1.6.0",
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",

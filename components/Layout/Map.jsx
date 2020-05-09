@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
+import L from 'leaflet';
 import styled from '@emotion/styled';
+import { css } from "@emotion/core";
+import { useRouter } from "next/router";
+import { Container } from "../includes/Grid";
+import axios from '../../config/axios';
 
 const MapContainer = styled.div`
     width: 100%;
@@ -13,22 +18,65 @@ const MapContainer = styled.div`
 
 const Map = () => {
 
+    const router = useRouter()
+
     useEffect(() => {
 
-        const map = L.map('map').setView([51.505, -0.09], 13);
+        const fetchCases = async () => {
+            const { data } = await axios.get("/users?covid_ne=free")
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+            initMap(data)
+        }
 
-        L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-            .openPopup();
+        fetchCases()
 
     }, [])  
 
+    const initMap = (markers) => {
+        const map = L.map('map', {
+            center: [23.3136164, -111.6523228],
+            zoom: 5,
+            zoomControl: false
+        })
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+            detectRetina: true,
+            maxZoom: 20,
+            maxNativeZoom: 17
+        }).addTo(map);
+
+        const markersLayer = new L.LayerGroup()
+        
+        markers.forEach(marker => {
+            const iconUrl = marker.covid === "suspect" ? "suspect.png" : "infected.png"
+            const text = marker.covid === "suspect" ? "Sospechoso" : "Confirmado"
+
+            let icon = L.icon({
+                iconUrl,
+                iconSize: [23.25, 32]
+            })
+            
+            L.marker([marker.geometry.lat, marker.geometry.lng], {
+                icon
+            }).bindPopup(text).addTo(markersLayer);
+        });
+
+        map.addLayer(markersLayer)
+    }
+
     return ( 
-        <MapContainer id = "map" />
+        <Container>
+
+            <h1
+                css = {css`
+                    text-align: center;
+                `}
+            >
+                Infectados y sospechos reportados por nuestro sistema
+            </h1>
+
+            <MapContainer id = "map" />
+        </Container>
     );
 }
  

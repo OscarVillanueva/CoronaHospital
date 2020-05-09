@@ -19,7 +19,7 @@ const DoctorService = ({ service }) => {
                         <p><span>{name} {lastName}</span></p>
                         <p>{email}</p>
                         <p>{state}</p>
-                        <p>{speciality}</p>
+                        <p>Especialida: {speciality}</p>
                     </div>
                 </div>
             </div>

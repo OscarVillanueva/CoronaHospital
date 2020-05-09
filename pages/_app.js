@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Global, css } from "@emotion/core";
 import "react-vis/dist/styles/plot.scss";
+import "leaflet/dist/leaflet.css"
 import { Provider } from "react-redux";
 import store from '../store';
 

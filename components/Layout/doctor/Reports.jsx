@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ConsultationList from '../ConsultationList';
 import { fetchDoctorConsultationsAction } from "../../../actions/consultationsAction";
 import DoctorList from '../DoctorList';
+import Map from '../Map';
 
 const Reports = () => {
 
@@ -26,6 +27,8 @@ const Reports = () => {
             />
 
             <DoctorList />
+
+            <Map />
         </>
     );
 }
