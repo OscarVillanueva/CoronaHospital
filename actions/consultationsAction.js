@@ -13,6 +13,9 @@ import {
     UPDATE_CONSULTATION,
     UPDATE_CONSULTATION_SUCCESS,
     UPDATE_CONSULTATION_ERROR,
+    UPDATE_CONVERSATION,
+    UPDATE_CONVERSATION_SUCCESS,
+    UPDATE_CONVERSATION_ERROR,
     ADD_CONSULTATION,
     ADD_CONSULTATION_SUCCESS,
     ADD_CONSULTATION_ERROR
@@ -162,8 +165,34 @@ const updateConsultationError = error => ({
     payload: error
 })
 
-// TODO: Crear una action para actualizar la conversión igual updateConsultation
-// solo que sin preguntar por el usuario primero
+// Actualizar la conversación
+export function updateConversationAction(consultation) {
+    return async dispatch => {
+        dispatch( updateConversation() )
+
+        try {
+            const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
+            dispatch( updateConversationSuccess(data) )
+
+        } catch (error) {
+            dispatch( updateConversationError(error) )
+        }
+    }
+} 
+
+const updateConversation = () => ({
+    type: UPDATE_CONVERSATION,
+})
+
+const updateConversationSuccess = consultation => ({
+    type: UPDATE_CONVERSATION_SUCCESS,
+    payload: consultation
+})
+
+const updateConversationError = error => ({
+    type: UPDATE_CONVERSATION_ERROR,
+    payload: error
+})
 
 // Agregar una nueva consulta
 export function addConsultationAction(consultation) {

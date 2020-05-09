@@ -49,6 +49,7 @@ const Item = styled.li`
 
   svg {
     margin-right: 1rem;
+    width: 1.5rem;
     font-size: 1.5rem;
     color: var(--primary)
   }

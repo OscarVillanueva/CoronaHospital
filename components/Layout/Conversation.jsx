@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { Row } from "../includes/Grid";
 import { Form, Field, Error } from "../includes/Form";
 import { Alert } from "../includes/Alert";
-import { updateConsultationAction } from "../../actions/consultationsAction";
+import { updateConversationAction } from "../../actions/consultationsAction";
 
 const ResponseBubble = styled.p`
     padding: 0.6rem 1.6rem;
@@ -54,7 +54,7 @@ const Conversation = () => {
     useEffect(() => {
         
         if(newMessage){
-            dispatch( updateConsultationAction(consultation) )
+            dispatch( updateConversationAction(consultation) )
             saveNewMessage(false)
         }
 

@@ -11,6 +11,8 @@ import {
     PUT_FOCUS_CONSULTATIONS_SUCCESS,
     UPDATE_CONSULTATION_SUCCESS,
     UPDATE_CONSULTATION_ERROR,
+    UPDATE_CONVERSATION_SUCCESS,
+    UPDATE_CONVERSATION_ERROR,
     ADD_CONSULTATION,
     ADD_CONSULTATION_SUCCESS,
     ADD_CONSULTATION_ERROR
@@ -69,7 +71,8 @@ export default (state = initialState, action) => {
             }
         }
 
-        case UPDATE_CONSULTATION_SUCCESS: {
+        case UPDATE_CONSULTATION_SUCCESS: 
+        case UPDATE_CONVERSATION_SUCCESS: {
             return {
                 ...state,
                 focus: action.payload,
@@ -78,7 +81,8 @@ export default (state = initialState, action) => {
             }
         }
 
-        case UPDATE_CONSULTATION_ERROR: {
+        case UPDATE_CONSULTATION_ERROR: 
+        case UPDATE_CONVERSATION_ERROR: {
             return {
                 ...state,
                 data: null,
