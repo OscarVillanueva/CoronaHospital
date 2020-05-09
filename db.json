@@ -90,6 +90,13 @@
           "userId": 1,
           "name": "Doctor",
           "lastName": "House"
+        },
+        {
+          "id": "94e07d2a-45be-47e0-9554-155698381820",
+          "message": "No, sigo vivo",
+          "userId": 3,
+          "name": "Peter",
+          "lastName": "Child"
         }
       ],
       "prescription": "Sientase bien, para que yo me sienta bien",
@@ -222,7 +229,7 @@
       "preconditions": "",
       "surgeries": "",
       "allergies": "",
-      "covid": "free",
+      "covid": "infected",
       "id": 3
     },
     {
@@ -241,7 +248,7 @@
       "preconditions": "",
       "surgeries": "",
       "allergies": "",
-      "covid": "free",
+      "covid": "infected",
       "id": 4
     }
   ],

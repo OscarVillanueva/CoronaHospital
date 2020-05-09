@@ -138,10 +138,16 @@ export function updateConsultationAction(consultation) {
         dispatch( updateConsultation() )
 
         try {
-            // TODO: actualizar el paciente por si llega a cambiar el estado en el covid
             // primero traer el paciente
-            // Revisar si el mismo estado no actualizar
-            // Si es diferente actualizar
+            const response = await axios.get(`/users/${consultation.patient.id}`)
+            const user = response.data
+            
+            // Revisar si el mismo estado no actualizar, Si es diferente actualizar
+            if(user.covid !== consultation.patient.covid){
+                user.covid = consultation.patient.covid
+                await axios.put(`/users/${consultation.patient.id}`, user)
+            }
+
             const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
             dispatch( updateConsultationSuccess(data) )
 
