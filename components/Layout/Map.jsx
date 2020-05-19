@@ -33,7 +33,6 @@ const Map = () => {
             const data = []
 
             patients.forEach(patient => {
-                console.log(patient, "paciente");
                 if(patient.data().covid === "suspect" || patient.data().covid === "infected")
                     data.push({ id: patient.id, ...patient.data() })
 

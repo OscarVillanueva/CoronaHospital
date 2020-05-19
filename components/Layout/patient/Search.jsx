@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/core";
 import styled from '@emotion/styled';
 import SpecialitySelect from './SpecialitySelect';
 import axios from '../../../config/axios';
+import firebase from '../../../firebase/firebase';
 import { Form, Field, InputSubmit } from '../../includes/Form';
 import { RawRow } from "../../includes/Grid";
 import { Alert } from '../../includes/Alert';
@@ -29,6 +30,7 @@ const Search = () => {
     const [service, setService] = useState("")
     const [alert, setAlert] = useState(null)
     const [services, setServices] = useState([])
+    const [filtered, setFilteredServices] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -44,19 +46,53 @@ const Search = () => {
         }
     }
 
+    useEffect(() => {
+        
+        const fetchServices = async () => {
+            
+            const response = await firebase.db.collection("services").get()
+    
+            const data = []
+    
+            response.forEach(doc => {
+    
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
+                })
+    
+            });
+    
+            setServices(data)
+        }
+
+        fetchServices()
+
+
+    }, [])
+
+
     const searchService = async () => {
-        let url = "/services?"
-        url = state.trim() !== "" ? `${url}owner.state=${state}` : url
-        url = speciality.trim() !== "" ? `${url}&owner.speciality=${speciality}` : url
-        url = service.trim() !== "" ? `${url}&details_like=${service}` : url
+        // let url = "/services?"
+        // url = state.trim() !== "" ? `${url}owner.state=${state}` : url
+        // url = speciality.trim() !== "" ? `${url}&owner.speciality=${speciality}` : url
+        // url = service.trim() !== "" ? `${url}&details_like=${service}` : url
         
         try{
 
-            const { data } = await axios.get(url)
-            setServices(data)
+            // const { data } = await axios.get(url)
+
+           const match = services.filter( e => {
+                return (e.owner.state === state 
+                    || e.owner.speciality === speciality 
+                    || ( service.trim() !== "" && e.details.includes(service) ))
+           })
+
+           setFilteredServices(match)
 
         }
         catch(error) {
+            console.log(error);
             setAlert("Hubo un error, intenta más tarde")
         }
 
@@ -139,7 +175,7 @@ const Search = () => {
             </Form>
 
             <DoctorServices 
-                services = { services }
+                services = { filtered }
             />
         </>
     );
