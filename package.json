@@ -16,6 +16,8 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "babel-plugin-emotion": "^10.0.33",
+    "firebase": "^7.14.4",
+    "firebase-admin": "^8.12.1",
     "leaflet": "^1.6.0",
     "next": "9.3.5",
     "react": "16.13.1",

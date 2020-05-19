@@ -8,6 +8,7 @@ import {
     LOG_OUT
 } from "../types/index";
 import axios from '../config/axios';
+import firebase from '../firebase/firebase';
 
 // Registrar un nuevo usuario
 export function registerUserAction(user) {
@@ -17,6 +18,7 @@ export function registerUserAction(user) {
         dispatch( registerUser() )
 
         try {
+
             const  { data } = await axios.get(`/users?email=${user.email}`)
             
             if(data.length > 0) dispatch ( registerUserError( { message: "El usuario ya existe" } ) )
@@ -30,12 +32,19 @@ export function registerUserAction(user) {
 
                 user.geometry = location.data.results[0].geometry
 
-                const { data } = await axios.post("/users", user)
+                // Registramos el usuario en firebase
+                const newUser = await firebase.signup(user.email, user.password)
 
-                if(user.type === "doctor") 
-                    await axios.post("/specialities", { title: user.speciality })
+                // Quitamos la contraseña
+                delete user.password
+                firebase.addDocument("users", newUser.uid, user, false)
+                
+                // const { data } = await axios.post("/users", user)
 
-                dispatch( registerUserSuccess(data) )
+                // if(user.type === "doctor") 
+                //     await axios.post("/specialities", { title: user.speciality })
+
+                dispatch( registerUserSuccess( user ) )
             }
 
 
@@ -67,13 +76,45 @@ export function loginAction(user) {
         dispatch( login() )
 
         try {
-            const  { data } = await axios.get(`/users?email=${user.email}`)
-            
-            if(data.length === 0) dispatch ( loginError( { 
-                message: "El usuario o contraseña son incorrectos" 
-            } ) )
 
-            else dispatch( loginSuccess( data[0] ) )
+            // Firebase
+            const current =  await firebase.signin(user.email, user.password)
+
+            // Traer la información del usuario
+            const info = await firebase.db.collection("users").doc( current.user.uid ).get()
+
+            console.log("exito");
+            console.log(info.exists);
+            console.log(info.data());
+
+            if ( info.exists ) dispatch(loginSuccess( info.data() ))
+            else
+                dispatch(loginSuccess({
+                    address: "Una Calle",
+                    city: "Penjamo",
+                    country: "México",
+                    email: current.user.email,
+                    geometry: { lat: 20.4313763, lng: -101.7241184 },
+                    lastName: "",
+                    name: current.user.displayName,
+                    phone: "1234567890",
+                    state: "Guanajuato",
+                    type: "patient",
+                    user: "asdfasdf",
+                    birthday: "",
+                    preconditions: "",
+                    surgeries: "",
+                    allergies: "",
+                    covid: "free",
+                }))
+
+            // const  { data } = await axios.get(`/users?email=${user.email}`)
+            
+            // if(data.length === 0) dispatch ( loginError( { 
+            //     message: "El usuario o contraseña son incorrectos" 
+            // }))
+
+            // else dispatch( loginSuccess( data[0] ) )
 
         } catch (error) {
             dispatch( loginError(error) )
@@ -99,6 +140,9 @@ const loginError = error => ({
 // Salir o logout
 export function logOutAction() {
     return async dispatch => {
+
+        // sign out of firebase
+        firebase.signout()
 
         dispatch( logOut() )
 

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from '@emotion/styled';
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import SideBar from '../components/Layout/SideBar';
 import useComponent from '../hooks/useComponent';
+import FirebaseContext from '../firebase/context';
 
 const DashboardContainer = styled.div`
     @media (min-width: 768px) {
@@ -46,9 +47,15 @@ const Welcome = styled.div`
 
 const Dashboard = () => {
 
+    // Sacar el componente a mostrar
     const currentComponent = useSelector(state => state.dashboard.currentComponent)
-    const current = useSelector(state => state.auth.current)
+
+    // Verificar si ya se termino de hacer el proceso de loggeo
     const loading = useSelector(state => state.auth.loading)
+
+    // Sacar el current de firebase
+    const firebaseContext = useContext(FirebaseContext)
+    const { currentUser } = firebaseContext
 
     const router = useRouter()
     
@@ -56,14 +63,15 @@ const Dashboard = () => {
 
     useEffect(() => {
         
-        updateComponent(useComponent(currentComponent))
+        // Cambiamos el componente por el que se seleccionado
+        updateComponent( useComponent( currentComponent ) )
 
     }, [currentComponent])
 
 
     useEffect(() => {
 
-        if(!loading && !current) router.push("/login")
+        if(!loading && !currentUser) router.push("/login")
         
     }, [loading])
 

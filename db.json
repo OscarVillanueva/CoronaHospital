@@ -347,6 +347,26 @@
         "lng": -100.3850819
       },
       "id": 6
+    },
+    {
+      "name": "Doctor",
+      "lastName": "House",
+      "address": "Una Calle",
+      "state": "Guanajuato",
+      "city": "Penjamo",
+      "country": "México",
+      "phone": "969762",
+      "user": "asdfasdf",
+      "email": "doctor@house.com",
+      "password": "lince123456",
+      "type": "doctor",
+      "speciality": "Alergias",
+      "document": "1087676762",
+      "geometry": {
+        "lat": 20.4313763,
+        "lng": -101.7241184
+      },
+      "id": 7
     }
   ],
   "specialities": [
@@ -357,6 +377,10 @@
     {
       "title": "Otra Especialidad",
       "id": 2
+    },
+    {
+      "title": "Alergias",
+      "id": 3
     }
   ]
 }

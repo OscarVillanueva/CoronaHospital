@@ -5,9 +5,16 @@ import "leaflet/dist/leaflet.css"
 import { Provider } from "react-redux";
 import store from '../store';
 
+// Context de firebase
+import FirebaseContext from '../firebase/context';
+import useAuth from '../hooks/useAuth';
+
 const Init = props => {
 
     const { Component, pageProps } = props
+    
+    // Sacamos al usuarioActual
+    const currentUser = useAuth()
 
     return ( 
         
@@ -95,9 +102,15 @@ const Init = props => {
 
             </Head>
 
-            <Provider store = {store}>
-                <Component {...pageProps} />
-            </Provider>
+            <FirebaseContext.Provider
+                value = {{
+                    currentUser
+                }}
+            >
+                <Provider store = {store}>
+                    <Component {...pageProps} />
+                </Provider>
+            </FirebaseContext.Provider>
         </>
     );
 }
