@@ -89,7 +89,10 @@ const EditService = () => {
 
     const handleClick = () => {
         dispatch( deleteServiceAction( values ) )
-        saveSubmitted(true)   
+        
+        setTimeout(() => {
+            saveSubmitted(true)
+        }, 1000); 
     }
 
     return (
