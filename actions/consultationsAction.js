@@ -33,27 +33,23 @@ export function fetchConsultationsAction(speciality) {
             // const api = `/consultations?speciality=${speciality}&status=pending`
             // const response = await axios.get(api)
             // Descargamos las consultas
-            firebase.db.collection("consultations").onSnapshot(snap => {
+            const response = await firebase.fetchWhere("consultations", "speciality", "==", speciality)
 
-                const consultation = snap.docs.map(doc => {
+            const data = []
 
-                    if( doc.data().speciality === speciality && doc.data().status === "pending" )
-                        return {
-                            id: doc.id,
-                            ...doc.data()
-                        }
+            response.forEach(doc => {
 
-                })
+                if ( doc.data().status === "pending" )
+                    data.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+            });
 
-
-                if ( consultation.length >= 0 && consultation[0] )
-                    dispatch( fetchConsultationsSuccess( consultation ) )
-                else
-                    dispatch( fetchConsultationsSuccess( [] ) )
-            })
-
+            dispatch( fetchConsultationsSuccess( data ) )
 
         } catch (error) {
+            console.log(error);
             dispatch( fetchConsultationsError(error) )
         }
     }
@@ -83,20 +79,19 @@ export function fetchDoctorConsultationsAction(id) {
             // const api = `/consultations?answerby.id=${id}`
             // const response = await axios.get(api)
             // Descargamos las consultas
-            firebase.db.collection("consultations").onSnapshot(snap => {
+            // Descargamos las consultas
+            const response = await firebase.fetchWhere("consultations", "answerby.id", "==", id)
 
-                const consultation = snap.docs.map(doc => {
+            const data = []
 
-                    if( doc.data().answerby.id === id )
-                        return {
-                            id: doc.id,
-                            ...doc.data()
-                        }
-
+            response.forEach(doc => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
                 })
+            });
 
-                dispatch( fetchDoctorConsultationsSuccess( consultation ) )
-            })
+            dispatch( fetchConsultationsSuccess( data ) )
             
         } catch (error) {
             dispatch( fetchDoctorConsultationsError(error) )
@@ -128,20 +123,18 @@ export function fetchPatientConsultationsAction(id) {
             // const api = `/consultations?patient.id=${id}`
             // const response = await axios.get(api)
             // Descargamos las consultas
-            firebase.db.collection("consultations").onSnapshot(snap => {
+            const response = await firebase.fetchWhere("consultations", "patient.id", "==", id)
 
-                const consultation = snap.docs.map(doc => {
+            const data = []
 
-                    if( doc.data().patient.id === id )
-                        return {
-                            id: doc.id,
-                            ...doc.data()
-                        }
-
+            response.forEach(doc => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
                 })
+            });
 
-                dispatch( fetchPatientConsultationsSuccess( consultation ) )
-            })
+            dispatch( fetchConsultationsSuccess( data ) )
 
         } catch (error) {
             dispatch( fetchPatientConsultationsError(error) )
