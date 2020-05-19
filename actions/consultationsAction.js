@@ -91,7 +91,7 @@ export function fetchDoctorConsultationsAction(id) {
                 })
             });
 
-            dispatch( fetchConsultationsSuccess( data ) )
+            dispatch( fetchDoctorConsultationsSuccess( data ) )
             
         } catch (error) {
             dispatch( fetchDoctorConsultationsError(error) )
@@ -134,7 +134,7 @@ export function fetchPatientConsultationsAction(id) {
                 })
             });
 
-            dispatch( fetchConsultationsSuccess( data ) )
+            dispatch( fetchPatientConsultationsSuccess( data ) )
 
         } catch (error) {
             dispatch( fetchPatientConsultationsError(error) )

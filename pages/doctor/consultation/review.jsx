@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import isImageUrl from 'is-image-url';
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { css } from "@emotion/core";
@@ -66,7 +67,7 @@ const Review = () => {
     if(!currentDoctor || Object.keys(currentDoctor).length === 0) return null
 
 
-    const { symptom, patient, status, prescription, bill } = current
+    const { symptom, patient, status, prescription, bill, url } = current
     const { name, allergies, preconditions, surgeries, birthday, email, covid } = patient
 
     const handleUpdateConsultation = () => {
@@ -350,6 +351,30 @@ const Review = () => {
                             margin-top: 2rem;
                         `}
                     >
+
+
+                        { (url && url.trim() !== "") && 
+                            <>
+                                <h1>Apoyo</h1>
+
+                                {
+                                    isImageUrl( url ) 
+                                        ? ( 
+                                            <img src = { url } alt = " support "/>
+                                        ) 
+                                        : ( 
+                                            <video 
+                                                css = {css` width: 100%; `}
+                                                controls
+                                            >
+                                                <source src = {url} />
+                                                Video no soportado
+                                            </video>
+                                        ) 
+                                }
+                            </>
+                        }
+
                         <h1>Síntomas</h1>
 
                         <Label>
