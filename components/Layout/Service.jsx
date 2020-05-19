@@ -12,6 +12,10 @@ const ServiceContainer = styled.li`
         color: var(--secondary);
     }
 
+    a:hover {
+        cursor: pointer;
+    }
+
     @media (min-width: 768px) {
         text-align: start;
     }
@@ -27,7 +31,6 @@ const Service = ({ service }) => {
     return ( 
         <ServiceContainer>
             <a
-                href = "#!"
                 onClick = {() => updateCurrentComponent(service.component)}
             >
                 {service.title}
