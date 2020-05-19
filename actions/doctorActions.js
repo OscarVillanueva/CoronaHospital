@@ -15,6 +15,7 @@ import {
     PUT_FOCUS_SERVICE_SUCCESS 
 } from "../types";
 import axios from '../config/axios';
+import firebase from '../firebase/firebase';
 
 // Traer los servicios
 export function fetchDoctorServicesAction(doctorID) {
@@ -22,11 +23,22 @@ export function fetchDoctorServicesAction(doctorID) {
         dispatch( fetchDoctorServices() )
 
         try {
-            
-            const response = await axios.get(`/services?owner.id=${doctorID}`)
-            dispatch( fetchDoctorServicesSuccess(response.data) )
+            const response = await firebase.fetchWhere("services", "owner.id", "==", doctorID)
+
+            const data = []
+
+            response.forEach(doc => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
+                })
+            });
+
+            // const response = await axios.get(`/services?owner.id=${doctorID}`)
+            dispatch( fetchDoctorServicesSuccess( data ) )
 
         } catch (error) {
+            console.log(error);
             dispatch( fetchDoctorServicesError(error) )
         }
     }
@@ -53,7 +65,10 @@ export function addServiceAction(service) {
 
         try {
             
-            await axios.post("/services", service)
+            // Agregar a firebase
+            firebase.add("services", service)
+
+            // await axios.post("/services", service)
             dispatch( addServiceSuccess() )
 
         } catch (error) {
@@ -82,7 +97,10 @@ export function updateServiceAction(service) {
 
         try {
             
-            await axios.put(`/services/${service.id}`, service)
+            // Actualizar el servicio en firebase
+            firebase.addDocument("services", service.id, service, true)
+
+            // await axios.put(`/services/${service.id}`, service)
             dispatch( updateServiceSuccess() )
 
         } catch (error) {
@@ -127,8 +145,11 @@ export function deleteServiceAction(service) {
         dispatch( deleteService() )
 
         try {
-            
-            await axios.delete(`/services/${service.id}`)
+
+            // Borramos el documento de firebase
+            firebase.deleteDocument("services", service.id)
+
+            // await axios.delete(`/services/${service.id}`)
             dispatch( deleteServiceSuccess() )
 
         } catch (error) {

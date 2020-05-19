@@ -35,6 +35,9 @@ export function registerUserAction(user) {
                 // Registramos el usuario en firebase
                 const newUser = await firebase.signup(user.email, user.password)
 
+                // agregamos el id al usuario
+                user.id = newUser.uid
+
                 // Quitamos la contraseña
                 delete user.password
                 firebase.addDocument("users", newUser.uid, user, false)
@@ -83,11 +86,7 @@ export function loginAction(user) {
             // Traer la información del usuario
             const info = await firebase.db.collection("users").doc( current.user.uid ).get()
 
-            console.log("exito");
-            console.log(info.exists);
-            console.log(info.data());
-
-            if ( info.exists ) dispatch(loginSuccess( info.data() ))
+            if ( info.exists ) dispatch(loginSuccess({ ...info.data(), id: current.user.uid } ))
             else
                 dispatch(loginSuccess({
                     address: "Una Calle",

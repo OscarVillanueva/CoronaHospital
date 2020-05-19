@@ -73,7 +73,7 @@ const EditService = () => {
 
         if(!focus || !currentDoctor) router.push("/dashboard")
         
-    }, [success])
+    }, [success, submitted])
 
     if(!focus) return null
     
@@ -81,7 +81,10 @@ const EditService = () => {
     
     function addService() {
         dispatch( updateServiceAction( values ) )
-        saveSubmitted(true)
+        
+        setTimeout(() => {
+            saveSubmitted(true)
+        }, 1000);
     }
 
     const handleClick = () => {

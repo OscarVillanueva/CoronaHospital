@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import { Field, InputSubmit, Form, Error } from "../../../components/includes/Fo
 import useValidation from '../../../hooks/useValidation';
 import validateService from '../../../validation/validateService';
 import { addServiceAction } from "../../../actions/doctorActions";
+import FirebaseContext from '../../../firebase/context';
 
 const HeaderContainer = styled.div`
     max-width: 1200px;
@@ -62,6 +63,7 @@ const AddService = () => {
     const dispatch = useDispatch()
     const router = useRouter()
 
+    // información General del doctor
     const currentDoctor = useSelector(state => state.auth.current)
 
     const success = useSelector(state => state.services.success)
@@ -75,7 +77,7 @@ const AddService = () => {
             router.push("/dashboard")
         }
 
-    }, [success])
+    }, [success, submitted])
 
     function addService() {
         
@@ -90,8 +92,12 @@ const AddService = () => {
                 state: currentDoctor.state,
             }
         }
+
         dispatch( addServiceAction( newService ) )
-        saveSubmitted(true)
+
+        setTimeout(() => {
+            saveSubmitted(true)
+        }, 1000);
     }
 
     return ( 

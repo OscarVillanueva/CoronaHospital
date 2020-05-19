@@ -32,9 +32,20 @@ class Firebase {
         return this.db.collection(collection).doc(doc).set(data, { merge })
     }
 
+    // Insertar con un id generado por firebase
+    add(collection, data){
+        return this.db.collection(collection).add(data)
+    }
+
     // Borrar a la base de datos
     deleteDocument(collection, doc) {
         return this.db.collection(collection).doc(doc).delete()
+    }
+
+    // select * from where . . . 
+    // @param rule: <,<=,==,>,>=, array-contains
+    async fetchWhere(collection ,column, rule, compare) {
+        return await this.db.collection(collection).where(column, rule, compare).get()
     }
 
 }
