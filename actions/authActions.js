@@ -19,37 +19,30 @@ export function registerUserAction(user) {
 
         try {
 
-            const  { data } = await axios.get(`/users?email=${user.email}`)
+            // Registramos el usuario en firebase
+            const newUser = await firebase.signup(user.email, user.password)
+
+            // city, state, country, parsearmos la localización
+            const { city, state, country } = user
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${city},${state},${country}&key=${process.env.GEO_KEY}`
+            const location = await axios.get(url)
             
-            if(data.length > 0) dispatch ( registerUserError( { message: "El usuario ya existe" } ) )
+            user.geometry = location.data.results[0].geometry
 
-            else {
+            // agregamos el id al usuario
+            user.id = newUser.uid
 
-                // city, state, country, parsearmos la localización
-                const { city, state, country } = user
-                const url = `https://api.opencagedata.com/geocode/v1/json?q=${city},${state},${country}&key=${process.env.GEO_KEY}`
-                const location = await axios.get(url)
+            // Quitamos la contraseña
+            delete user.password
+            firebase.addDocument("users", newUser.uid, user, false)
+            
+            // const { data } = await axios.post("/users", user)
 
-                user.geometry = location.data.results[0].geometry
+            if(user.type === "doctor") 
+                firebase.add("specialities", { title: user.speciality })
+                // await axios.post("/specialities", { title: user.speciality })
 
-                // Registramos el usuario en firebase
-                const newUser = await firebase.signup(user.email, user.password)
-
-                // agregamos el id al usuario
-                user.id = newUser.uid
-
-                // Quitamos la contraseña
-                delete user.password
-                firebase.addDocument("users", newUser.uid, user, false)
-                
-                // const { data } = await axios.post("/users", user)
-
-                // if(user.type === "doctor") 
-                //     await axios.post("/specialities", { title: user.speciality })
-
-                dispatch( registerUserSuccess( user ) )
-            }
-
+            dispatch( registerUserSuccess( user ) )
 
         } catch (error) {
             dispatch( registerUserError(error) )

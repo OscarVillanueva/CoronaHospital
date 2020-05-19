@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { css } from "@emotion/core";
-import axios from '../../../config/axios';
+import firebase from '../../../firebase/firebase';
 
 const SpecialitySelect = ({ setSpeciality }) => {
 
@@ -10,7 +10,20 @@ const SpecialitySelect = ({ setSpeciality }) => {
     useEffect(() => {
 
         const fetchSpecialities = async () => {
-            const { data } = await axios.get("/specialities")
+
+            // Descargamos las specialidades de firebase
+            const response = await firebase.db.collection("specialities").get()
+
+            const data = []
+
+            response.forEach(doc => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
+                })
+            });
+            
+            // const { data } = await axios.get("/specialities")
             setSpecialities(data)
         }
 

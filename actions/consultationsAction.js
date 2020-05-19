@@ -21,6 +21,7 @@ import {
     ADD_CONSULTATION_ERROR
 } from "../types";
 import axios from '../config/axios';
+import firebase from '../firebase/firebase';
 
 // Traer las consultas
 export function fetchConsultationsAction(speciality) {
@@ -29,9 +30,28 @@ export function fetchConsultationsAction(speciality) {
 
         try {
             
-            const api = `/consultations?speciality=${speciality}&status=pending`
-            const response = await axios.get(api)
-            dispatch( fetchConsultationsSuccess(response.data) )
+            // const api = `/consultations?speciality=${speciality}&status=pending`
+            // const response = await axios.get(api)
+            // Descargamos las consultas
+            firebase.db.collection("consultations").onSnapshot(snap => {
+
+                const consultation = snap.docs.map(doc => {
+
+                    if( doc.data().speciality === speciality && doc.data().status === "pending" )
+                        return {
+                            id: doc.id,
+                            ...doc.data()
+                        }
+
+                })
+
+
+                if ( consultation.length >= 0 && consultation[0] )
+                    dispatch( fetchConsultationsSuccess( consultation ) )
+                else
+                    dispatch( fetchConsultationsSuccess( [] ) )
+            })
+
 
         } catch (error) {
             dispatch( fetchConsultationsError(error) )
@@ -60,10 +80,24 @@ export function fetchDoctorConsultationsAction(id) {
 
         try {
             
-            const api = `/consultations?answerby.id=${id}`
-            const response = await axios.get(api)
-            dispatch( fetchDoctorConsultationsSuccess(response.data) )
+            // const api = `/consultations?answerby.id=${id}`
+            // const response = await axios.get(api)
+            // Descargamos las consultas
+            firebase.db.collection("consultations").onSnapshot(snap => {
 
+                const consultation = snap.docs.map(doc => {
+
+                    if( doc.data().answerby.id === id )
+                        return {
+                            id: doc.id,
+                            ...doc.data()
+                        }
+
+                })
+
+                dispatch( fetchDoctorConsultationsSuccess( consultation ) )
+            })
+            
         } catch (error) {
             dispatch( fetchDoctorConsultationsError(error) )
         }
@@ -91,9 +125,23 @@ export function fetchPatientConsultationsAction(id) {
 
         try {
             
-            const api = `/consultations?patient.id=${id}`
-            const response = await axios.get(api)
-            dispatch( fetchPatientConsultationsSuccess(response.data) )
+            // const api = `/consultations?patient.id=${id}`
+            // const response = await axios.get(api)
+            // Descargamos las consultas
+            firebase.db.collection("consultations").onSnapshot(snap => {
+
+                const consultation = snap.docs.map(doc => {
+
+                    if( doc.data().patient.id === id )
+                        return {
+                            id: doc.id,
+                            ...doc.data()
+                        }
+
+                })
+
+                dispatch( fetchPatientConsultationsSuccess( consultation ) )
+            })
 
         } catch (error) {
             dispatch( fetchPatientConsultationsError(error) )
@@ -117,9 +165,13 @@ const fetchPatientConsultationsError = error => ({
 
 // Poner información en focus
 export function putFocusDataAction(data) {
-    return dispatch => {
+    return async dispatch => {
         dispatch( putFocusData() )
-        dispatch( putFocusDataSuccess(data) )
+
+        firebase.db.collection("consultations").doc(data.id).onSnapshot(doc => {
+            dispatch( putFocusDataSuccess(doc.data()) )
+        })
+        
     }
 } 
 
@@ -138,18 +190,33 @@ export function updateConsultationAction(consultation) {
         dispatch( updateConsultation() )
 
         try {
-            // primero traer el paciente
-            const response = await axios.get(`/users/${consultation.patient.id}`)
-            const user = response.data
+            // // primero traer el paciente
+            // const response = await axios.get(`/users/${consultation.patient.id}`)
+            // const user = response.data
             
-            // Revisar si el mismo estado no actualizar, Si es diferente actualizar
-            if(user.covid !== consultation.patient.covid){
-                user.covid = consultation.patient.covid
-                await axios.put(`/users/${consultation.patient.id}`, user)
-            }
+            // // Revisar si el mismo estado no actualizar, Si es diferente actualizar
+            // if(user.covid !== consultation.patient.covid){
+            //     user.covid = consultation.patient.covid
+            //     await axios.put(`/users/${consultation.patient.id}`, user)
+            // }
+            // Actualizamos el campo de covid en firebase
+            firebase.addDocument(
+                "users",
+                consultation.patient.id, 
+                { 
+                    covid:  consultation.patient.covid 
+                }
+                , true)
 
-            const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
-            dispatch( updateConsultationSuccess(data) )
+            firebase.addDocument(
+                "consultations", 
+                consultation.id,
+                consultation,
+                true
+            )   
+
+            // const { data } = await axios.put(`/consultations/${consultation.id}`, consultation)
+            dispatch( updateConsultationSuccess( consultation ) )
 
         } catch (error) {
             dispatch( updateConsultationError(error) )
@@ -177,8 +244,16 @@ export function updateConversationAction(consultation) {
         dispatch( updateConversation() )
 
         try {
-            const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
-            dispatch( updateConversationSuccess(data) )
+
+            firebase.addDocument(
+                "consultations", 
+                consultation.id,
+                consultation,
+                true
+            )
+
+            // const {data} = await axios.put(`/consultations/${consultation.id}`, consultation)
+            dispatch( updateConversationSuccess( consultation ) )
 
         } catch (error) {
             dispatch( updateConversationError(error) )
@@ -207,8 +282,11 @@ export function addConsultationAction(consultation) {
 
         try {
             
-            const { data } = await axios.post(`/consultations`, consultation)
-            dispatch( addConsultationSuccess(data) )
+            // Agregamos la consulta a firebase
+            firebase.add("consultations", consultation)
+
+            // const { data } = await axios.post(`/consultations`, consultation)
+            dispatch( addConsultationSuccess(true) )
 
         } catch (error) {
             dispatch( addConsultationError(error) )
