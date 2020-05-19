@@ -39,7 +39,7 @@ const initialState = {
             },
             {
                 id: 3,
-                title: "e-Farmacia",
+                title: "eFarmacia",
                 type: "both",
                 component: "pharmacy"
             },
