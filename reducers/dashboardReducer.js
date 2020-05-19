@@ -38,12 +38,6 @@ const initialState = {
                 component: "createconsultation"
             },
             {
-                id: 3,
-                title: "eFarmacia",
-                type: "both",
-                component: "pharmacy"
-            },
-            {
                 id: 4,
                 title: "Reportes",
                 type: "patient",

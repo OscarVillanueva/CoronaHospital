@@ -16,7 +16,7 @@ const ServiceListContainer = styled.ul`
 
 `
 
-const LogOut = styled.li`
+const Item = styled.li`
     margin-bottom: 2rem;
     text-align: center;
     font-size: 1.08rem;
@@ -51,13 +51,22 @@ const ServiceList = ({ services }) => {
                 />
             ))}
 
-            <LogOut>
+            <Item>
+                <a 
+                    href = "https://efarmacia.now.sh/"
+                    target = "_blank"
+                >
+                    eFarmacia
+                </a>
+            </Item>
+
+            <Item>
                 <a 
                     onClick = { logout }
                 >
                     Salir
                 </a>
-            </LogOut>
+            </Item>
             
 
         </ServiceListContainer>
