@@ -20,7 +20,7 @@ import {
     ADD_CONSULTATION_SUCCESS,
     ADD_CONSULTATION_ERROR
 } from "../types";
-import axios from '../config/axios';
+// import axios from '../config/axios';
 import firebase from '../firebase/firebase';
 
 // Traer las consultas

@@ -5,6 +5,7 @@ import { css } from "@emotion/core";
 import { useRouter } from "next/router";
 import { Container } from "../includes/Grid";
 import axios from '../../config/axios';
+import firebase from '../../firebase/firebase';
 
 const MapContainer = styled.div`
     width: 100%;
@@ -23,7 +24,21 @@ const Map = () => {
     useEffect(() => {
 
         const fetchCases = async () => {
-            const { data } = await axios.get("/users?covid_ne=free")
+            // const { data } = await axios.get("/users?covid_ne=free")
+
+            // Descargamos a los pacientes
+            const patients = await firebase.fetchWhere("users", "type", "==", "patient")
+            
+            // Filtramos, no se filtra con filter porque no se deja jejej
+            const data = []
+
+            patients.forEach(patient => {
+                console.log(patient, "paciente");
+                if(patient.data().covid === "suspect" || patient.data().covid === "infected")
+                    data.push({ id: patient.id, ...patient.data() })
+
+            });
+
 
             initMap(data)
         }
