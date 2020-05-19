@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { css } from "@emotion/core";
+import LinearProgress from '@material-ui/core/LinearProgress';
+import FileUploader from 'react-firebase-file-uploader';
 import SpecialitySelect from './SpecialitySelect';
 import { Form, Field, InputSubmit, Error } from '../../includes/Form';
 import { Alert } from "../../includes/Alert";
 import useValidation from '../../../hooks/useValidation';
 import validateConsultation from '../../../validation/validateConsultation';
 import { addConsultationAction } from "../../../actions/consultationsAction";
+import firebase from '../../../firebase/firebase';
 
 const INITIAL_STATE = {
     symptom: "",
@@ -22,6 +24,14 @@ const CreateConsultation = () => {
     const current = useSelector( state => state.auth.current )
     const success = useSelector( state => state.consultations.success )
     const error = useSelector( state => state.consultations.error )
+
+    // State para controlar el archivo
+    const [upload, uploadToFirebase] = useState(false)
+    const [progress, saveProgress] = useState(0)
+    const [uploading, saveUploading] = useState(false)
+    const [urlImage, saveUrl] = useState("")
+    const [hasSelected, saveHasSelected] = useState(false)
+    const [consultion, setConsultation] = useState({})
 
     const dispatch = useDispatch()
     const router = useRouter()
@@ -39,6 +49,17 @@ const CreateConsultation = () => {
         }
 
     }, [success])
+
+    useEffect(() => {
+        
+        if(upload) {
+
+            setSubmitted(true)
+            dispatch( addConsultationAction(consultion) );
+
+        }
+
+    }, [upload])
 
     const {
         values,
@@ -67,11 +88,20 @@ const CreateConsultation = () => {
                 birthday: current.birthday,
                 covid: current.covid
             },
+            url: urlImage,
             answerby: {}
         }
 
-        setSubmitted(true)
-        dispatch( addConsultationAction(newConsultation) );
+        setConsultation( newConsultation )
+
+        if(hasSelected && urlImage !== "")
+            uploadToFirebase(true)
+        else
+            if(!hasSelected)
+                uploadToFirebase(true)
+            else
+                uploadToFirebase(false)
+
     }
 
     const handleSelectChange = option => {
@@ -82,7 +112,34 @@ const CreateConsultation = () => {
             }
         }
         handleChange(target)
-    }    
+    }   
+    
+    // react-firebase-file-uploader
+    const handleUploadStart = () => {
+        saveProgress(0);
+        saveUploading(true);
+        saveHasSelected(true)
+    }
+    
+    const handleProgress = progress => saveProgress( progress );
+
+    const handleUploadError = error => {
+        saveUploading(error);
+        console.error(error);
+    };
+    
+    const handleUploadSuccess = imageName => {
+        saveProgress(100);
+        saveUploading(false);
+        firebase
+            .storage
+            .ref(`covidHospital`)
+            .child(imageName)
+            .getDownloadURL()
+            .then(url => {
+                saveUrl(url);
+            } );
+    };
 
     return ( 
         <>
@@ -93,11 +150,48 @@ const CreateConsultation = () => {
             >
                 Nueva consulta
             </h1>
+
+            { uploading 
+                && (
+                    <div className="container">
+                        <LinearProgress 
+                            value={progress} 
+                            variant= "determinate" 
+                            css = {css` margin: 5rem 0;`}
+                            color = "secondary"
+                        />
+                    </div>
+                ) 
+            }
     
             <Form onSubmit = {handleSubmit}>
     
             { error && <Error>{error.message}</Error> }
             { (success && submitted) && <Alert>Se agregado tu consulta correctamente</Alert>  }
+
+            <label 
+                htmlFor="symptom"
+                css = {css`
+                    margin-bottom: 0.5rem;
+                    margin-top: 2rem;
+                    display: block;
+                `}
+            >
+                Imagen
+            </label>
+            <Field>
+                <FileUploader 
+                    name="image" 
+                    id="image" 
+                    randomizeFilename
+                    storageRef={firebase.storage.ref(`covidHospital`)}
+                    onUploadStart = {handleUploadStart}
+                    onUploadError = {handleUploadError}
+                    onUploadSuccess = {handleUploadSuccess}
+                    onProgress = {handleProgress}
+                    accept = "image/*, video/*"
+                />
+            </Field>
     
             <label 
                 htmlFor="symptom"
@@ -125,7 +219,7 @@ const CreateConsultation = () => {
             />
     
             { errors.speciality && <Error>{errors.speciality}</Error> }
-    
+            
             <InputSubmit 
                 type="submit" 
                 value="Enviar consulta"
