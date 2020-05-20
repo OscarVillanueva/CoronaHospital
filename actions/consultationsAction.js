@@ -162,7 +162,10 @@ export function putFocusDataAction(data) {
         dispatch( putFocusData() )
 
         firebase.db.collection("consultations").doc(data.id).onSnapshot(doc => {
-            dispatch( putFocusDataSuccess(doc.data()) )
+            dispatch( putFocusDataSuccess({ 
+                id: doc.id,
+                ...doc.data()
+            }))
         })
         
     }

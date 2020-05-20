@@ -4,12 +4,15 @@ import isImageUrl from 'is-image-url';
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { css } from "@emotion/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Grid} from "../../../components/includes/Grid";
 import { Field, Error } from "../../../components/includes/Form";
 import { ButtonLG } from "../../../components/includes/Button";
 import { updateConsultationAction } from "../../../actions/consultationsAction";
 import Conversation from '../../../components/Layout/Conversation';
 import DashboardHeader from '../../../components/Layout/DashboardHeader';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import Preview from '../../../components/Layout/Preview';
 
 const Label = styled.p`
     font-weight: bold;
@@ -38,6 +41,24 @@ const Select = styled.select`
     
 `
 
+const Item = styled.li`
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-left: 1rem;
+    width: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--primary)
+  }
+`
+
+const Button = styled.button`
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+`
+
 const Review = () => {
 
     const router = useRouter()
@@ -51,6 +72,12 @@ const Review = () => {
     const [current, saveCurrent] = useState(focus)
     const [errors, saveError] = useState({})
 
+    // Mostrar el  pdf
+    const [showPDF, setShowPDF] = useState(false)
+
+    // Generar pdf
+    const [generatePDF, setGeneratePDF] = useState(false)
+
     useEffect(() => {
         
         if(!current || !currentDoctor) router.push("/dashboard")
@@ -60,6 +87,10 @@ const Review = () => {
     useEffect(() => {
         
         saveCurrent( focus )
+
+        if(focus)
+            if(Object.keys(focus.answerby).length > 0) setGeneratePDF( true )
+
 
     }, [focus])
 
@@ -72,8 +103,10 @@ const Review = () => {
 
     const handleUpdateConsultation = () => {
         
-        if(isValidate())
+        if(isValidate()){
             dispatch( updateConsultationAction({...current, answerby: currentDoctor}) )
+            setGeneratePDF( true )
+        }
         else 
             console.log("No podemos guardar");
            
@@ -153,6 +186,10 @@ const Review = () => {
             })
 
         }   
+    }
+
+    const handlePDF = () => {
+        setShowPDF(true)
     }
 
     return (
@@ -288,9 +325,21 @@ const Review = () => {
                                         {errors.bill}
                                     </Error> }
 
-                            <Label>
-                                Receta: 
-                            </Label>
+                            <Item>
+                                <Label>
+                                    Receta:
+                                </Label>
+
+                                { generatePDF && (
+                                    <Button
+                                        type = "button"
+                                        onClick = { handlePDF }
+                                    >
+                                        <FontAwesomeIcon icon={faFilePdf} />
+                                    </Button>
+                                )}
+
+                            </Item>
 
                             <Field
                                 css = {css`
@@ -384,6 +433,13 @@ const Review = () => {
                         </Label>
 
                         <Conversation />
+
+                        { showPDF && (
+                            <Preview 
+                                doctor = { current.answerby }
+                                prescription = { prescription }
+                            />
+                        )}
 
                     </div>
                 </Grid>
