@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const PDF = ({ doctor, prescription }) => {
+const PDF = ({ doctor, prescription, bill }) => {
 
     const { name, lastName, email, document } = doctor
 
@@ -57,6 +57,14 @@ const PDF = ({ doctor, prescription }) => {
 
                             <Text style = { styles.prescription }>
                                 {prescription}
+                            </Text>
+
+                        </View>
+
+                        <View style = { styles.section }>
+
+                            <Text style = { styles.prescription }>
+                                Total: ${bill}
                             </Text>
 
                         </View>

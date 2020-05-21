@@ -88,8 +88,14 @@ const Review = () => {
         
         saveCurrent( focus )
 
+        console.log(Object.keys(focus.answerby).length > 0);
+        console.log(prescription.trim() !== "");
+
         if(focus)
-            if(Object.keys(focus.answerby).length > 0) setGeneratePDF( true )
+            if(focus.status === "close") 
+                setGeneratePDF( true )
+            else
+                setGeneratePDF( false )
 
 
     }, [focus])
@@ -438,6 +444,7 @@ const Review = () => {
                             <Preview 
                                 doctor = { current.answerby }
                                 prescription = { prescription }
+                                bill = { bill }
                             />
                         )}
 
