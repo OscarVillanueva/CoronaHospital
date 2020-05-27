@@ -3,7 +3,7 @@ import Services from '../components/Layout/doctor/Services';
 import CheckConsultations from '../components/Layout/doctor/CheckConsultations';
 import Reports from '../components/Layout/doctor/Reports';
 import Consultations from '../components/Layout/patient/Consultations';
-import CreateConsultation from '../components/Layout/patient/createconsultation';
+import CreateConsultation from '../components/Layout/patient/Createconsultation';
 import Statistics from '../components/Layout/patient/Statistics';
 import Search from '../components/Layout/patient/Search';
 
