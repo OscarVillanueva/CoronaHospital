@@ -88,9 +88,6 @@ const Review = () => {
         
         saveCurrent( focus )
 
-        console.log(Object.keys(focus.answerby).length > 0);
-        console.log(prescription.trim() !== "");
-
         if(focus)
             if(focus.status === "close") 
                 setGeneratePDF( true )
