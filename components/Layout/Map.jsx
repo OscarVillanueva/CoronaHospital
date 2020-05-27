@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import L from 'leaflet';
+// import L from 'leaflet';
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
 import { useRouter } from "next/router";
