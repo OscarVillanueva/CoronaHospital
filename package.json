@@ -22,7 +22,7 @@
     "firebase-admin": "^8.12.1",
     "is-image-url": "^1.1.8",
     "leaflet": "^1.6.0",
-    "next": "9.3.5",
+    "next": "13.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-firebase-file-uploader": "^2.4.3",
