@@ -19,7 +19,7 @@
     "axios": "^0.19.2",
     "babel-plugin-emotion": "^10.0.33",
     "firebase": "^7.14.4",
-    "firebase-admin": "^8.12.1",
+    "firebase-admin": "^11.4.1",
     "is-image-url": "^1.1.8",
     "leaflet": "^1.6.0",
     "next": "9.3.5",
